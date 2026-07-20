@@ -64,7 +64,7 @@ LIGATURE_ROW = ("LIGATURES - write the PAIR as one joined movement, no pen lift 
 PICK_RULES = [
     "write the character in all THREE boxes - vary naturally, don't trace-copy",
     "then TICK the circle above every version you actually like",
-    "1st ticked version  =  the letter in your font",
+    "1st ticked version  =  the letter in your font (1, 2 or 3 ticks is fine)",
     "2nd & 3rd ticked    =  rotating alternates (repeats won't look cloned)",
     "no tick on a version = it is thrown away - a botched box costs nothing",
     "no tick on ANY of the three = all non-empty boxes get used",

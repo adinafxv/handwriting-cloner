@@ -39,9 +39,14 @@ have á), whichever you segment **last** wins.
 Each module comes in two sizes: **normal** (large boxes, easy first-time
 experience, 300 DPI scan is enough) and **book** (landscape split like an
 open notebook, natural-size ~4.5 mm x-height boxes — the most comfortable
-to fill; scan at 600 DPI, keep the sheet flat, never fold it). Print at
-**100% / "actual size"** — never "fit to page"; the layout JSON must match
-the printed geometry.
+to fill; scan at 600 DPI, keep the sheet flat, never fold it). The "book"
+sheet is a single landscape page split into two A5-sized halves, side by
+side, because that's closer to how a person naturally writes than one
+wide page. Characters flow like a real book: the **left half fills
+completely, top to bottom, first**, then the **right half** does the
+same — the fill order never alternates back and forth across the spine.
+Print at **100% / "actual size"** — never "fit to page"; the layout JSON
+must match the printed geometry.
 
 ## Write 3, tick the keepers
 
@@ -50,9 +55,12 @@ circle above it. Write the character three times (vary naturally — don't
 trace-copy), then **tick the circle** above every version you actually
 like:
 
-- the **first ticked** version becomes the character in your font,
+- the **first ticked** version becomes the character in your font — ticking
+  just **one** box is a completely fine outcome; it simply means "use this
+  one, no alternates",
 - **further ticked** versions become rotating OpenType `calt` alternates,
-  so "book" never shows two identical o's,
+  so "book" never shows two identical o's — ticking two or all three is
+  just as valid as ticking one,
 - **unticked** versions are thrown away — a botched box costs nothing,
 - **no tick at all** on a character = all non-empty boxes are used
   (forgetting to tick never loses a character).
@@ -168,6 +176,11 @@ python3 segment.py --layout templates/layout-english-a4-book.json work/sim/*.png
   Normal-offsetting one master guarantees compatibility.
 - Sheets are versioned (`template v3` in the footer, `version` in the layout
   JSON). A v2 sheet won't line up with a v3 layout — reprint.
+- **Book fill order is a deliberate invariant:** the left A5 half fills
+  completely, top to bottom, before the right half starts — it never
+  zig-zags across the spine. This matches how someone actually writes in
+  an open notebook and must be preserved if the "book" layout code
+  (`render_page` / `SIZE_PARAMS` in `make_template.py`) is ever touched.
 - Later idea: a second sheet per character where you mark usable extras to
   grow the alternate pool beyond three. The selection metadata
   (`base`/`cand`/`marked`) already supports it.
