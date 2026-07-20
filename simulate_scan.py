@@ -58,7 +58,7 @@ def main():
 
     # PIL can't read PDFs, so re-render the page images from the layout code
     images, _ = make_template.render_all(
-        layout["paper"], layout["size_mode"], set(layout["sets"]))
+        layout["paper"], layout["size_mode"], layout["module"])
 
     for page in layout["pages"]:
         img = images[page["page"] - 1]
@@ -68,12 +68,20 @@ def main():
             # size the fake pen so lowercase roughly matches the x-height zone
             size = int((cell["baseline_y"] - cell["xheight_y"]) * 1.35)
             text = cell["text"]
-            if cell["glyph"].endswith(".sc"):  # small caps: small capital forms
-                text = text.upper()
+            if cell.get("base", cell["glyph"]).endswith(".sc"):
+                text = text.upper()  # small caps: small capital forms
                 size = int(size * 0.72)
             font = ImageFont.truetype(pick_font(text), size)
-            # make the "alternate versions" visibly different by tilting them
-            tilt = {"alt1": 8, "alt2": -8}.get(cell["glyph"].rsplit(".", 1)[-1], 0)
+            # tick candidates 1 and 3 (skip 2), exercising the selection:
+            # cand1 -> the glyph, cand3 -> .alt1, unticked cand2 -> dropped
+            if "check" in cell and cell.get("cand") in (1, 3):
+                cx, cy, r = cell["check"]
+                draw.line([(cx - r * 0.5, cy), (cx - r * 0.1, cy + r * 0.5)],
+                          fill=15, width=4)
+                draw.line([(cx - r * 0.1, cy + r * 0.5),
+                           (cx + r * 0.6, cy - r * 0.6)], fill=15, width=4)
+            # make the versions visibly different by tilting them
+            tilt = {2: 8, 3: -8}.get(cell.get("cand"), 0)
             if tilt:
                 patch = Image.new("L", (x1 - x0, y1 - y0), 255)
                 ImageDraw.Draw(patch).text(

@@ -108,28 +108,51 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
     metrics["space"] = (space_width, 0)
     cmap[0x20] = "space"
 
-    skipped, ligatures, alternates, smallcaps = [], {}, {}, {}
+    # Group cells by base glyph. v3 templates give every character three
+    # candidate boxes ("a.cand1"...) plus a tick circle; the writer ticks the
+    # versions they want. First ticked candidate = the glyph, further ticked
+    # ones = rotating alternates. Ticked-but-empty or unticked boxes are
+    # dropped; if nothing is ticked, every non-empty box is used. Old-style
+    # cells without candidate metadata pass through one-to-one.
+    groups = {}
     for png in sorted(glob.glob(os.path.join(cells_dir, "*.png"))):
         with open(png[:-4] + ".json") as f:
             meta = json.load(f)
-        name, text = meta["glyph"], meta["text"]
-        result = build_glyph(png, meta, threshold, turdsize, lsb, rsb)
-        if result is None:
-            skipped.append(name)
+        base = meta.get("base", meta["glyph"])
+        groups.setdefault(base, []).append((meta.get("cand") or 0, png, meta))
+
+    skipped, rejected, ligatures, alternates, smallcaps = [], 0, {}, {}, {}
+    for base, cands in sorted(groups.items()):
+        cands.sort(key=lambda c: c[0])
+        built = []
+        for _, png, meta in cands:
+            result = build_glyph(png, meta, threshold, turdsize, lsb, rsb)
+            if result is not None:
+                built.append((meta, result))
+        if not built:
+            skipped.append(base)
             continue
-        glyph, advance, glyph_lsb = result
-        glyphs[name] = glyph
-        metrics[name] = (advance, glyph_lsb)
-        if len(text) == 1 and "." not in name:
-            cmap[ord(text)] = name
-        if len(text) > 1:
-            ligatures[name] = text
-        if ".alt" in name:
-            alternates[name] = text
-        if name.endswith(".sc"):
-            smallcaps[name] = text
+        marked = [b for b in built if b[0].get("marked")]
+        chosen = marked if marked else built
+        rejected += len(built) - len(chosen)
+        text = chosen[0][0]["text"]
+        for idx, (meta, (glyph, advance, glyph_lsb)) in enumerate(chosen[:3]):
+            name = base if idx == 0 else f"{base}.alt{idx}"
+            glyphs[name] = glyph
+            metrics[name] = (advance, glyph_lsb)
+            if idx == 0:
+                if len(text) == 1 and "." not in name:
+                    cmap[ord(text)] = name
+                if len(text) > 1:
+                    ligatures[name] = text
+                if name.endswith(".sc"):
+                    smallcaps[name] = text
+            else:
+                alternates[name] = text
     if skipped:
-        print(f"  skipped empty cells: {' '.join(skipped)}")
+        print(f"  skipped empty characters: {' '.join(skipped)}")
+    if rejected:
+        print(f"  discarded {rejected} unticked versions")
 
     order = [".notdef", "space"] + sorted(n for n in glyphs if n not in (".notdef", "space"))
     fb = FontBuilder(UPM, isTTF=True)
@@ -192,21 +215,23 @@ def build_features(glyphs, ligatures, alternates, smallcaps):
     if c2sc_rules:
         lines += ["feature c2sc {"] + c2sc_rules + ["} c2sc;"]
 
-    # Pseudo-random alternates: rotate default -> alt1 -> alt2 along a word.
-    # Both rules are chained contextual substitutions; within one lookup,
-    # earlier substitutions change the context seen by later positions, which
-    # is exactly what makes the states alternate.
-    have1 = sorted(n[:-5] for n in alternates if n.endswith(".alt1") and n[:-5] in glyphs)
-    have2 = sorted(n[:-5] for n in alternates if n.endswith(".alt2") and n[:-5] in glyphs)
-    letters = sorted(n for n in glyphs
-                     if len(n) == 1 and n.islower() and n.isalpha())
-    if have1 and letters:
+    # Pseudo-random alternates: rotate default -> alt1 -> alt2 along a line.
+    # Any character can have alternates (its extra ticked versions). Both
+    # rules are chained contextual substitutions; within one lookup, earlier
+    # substitutions change the context seen by later positions, which is
+    # exactly what makes the states alternate.
+    have1 = sorted(n[:-5] for n in glyphs if n.endswith(".alt1") and n[:-5] in glyphs)
+    have2 = sorted(n[:-5] for n in glyphs
+                   if n.endswith(".alt2") and n[:-5] in glyphs and n[:-5] in have1)
+    context = sorted(n for n in glyphs
+                     if n not in (".notdef", "space") and ".alt" not in n)
+    if have1 and context:
         lines += [
-            f"@LC = [{' '.join(letters)}];",
+            f"@CTX = [{' '.join(context)}];",
             f"@R1F = [{' '.join(have1)}];",
             f"@R1T = [{' '.join(n + '.alt1' for n in have1)}];",
         ]
-        calt = ["feature calt {", "    sub @LC @R1F' by @R1T;"]
+        calt = ["feature calt {", "    sub @CTX @R1F' by @R1T;"]
         if have2:
             lines += [
                 f"@A1 = [{' '.join(n + '.alt1' for n in have1)}];",
