@@ -1,0 +1,4702 @@
+{
+ "version": 2,
+ "dpi": 300,
+ "paper": "a4",
+ "size_mode": "normal",
+ "sets": [
+  "alternates",
+  "core",
+  "czech",
+  "extras",
+  "ligatures",
+  "sample",
+  "slovak-polish",
+  "small-caps",
+  "symbols-extra"
+ ],
+ "guide_gray": 185,
+ "baseline_frac": 0.75,
+ "xheight_frac": 0.4,
+ "pages": [
+  {
+   "page": 1,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "a",
+     "glyph": "a",
+     "box": [
+      138,
+      393,
+      550,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "a",
+     "glyph": "a.alt1",
+     "box": [
+      586,
+      393,
+      998,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "a",
+     "glyph": "a.alt2",
+     "box": [
+      1034,
+      393,
+      1446,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "b",
+     "glyph": "b",
+     "box": [
+      1482,
+      393,
+      1894,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "b",
+     "glyph": "b.alt1",
+     "box": [
+      1930,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "b",
+     "glyph": "b.alt2",
+     "box": [
+      138,
+      846,
+      550,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "c",
+     "glyph": "c",
+     "box": [
+      586,
+      846,
+      998,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "c",
+     "glyph": "c.alt1",
+     "box": [
+      1034,
+      846,
+      1446,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "c",
+     "glyph": "c.alt2",
+     "box": [
+      1482,
+      846,
+      1894,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "d",
+     "glyph": "d",
+     "box": [
+      1930,
+      846,
+      2342,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "d",
+     "glyph": "d.alt1",
+     "box": [
+      138,
+      1299,
+      550,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "d",
+     "glyph": "d.alt2",
+     "box": [
+      586,
+      1299,
+      998,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "e",
+     "glyph": "e",
+     "box": [
+      1034,
+      1299,
+      1446,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "e",
+     "glyph": "e.alt1",
+     "box": [
+      1482,
+      1299,
+      1894,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "e",
+     "glyph": "e.alt2",
+     "box": [
+      1930,
+      1299,
+      2342,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "f",
+     "glyph": "f",
+     "box": [
+      138,
+      1752,
+      550,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "f",
+     "glyph": "f.alt1",
+     "box": [
+      586,
+      1752,
+      998,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "f",
+     "glyph": "f.alt2",
+     "box": [
+      1034,
+      1752,
+      1446,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "g",
+     "glyph": "g",
+     "box": [
+      1482,
+      1752,
+      1894,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "g",
+     "glyph": "g.alt1",
+     "box": [
+      1930,
+      1752,
+      2342,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "g",
+     "glyph": "g.alt2",
+     "box": [
+      138,
+      2205,
+      550,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "h",
+     "glyph": "h",
+     "box": [
+      586,
+      2205,
+      998,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "h",
+     "glyph": "h.alt1",
+     "box": [
+      1034,
+      2205,
+      1446,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "h",
+     "glyph": "h.alt2",
+     "box": [
+      1482,
+      2205,
+      1894,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "i",
+     "glyph": "i",
+     "box": [
+      1930,
+      2205,
+      2342,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "i",
+     "glyph": "i.alt1",
+     "box": [
+      138,
+      2658,
+      550,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "i",
+     "glyph": "i.alt2",
+     "box": [
+      586,
+      2658,
+      998,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "j",
+     "glyph": "j",
+     "box": [
+      1034,
+      2658,
+      1446,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "j",
+     "glyph": "j.alt1",
+     "box": [
+      1482,
+      2658,
+      1894,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "j",
+     "glyph": "j.alt2",
+     "box": [
+      1930,
+      2658,
+      2342,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 2,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "k",
+     "glyph": "k",
+     "box": [
+      138,
+      393,
+      550,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "k",
+     "glyph": "k.alt1",
+     "box": [
+      586,
+      393,
+      998,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "k",
+     "glyph": "k.alt2",
+     "box": [
+      1034,
+      393,
+      1446,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "l",
+     "glyph": "l",
+     "box": [
+      1482,
+      393,
+      1894,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "l",
+     "glyph": "l.alt1",
+     "box": [
+      1930,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "l",
+     "glyph": "l.alt2",
+     "box": [
+      138,
+      846,
+      550,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "m",
+     "glyph": "m",
+     "box": [
+      586,
+      846,
+      998,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "m",
+     "glyph": "m.alt1",
+     "box": [
+      1034,
+      846,
+      1446,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "m",
+     "glyph": "m.alt2",
+     "box": [
+      1482,
+      846,
+      1894,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "n",
+     "glyph": "n",
+     "box": [
+      1930,
+      846,
+      2342,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "n",
+     "glyph": "n.alt1",
+     "box": [
+      138,
+      1299,
+      550,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "n",
+     "glyph": "n.alt2",
+     "box": [
+      586,
+      1299,
+      998,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "o",
+     "glyph": "o",
+     "box": [
+      1034,
+      1299,
+      1446,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "o",
+     "glyph": "o.alt1",
+     "box": [
+      1482,
+      1299,
+      1894,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "o",
+     "glyph": "o.alt2",
+     "box": [
+      1930,
+      1299,
+      2342,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "p",
+     "glyph": "p",
+     "box": [
+      138,
+      1752,
+      550,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "p",
+     "glyph": "p.alt1",
+     "box": [
+      586,
+      1752,
+      998,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "p",
+     "glyph": "p.alt2",
+     "box": [
+      1034,
+      1752,
+      1446,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "q",
+     "glyph": "q",
+     "box": [
+      1482,
+      1752,
+      1894,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "q",
+     "glyph": "q.alt1",
+     "box": [
+      1930,
+      1752,
+      2342,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "q",
+     "glyph": "q.alt2",
+     "box": [
+      138,
+      2205,
+      550,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "r",
+     "glyph": "r",
+     "box": [
+      586,
+      2205,
+      998,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "r",
+     "glyph": "r.alt1",
+     "box": [
+      1034,
+      2205,
+      1446,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "r",
+     "glyph": "r.alt2",
+     "box": [
+      1482,
+      2205,
+      1894,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "s",
+     "glyph": "s",
+     "box": [
+      1930,
+      2205,
+      2342,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "s",
+     "glyph": "s.alt1",
+     "box": [
+      138,
+      2658,
+      550,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "s",
+     "glyph": "s.alt2",
+     "box": [
+      586,
+      2658,
+      998,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "t",
+     "glyph": "t",
+     "box": [
+      1034,
+      2658,
+      1446,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "t",
+     "glyph": "t.alt1",
+     "box": [
+      1482,
+      2658,
+      1894,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "t",
+     "glyph": "t.alt2",
+     "box": [
+      1930,
+      2658,
+      2342,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 3,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "u",
+     "glyph": "u",
+     "box": [
+      138,
+      393,
+      550,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "u",
+     "glyph": "u.alt1",
+     "box": [
+      586,
+      393,
+      998,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "u",
+     "glyph": "u.alt2",
+     "box": [
+      1034,
+      393,
+      1446,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "v",
+     "glyph": "v",
+     "box": [
+      1482,
+      393,
+      1894,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "v",
+     "glyph": "v.alt1",
+     "box": [
+      1930,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "v",
+     "glyph": "v.alt2",
+     "box": [
+      138,
+      846,
+      550,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "w",
+     "glyph": "w",
+     "box": [
+      586,
+      846,
+      998,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "w",
+     "glyph": "w.alt1",
+     "box": [
+      1034,
+      846,
+      1446,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "w",
+     "glyph": "w.alt2",
+     "box": [
+      1482,
+      846,
+      1894,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "x",
+     "glyph": "x",
+     "box": [
+      1930,
+      846,
+      2342,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "x",
+     "glyph": "x.alt1",
+     "box": [
+      138,
+      1299,
+      550,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "x",
+     "glyph": "x.alt2",
+     "box": [
+      586,
+      1299,
+      998,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "y",
+     "glyph": "y",
+     "box": [
+      1034,
+      1299,
+      1446,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "y",
+     "glyph": "y.alt1",
+     "box": [
+      1482,
+      1299,
+      1894,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "y",
+     "glyph": "y.alt2",
+     "box": [
+      1930,
+      1299,
+      2342,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "z",
+     "glyph": "z",
+     "box": [
+      138,
+      1752,
+      550,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "z",
+     "glyph": "z.alt1",
+     "box": [
+      586,
+      1752,
+      998,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "z",
+     "glyph": "z.alt2",
+     "box": [
+      1034,
+      1752,
+      1446,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "A",
+     "glyph": "A",
+     "box": [
+      1482,
+      1752,
+      1894,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "B",
+     "glyph": "B",
+     "box": [
+      1930,
+      1752,
+      2342,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "C",
+     "glyph": "C",
+     "box": [
+      138,
+      2205,
+      550,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "D",
+     "glyph": "D",
+     "box": [
+      586,
+      2205,
+      998,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "E",
+     "glyph": "E",
+     "box": [
+      1034,
+      2205,
+      1446,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "F",
+     "glyph": "F",
+     "box": [
+      1482,
+      2205,
+      1894,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "G",
+     "glyph": "G",
+     "box": [
+      1930,
+      2205,
+      2342,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "H",
+     "glyph": "H",
+     "box": [
+      138,
+      2658,
+      550,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "I",
+     "glyph": "I",
+     "box": [
+      586,
+      2658,
+      998,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "J",
+     "glyph": "J",
+     "box": [
+      1034,
+      2658,
+      1446,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "K",
+     "glyph": "K",
+     "box": [
+      1482,
+      2658,
+      1894,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "L",
+     "glyph": "L",
+     "box": [
+      1930,
+      2658,
+      2342,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 4,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "M",
+     "glyph": "M",
+     "box": [
+      138,
+      393,
+      550,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "N",
+     "glyph": "N",
+     "box": [
+      586,
+      393,
+      998,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "O",
+     "glyph": "O",
+     "box": [
+      1034,
+      393,
+      1446,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "P",
+     "glyph": "P",
+     "box": [
+      1482,
+      393,
+      1894,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "Q",
+     "glyph": "Q",
+     "box": [
+      1930,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "R",
+     "glyph": "R",
+     "box": [
+      138,
+      846,
+      550,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "S",
+     "glyph": "S",
+     "box": [
+      586,
+      846,
+      998,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "T",
+     "glyph": "T",
+     "box": [
+      1034,
+      846,
+      1446,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "U",
+     "glyph": "U",
+     "box": [
+      1482,
+      846,
+      1894,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "V",
+     "glyph": "V",
+     "box": [
+      1930,
+      846,
+      2342,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "W",
+     "glyph": "W",
+     "box": [
+      138,
+      1299,
+      550,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "X",
+     "glyph": "X",
+     "box": [
+      586,
+      1299,
+      998,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "Y",
+     "glyph": "Y",
+     "box": [
+      1034,
+      1299,
+      1446,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "Z",
+     "glyph": "Z",
+     "box": [
+      1482,
+      1299,
+      1894,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "a",
+     "glyph": "a.sc",
+     "box": [
+      1930,
+      1299,
+      2342,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "b",
+     "glyph": "b.sc",
+     "box": [
+      138,
+      1752,
+      550,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "c",
+     "glyph": "c.sc",
+     "box": [
+      586,
+      1752,
+      998,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "d",
+     "glyph": "d.sc",
+     "box": [
+      1034,
+      1752,
+      1446,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "e",
+     "glyph": "e.sc",
+     "box": [
+      1482,
+      1752,
+      1894,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "f",
+     "glyph": "f.sc",
+     "box": [
+      1930,
+      1752,
+      2342,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "g",
+     "glyph": "g.sc",
+     "box": [
+      138,
+      2205,
+      550,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "h",
+     "glyph": "h.sc",
+     "box": [
+      586,
+      2205,
+      998,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "i",
+     "glyph": "i.sc",
+     "box": [
+      1034,
+      2205,
+      1446,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "j",
+     "glyph": "j.sc",
+     "box": [
+      1482,
+      2205,
+      1894,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "k",
+     "glyph": "k.sc",
+     "box": [
+      1930,
+      2205,
+      2342,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "l",
+     "glyph": "l.sc",
+     "box": [
+      138,
+      2658,
+      550,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "m",
+     "glyph": "m.sc",
+     "box": [
+      586,
+      2658,
+      998,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "n",
+     "glyph": "n.sc",
+     "box": [
+      1034,
+      2658,
+      1446,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "o",
+     "glyph": "o.sc",
+     "box": [
+      1482,
+      2658,
+      1894,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "p",
+     "glyph": "p.sc",
+     "box": [
+      1930,
+      2658,
+      2342,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 5,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "q",
+     "glyph": "q.sc",
+     "box": [
+      138,
+      393,
+      550,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "r",
+     "glyph": "r.sc",
+     "box": [
+      586,
+      393,
+      998,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "s",
+     "glyph": "s.sc",
+     "box": [
+      1034,
+      393,
+      1446,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "t",
+     "glyph": "t.sc",
+     "box": [
+      1482,
+      393,
+      1894,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "u",
+     "glyph": "u.sc",
+     "box": [
+      1930,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "v",
+     "glyph": "v.sc",
+     "box": [
+      138,
+      846,
+      550,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "w",
+     "glyph": "w.sc",
+     "box": [
+      586,
+      846,
+      998,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "x",
+     "glyph": "x.sc",
+     "box": [
+      1034,
+      846,
+      1446,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "y",
+     "glyph": "y.sc",
+     "box": [
+      1482,
+      846,
+      1894,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "z",
+     "glyph": "z.sc",
+     "box": [
+      1930,
+      846,
+      2342,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u00e1",
+     "glyph": "aacute",
+     "box": [
+      138,
+      1299,
+      550,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u010d",
+     "glyph": "ccaron",
+     "box": [
+      586,
+      1299,
+      998,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u010f",
+     "glyph": "dcaron",
+     "box": [
+      1034,
+      1299,
+      1446,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u00e9",
+     "glyph": "eacute",
+     "box": [
+      1482,
+      1299,
+      1894,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u011b",
+     "glyph": "ecaron",
+     "box": [
+      1930,
+      1299,
+      2342,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u00ed",
+     "glyph": "iacute",
+     "box": [
+      138,
+      1752,
+      550,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u0148",
+     "glyph": "ncaron",
+     "box": [
+      586,
+      1752,
+      998,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u00f3",
+     "glyph": "oacute",
+     "box": [
+      1034,
+      1752,
+      1446,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u0159",
+     "glyph": "rcaron",
+     "box": [
+      1482,
+      1752,
+      1894,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u0161",
+     "glyph": "scaron",
+     "box": [
+      1930,
+      1752,
+      2342,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u0165",
+     "glyph": "tcaron",
+     "box": [
+      138,
+      2205,
+      550,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u00fa",
+     "glyph": "uacute",
+     "box": [
+      586,
+      2205,
+      998,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u016f",
+     "glyph": "uring",
+     "box": [
+      1034,
+      2205,
+      1446,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u00fd",
+     "glyph": "yacute",
+     "box": [
+      1482,
+      2205,
+      1894,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u017e",
+     "glyph": "zcaron",
+     "box": [
+      1930,
+      2205,
+      2342,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u00c1",
+     "glyph": "Aacute",
+     "box": [
+      138,
+      2658,
+      550,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u010c",
+     "glyph": "Ccaron",
+     "box": [
+      586,
+      2658,
+      998,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u010e",
+     "glyph": "Dcaron",
+     "box": [
+      1034,
+      2658,
+      1446,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u00c9",
+     "glyph": "Eacute",
+     "box": [
+      1482,
+      2658,
+      1894,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u011a",
+     "glyph": "Ecaron",
+     "box": [
+      1930,
+      2658,
+      2342,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 6,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "\u00cd",
+     "glyph": "Iacute",
+     "box": [
+      138,
+      393,
+      550,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u0147",
+     "glyph": "Ncaron",
+     "box": [
+      586,
+      393,
+      998,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u00d3",
+     "glyph": "Oacute",
+     "box": [
+      1034,
+      393,
+      1446,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u0158",
+     "glyph": "Rcaron",
+     "box": [
+      1482,
+      393,
+      1894,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u0160",
+     "glyph": "Scaron",
+     "box": [
+      1930,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u0164",
+     "glyph": "Tcaron",
+     "box": [
+      138,
+      846,
+      550,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u00da",
+     "glyph": "Uacute",
+     "box": [
+      586,
+      846,
+      998,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u016e",
+     "glyph": "Uring",
+     "box": [
+      1034,
+      846,
+      1446,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u00dd",
+     "glyph": "Yacute",
+     "box": [
+      1482,
+      846,
+      1894,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u017d",
+     "glyph": "Zcaron",
+     "box": [
+      1930,
+      846,
+      2342,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u00e4",
+     "glyph": "adieresis",
+     "box": [
+      138,
+      1299,
+      550,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u013a",
+     "glyph": "lacute",
+     "box": [
+      586,
+      1299,
+      998,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u013e",
+     "glyph": "lcaron",
+     "box": [
+      1034,
+      1299,
+      1446,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u0155",
+     "glyph": "racute",
+     "box": [
+      1482,
+      1299,
+      1894,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u00f4",
+     "glyph": "ocircumflex",
+     "box": [
+      1930,
+      1299,
+      2342,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u00c4",
+     "glyph": "Adieresis",
+     "box": [
+      138,
+      1752,
+      550,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u0139",
+     "glyph": "Lacute",
+     "box": [
+      586,
+      1752,
+      998,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u013d",
+     "glyph": "Lcaron",
+     "box": [
+      1034,
+      1752,
+      1446,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u0154",
+     "glyph": "Racute",
+     "box": [
+      1482,
+      1752,
+      1894,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u00d4",
+     "glyph": "Ocircumflex",
+     "box": [
+      1930,
+      1752,
+      2342,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u0105",
+     "glyph": "aogonek",
+     "box": [
+      138,
+      2205,
+      550,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u0107",
+     "glyph": "cacute",
+     "box": [
+      586,
+      2205,
+      998,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u0119",
+     "glyph": "eogonek",
+     "box": [
+      1034,
+      2205,
+      1446,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u0142",
+     "glyph": "lslash",
+     "box": [
+      1482,
+      2205,
+      1894,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u0144",
+     "glyph": "nacute",
+     "box": [
+      1930,
+      2205,
+      2342,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u015b",
+     "glyph": "sacute",
+     "box": [
+      138,
+      2658,
+      550,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u017a",
+     "glyph": "zacute",
+     "box": [
+      586,
+      2658,
+      998,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u017c",
+     "glyph": "zdotaccent",
+     "box": [
+      1034,
+      2658,
+      1446,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u0104",
+     "glyph": "Aogonek",
+     "box": [
+      1482,
+      2658,
+      1894,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u0106",
+     "glyph": "Cacute",
+     "box": [
+      1930,
+      2658,
+      2342,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 7,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "\u0118",
+     "glyph": "Eogonek",
+     "box": [
+      138,
+      393,
+      550,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u0141",
+     "glyph": "Lslash",
+     "box": [
+      586,
+      393,
+      998,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u0143",
+     "glyph": "Nacute",
+     "box": [
+      1034,
+      393,
+      1446,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u015a",
+     "glyph": "Sacute",
+     "box": [
+      1482,
+      393,
+      1894,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u0179",
+     "glyph": "Zacute",
+     "box": [
+      1930,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u017b",
+     "glyph": "Zdotaccent",
+     "box": [
+      138,
+      846,
+      550,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    }
+   ]
+  },
+  {
+   "page": 8,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "0",
+     "glyph": "zero",
+     "box": [
+      138,
+      393,
+      475,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "1",
+     "glyph": "one",
+     "box": [
+      511,
+      393,
+      848,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "2",
+     "glyph": "two",
+     "box": [
+      884,
+      393,
+      1221,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "3",
+     "glyph": "three",
+     "box": [
+      1257,
+      393,
+      1594,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "4",
+     "glyph": "four",
+     "box": [
+      1630,
+      393,
+      1967,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "5",
+     "glyph": "five",
+     "box": [
+      2003,
+      393,
+      2340,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "6",
+     "glyph": "six",
+     "box": [
+      138,
+      846,
+      475,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "7",
+     "glyph": "seven",
+     "box": [
+      511,
+      846,
+      848,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "8",
+     "glyph": "eight",
+     "box": [
+      884,
+      846,
+      1221,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "9",
+     "glyph": "nine",
+     "box": [
+      1257,
+      846,
+      1594,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": ".",
+     "glyph": "period",
+     "box": [
+      1630,
+      846,
+      1967,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": ",",
+     "glyph": "comma",
+     "box": [
+      2003,
+      846,
+      2340,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": ";",
+     "glyph": "semicolon",
+     "box": [
+      138,
+      1299,
+      475,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": ":",
+     "glyph": "colon",
+     "box": [
+      511,
+      1299,
+      848,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "!",
+     "glyph": "exclam",
+     "box": [
+      884,
+      1299,
+      1221,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "?",
+     "glyph": "question",
+     "box": [
+      1257,
+      1299,
+      1594,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "'",
+     "glyph": "quotesingle",
+     "box": [
+      1630,
+      1299,
+      1967,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\"",
+     "glyph": "quotedbl",
+     "box": [
+      2003,
+      1299,
+      2340,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "(",
+     "glyph": "parenleft",
+     "box": [
+      138,
+      1752,
+      475,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": ")",
+     "glyph": "parenright",
+     "box": [
+      511,
+      1752,
+      848,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "-",
+     "glyph": "hyphen",
+     "box": [
+      884,
+      1752,
+      1221,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "_",
+     "glyph": "underscore",
+     "box": [
+      1257,
+      1752,
+      1594,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "/",
+     "glyph": "slash",
+     "box": [
+      1630,
+      1752,
+      1967,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "@",
+     "glyph": "at",
+     "box": [
+      2003,
+      1752,
+      2340,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "#",
+     "glyph": "numbersign",
+     "box": [
+      138,
+      2205,
+      475,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "&",
+     "glyph": "ampersand",
+     "box": [
+      511,
+      2205,
+      848,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "%",
+     "glyph": "percent",
+     "box": [
+      884,
+      2205,
+      1221,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "+",
+     "glyph": "plus",
+     "box": [
+      1257,
+      2205,
+      1594,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "=",
+     "glyph": "equal",
+     "box": [
+      1630,
+      2205,
+      1967,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "*",
+     "glyph": "asterisk",
+     "box": [
+      2003,
+      2205,
+      2340,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "$",
+     "glyph": "dollar",
+     "box": [
+      138,
+      2658,
+      475,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u20ac",
+     "glyph": "Euro",
+     "box": [
+      511,
+      2658,
+      848,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u00a3",
+     "glyph": "sterling",
+     "box": [
+      884,
+      2658,
+      1221,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u00a5",
+     "glyph": "yen",
+     "box": [
+      1257,
+      2658,
+      1594,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u00a2",
+     "glyph": "cent",
+     "box": [
+      1630,
+      2658,
+      1967,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "<",
+     "glyph": "less",
+     "box": [
+      2003,
+      2658,
+      2340,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 9,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": ">",
+     "glyph": "greater",
+     "box": [
+      138,
+      393,
+      475,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "[",
+     "glyph": "bracketleft",
+     "box": [
+      511,
+      393,
+      848,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "]",
+     "glyph": "bracketright",
+     "box": [
+      884,
+      393,
+      1221,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "{",
+     "glyph": "braceleft",
+     "box": [
+      1257,
+      393,
+      1594,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "}",
+     "glyph": "braceright",
+     "box": [
+      1630,
+      393,
+      1967,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u00d7",
+     "glyph": "multiply",
+     "box": [
+      2003,
+      393,
+      2340,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u00f7",
+     "glyph": "divide",
+     "box": [
+      138,
+      846,
+      475,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u2212",
+     "glyph": "minus",
+     "box": [
+      511,
+      846,
+      848,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u00b1",
+     "glyph": "plusminus",
+     "box": [
+      884,
+      846,
+      1221,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u2248",
+     "glyph": "approxequal",
+     "box": [
+      1257,
+      846,
+      1594,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u2260",
+     "glyph": "notequal",
+     "box": [
+      1630,
+      846,
+      1967,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u2264",
+     "glyph": "lessequal",
+     "box": [
+      2003,
+      846,
+      2340,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u2265",
+     "glyph": "greaterequal",
+     "box": [
+      138,
+      1299,
+      475,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "~",
+     "glyph": "asciitilde",
+     "box": [
+      511,
+      1299,
+      848,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "^",
+     "glyph": "asciicircum",
+     "box": [
+      884,
+      1299,
+      1221,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "|",
+     "glyph": "bar",
+     "box": [
+      1257,
+      1299,
+      1594,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\\",
+     "glyph": "backslash",
+     "box": [
+      1630,
+      1299,
+      1967,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u00b0",
+     "glyph": "degree",
+     "box": [
+      2003,
+      1299,
+      2340,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u00a7",
+     "glyph": "section",
+     "box": [
+      138,
+      1752,
+      475,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2026",
+     "glyph": "ellipsis",
+     "box": [
+      511,
+      1752,
+      848,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2013",
+     "glyph": "endash",
+     "box": [
+      884,
+      1752,
+      1221,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2014",
+     "glyph": "emdash",
+     "box": [
+      1257,
+      1752,
+      1594,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2022",
+     "glyph": "bullet",
+     "box": [
+      1630,
+      1752,
+      1967,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u201e",
+     "glyph": "quotedblbase",
+     "box": [
+      2003,
+      1752,
+      2340,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u201c",
+     "glyph": "quotedblleft",
+     "box": [
+      138,
+      2205,
+      475,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u201d",
+     "glyph": "quotedblright",
+     "box": [
+      511,
+      2205,
+      848,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u2018",
+     "glyph": "quoteleft",
+     "box": [
+      884,
+      2205,
+      1221,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u2019",
+     "glyph": "quoteright",
+     "box": [
+      1257,
+      2205,
+      1594,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u201a",
+     "glyph": "quotesinglbase",
+     "box": [
+      1630,
+      2205,
+      1967,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u00ab",
+     "glyph": "guillemotleft",
+     "box": [
+      2003,
+      2205,
+      2340,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u00bb",
+     "glyph": "guillemotright",
+     "box": [
+      138,
+      2658,
+      475,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u2039",
+     "glyph": "guilsinglleft",
+     "box": [
+      511,
+      2658,
+      848,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u203a",
+     "glyph": "guilsinglright",
+     "box": [
+      884,
+      2658,
+      1221,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u00a1",
+     "glyph": "exclamdown",
+     "box": [
+      1257,
+      2658,
+      1594,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u00bf",
+     "glyph": "questiondown",
+     "box": [
+      1630,
+      2658,
+      1967,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u00a9",
+     "glyph": "copyright",
+     "box": [
+      2003,
+      2658,
+      2340,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 10,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "\u00ae",
+     "glyph": "registered",
+     "box": [
+      138,
+      393,
+      475,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u2122",
+     "glyph": "trademark",
+     "box": [
+      511,
+      393,
+      848,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u2190",
+     "glyph": "arrowleft",
+     "box": [
+      884,
+      393,
+      1221,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u2192",
+     "glyph": "arrowright",
+     "box": [
+      1257,
+      393,
+      1594,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u2191",
+     "glyph": "arrowup",
+     "box": [
+      1630,
+      393,
+      1967,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u2193",
+     "glyph": "arrowdown",
+     "box": [
+      2003,
+      393,
+      2340,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "\u2194",
+     "glyph": "arrowboth",
+     "box": [
+      138,
+      846,
+      475,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u261e",
+     "glyph": "uni261E",
+     "box": [
+      511,
+      846,
+      848,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u261c",
+     "glyph": "uni261C",
+     "box": [
+      884,
+      846,
+      1221,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u261d",
+     "glyph": "uni261D",
+     "box": [
+      1257,
+      846,
+      1594,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u261f",
+     "glyph": "uni261F",
+     "box": [
+      1630,
+      846,
+      1967,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u263a",
+     "glyph": "smileface",
+     "box": [
+      2003,
+      846,
+      2340,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "\u2639",
+     "glyph": "uni2639",
+     "box": [
+      138,
+      1299,
+      475,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u2665",
+     "glyph": "heart",
+     "box": [
+      511,
+      1299,
+      848,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u2661",
+     "glyph": "uni2661",
+     "box": [
+      884,
+      1299,
+      1221,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u2660",
+     "glyph": "spade",
+     "box": [
+      1257,
+      1299,
+      1594,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u2664",
+     "glyph": "uni2664",
+     "box": [
+      1630,
+      1299,
+      1967,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u2666",
+     "glyph": "diamond",
+     "box": [
+      2003,
+      1299,
+      2340,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "\u2662",
+     "glyph": "uni2662",
+     "box": [
+      138,
+      1752,
+      475,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2663",
+     "glyph": "club",
+     "box": [
+      511,
+      1752,
+      848,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2667",
+     "glyph": "uni2667",
+     "box": [
+      884,
+      1752,
+      1221,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2605",
+     "glyph": "uni2605",
+     "box": [
+      1257,
+      1752,
+      1594,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2606",
+     "glyph": "uni2606",
+     "box": [
+      1630,
+      1752,
+      1967,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2713",
+     "glyph": "uni2713",
+     "box": [
+      2003,
+      1752,
+      2340,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "\u2717",
+     "glyph": "uni2717",
+     "box": [
+      138,
+      2205,
+      475,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u266a",
+     "glyph": "musicalnote",
+     "box": [
+      511,
+      2205,
+      848,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u2600",
+     "glyph": "uni2600",
+     "box": [
+      884,
+      2205,
+      1221,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u263e",
+     "glyph": "uni263E",
+     "box": [
+      1257,
+      2205,
+      1594,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u273f",
+     "glyph": "uni273F",
+     "box": [
+      1630,
+      2205,
+      1967,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u2766",
+     "glyph": "uni2766",
+     "box": [
+      2003,
+      2205,
+      2340,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "\u2767",
+     "glyph": "uni2767",
+     "box": [
+      138,
+      2658,
+      475,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u2042",
+     "glyph": "uni2042",
+     "box": [
+      511,
+      2658,
+      848,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u2053",
+     "glyph": "uni2053",
+     "box": [
+      884,
+      2658,
+      1221,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u270e",
+     "glyph": "uni270E",
+     "box": [
+      1257,
+      2658,
+      1594,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    },
+    {
+     "text": "\u2702",
+     "glyph": "uni2702",
+     "box": [
+      1630,
+      2658,
+      1967,
+      3033
+     ],
+     "baseline_y": 2939,
+     "xheight_y": 2808
+    }
+   ]
+  },
+  {
+   "page": 11,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "ff",
+     "glyph": "f_f",
+     "box": [
+      138,
+      393,
+      662,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "fi",
+     "glyph": "f_i",
+     "box": [
+      698,
+      393,
+      1222,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "fl",
+     "glyph": "f_l",
+     "box": [
+      1258,
+      393,
+      1782,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "ffi",
+     "glyph": "f_f_i",
+     "box": [
+      1818,
+      393,
+      2342,
+      768
+     ],
+     "baseline_y": 674,
+     "xheight_y": 543
+    },
+    {
+     "text": "ffl",
+     "glyph": "f_f_l",
+     "box": [
+      138,
+      846,
+      662,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "th",
+     "glyph": "t_h",
+     "box": [
+      698,
+      846,
+      1222,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "ch",
+     "glyph": "c_h",
+     "box": [
+      1258,
+      846,
+      1782,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "sh",
+     "glyph": "s_h",
+     "box": [
+      1818,
+      846,
+      2342,
+      1221
+     ],
+     "baseline_y": 1127,
+     "xheight_y": 996
+    },
+    {
+     "text": "st",
+     "glyph": "s_t",
+     "box": [
+      138,
+      1299,
+      662,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "ct",
+     "glyph": "c_t",
+     "box": [
+      698,
+      1299,
+      1222,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "ck",
+     "glyph": "c_k",
+     "box": [
+      1258,
+      1299,
+      1782,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "qu",
+     "glyph": "q_u",
+     "box": [
+      1818,
+      1299,
+      2342,
+      1674
+     ],
+     "baseline_y": 1580,
+     "xheight_y": 1449
+    },
+    {
+     "text": "tt",
+     "glyph": "t_t",
+     "box": [
+      138,
+      1752,
+      662,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "ll",
+     "glyph": "l_l",
+     "box": [
+      698,
+      1752,
+      1222,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "ss",
+     "glyph": "s_s",
+     "box": [
+      1258,
+      1752,
+      1782,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "ee",
+     "glyph": "e_e",
+     "box": [
+      1818,
+      1752,
+      2342,
+      2127
+     ],
+     "baseline_y": 2033,
+     "xheight_y": 1902
+    },
+    {
+     "text": "oo",
+     "glyph": "o_o",
+     "box": [
+      138,
+      2205,
+      662,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    },
+    {
+     "text": "ft",
+     "glyph": "f_t",
+     "box": [
+      698,
+      2205,
+      1222,
+      2580
+     ],
+     "baseline_y": 2486,
+     "xheight_y": 2355
+    }
+   ]
+  },
+  {
+   "page": 12,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ],
+    [
+     399,
+     165
+    ],
+    [
+     447,
+     165
+    ],
+    [
+     495,
+     165
+    ],
+    [
+     543,
+     165
+    ],
+    [
+     591,
+     165
+    ],
+    [
+     639,
+     165
+    ],
+    [
+     687,
+     165
+    ],
+    [
+     735,
+     165
+    ],
+    [
+     783,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "sample": true,
+   "cells": []
+  }
+ ]
+}
