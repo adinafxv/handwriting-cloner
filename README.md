@@ -131,9 +131,10 @@ module later? Segment its scans into the same `work/cells` and rerun
    applies the tick selection, traces the ink into smooth Beziers with
    potrace, aligns each glyph to the baseline printed in its box, and
    compiles a static `.ttf` with feature code generated from whatever cells
-   had ink: `liga` for ligature pairs, `smcp`/`c2sc` for small caps, and a
+   had ink: `liga` for ligature pairs, `smcp`/`c2sc` for small caps, a
    chained-context `calt` rotation over every character's extra ticked
-   versions.
+   versions, and shape-based `kern` pairs so letters sit as close as your
+   hand spaces them (`--target-gap`).
 5. **`make_variable.py`** derives point-compatible Light and Bold masters by
    displacing every outline point along its ink-outward normal (counters
    move the opposite way), then interpolates them into a variable font with
@@ -147,7 +148,10 @@ module later? Segment its scans into the same `work/cells` and rerun
 | Faint pen strokes break apart | raise `--threshold`, or rescan darker |
 | A tick wasn't detected | make it darker/bigger (still inside the circle), rescan |
 | Dust specks become tiny glyph blobs | raise `--turdsize` |
-| Letters too close / too far apart | adjust `--lsb` / `--rsb` / `--space-width` |
+| Words too loose / too airy | lower `--target-gap` (auto-kern closeness) |
+| Letters collide | raise `--target-gap`, or `--lsb` / `--rsb` |
+| Odd gap after one letter | raise `--kern-min` to drop small kern pairs |
+| Word spaces too wide/narrow | adjust `--space-width` |
 | Bold looks clogged | lower `--bold-offset` |
 | Light falls apart | lower `--light-offset` |
 
@@ -184,5 +188,14 @@ python3 segment.py --layout templates/layout-english-a4-book.json work/sim/*.png
 - Later idea: a second sheet per character where you mark usable extras to
   grow the alternate pool beyond three. The selection metadata
   (`base`/`cand`/`marked`) already supports it.
-- No kerning yet. Obvious next steps: autokerning of tight pairs
-  (`To`, `Va`...) and a real second axis (e.g. slant) via a second pass.
+- **Auto-kerning is shape-based:** every letter's per-band left/right ink
+  profile is measured, and each ordered pair is slid until its closest
+  approach equals `--target-gap` — so `To`/`Va`/`r.` tuck in and blocky
+  pairs stay apart, the way a hand spaces them. Accented letters and a
+  letter's alternates ride in the base letter's kern class, keeping the
+  table small. It does **not** add letter *joins* — those come from the
+  `ligatures` module (write the pairs connected).
+- Getting it closer to your hand: the three levers are **alternates**
+  (tick 2–3 versions so repeats differ), **ligatures** (captured joins),
+  and **kerning/spacing** (above). Remaining next step: a real second axis
+  (e.g. slant) via a second writing pass.
