@@ -1,0 +1,1757 @@
+{
+ "version": 3,
+ "dpi": 300,
+ "paper": "a4",
+ "size_mode": "book",
+ "module": "czech",
+ "guide_gray": 185,
+ "baseline_frac": 0.75,
+ "xheight_frac": 0.4,
+ "pages": [
+  {
+   "page": 1,
+   "size": [
+    3507,
+    2481
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     3342,
+     165
+    ],
+    [
+     165,
+     2316
+    ],
+    [
+     3342,
+     2316
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "\u00e1",
+     "glyph": "aacute.cand1",
+     "base": "aacute",
+     "cand": 1,
+     "box": [
+      138,
+      405,
+      374,
+      555
+     ],
+     "check": [
+      355,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u00e1",
+     "glyph": "aacute.cand2",
+     "base": "aacute",
+     "cand": 2,
+     "box": [
+      395,
+      405,
+      631,
+      555
+     ],
+     "check": [
+      612,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u00e1",
+     "glyph": "aacute.cand3",
+     "base": "aacute",
+     "cand": 3,
+     "box": [
+      652,
+      405,
+      888,
+      555
+     ],
+     "check": [
+      869,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010d",
+     "glyph": "ccaron.cand1",
+     "base": "ccaron",
+     "cand": 1,
+     "box": [
+      909,
+      405,
+      1145,
+      555
+     ],
+     "check": [
+      1126,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010d",
+     "glyph": "ccaron.cand2",
+     "base": "ccaron",
+     "cand": 2,
+     "box": [
+      1166,
+      405,
+      1402,
+      555
+     ],
+     "check": [
+      1383,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010d",
+     "glyph": "ccaron.cand3",
+     "base": "ccaron",
+     "cand": 3,
+     "box": [
+      1423,
+      405,
+      1659,
+      555
+     ],
+     "check": [
+      1640,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010f",
+     "glyph": "dcaron.cand1",
+     "base": "dcaron",
+     "cand": 1,
+     "box": [
+      138,
+      633,
+      374,
+      783
+     ],
+     "check": [
+      355,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u010f",
+     "glyph": "dcaron.cand2",
+     "base": "dcaron",
+     "cand": 2,
+     "box": [
+      395,
+      633,
+      631,
+      783
+     ],
+     "check": [
+      612,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u010f",
+     "glyph": "dcaron.cand3",
+     "base": "dcaron",
+     "cand": 3,
+     "box": [
+      652,
+      633,
+      888,
+      783
+     ],
+     "check": [
+      869,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u00e9",
+     "glyph": "eacute.cand1",
+     "base": "eacute",
+     "cand": 1,
+     "box": [
+      909,
+      633,
+      1145,
+      783
+     ],
+     "check": [
+      1126,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u00e9",
+     "glyph": "eacute.cand2",
+     "base": "eacute",
+     "cand": 2,
+     "box": [
+      1166,
+      633,
+      1402,
+      783
+     ],
+     "check": [
+      1383,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u00e9",
+     "glyph": "eacute.cand3",
+     "base": "eacute",
+     "cand": 3,
+     "box": [
+      1423,
+      633,
+      1659,
+      783
+     ],
+     "check": [
+      1640,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u011b",
+     "glyph": "ecaron.cand1",
+     "base": "ecaron",
+     "cand": 1,
+     "box": [
+      138,
+      861,
+      374,
+      1011
+     ],
+     "check": [
+      355,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u011b",
+     "glyph": "ecaron.cand2",
+     "base": "ecaron",
+     "cand": 2,
+     "box": [
+      395,
+      861,
+      631,
+      1011
+     ],
+     "check": [
+      612,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u011b",
+     "glyph": "ecaron.cand3",
+     "base": "ecaron",
+     "cand": 3,
+     "box": [
+      652,
+      861,
+      888,
+      1011
+     ],
+     "check": [
+      869,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u00ed",
+     "glyph": "iacute.cand1",
+     "base": "iacute",
+     "cand": 1,
+     "box": [
+      909,
+      861,
+      1145,
+      1011
+     ],
+     "check": [
+      1126,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u00ed",
+     "glyph": "iacute.cand2",
+     "base": "iacute",
+     "cand": 2,
+     "box": [
+      1166,
+      861,
+      1402,
+      1011
+     ],
+     "check": [
+      1383,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u00ed",
+     "glyph": "iacute.cand3",
+     "base": "iacute",
+     "cand": 3,
+     "box": [
+      1423,
+      861,
+      1659,
+      1011
+     ],
+     "check": [
+      1640,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u0148",
+     "glyph": "ncaron.cand1",
+     "base": "ncaron",
+     "cand": 1,
+     "box": [
+      138,
+      1089,
+      374,
+      1239
+     ],
+     "check": [
+      355,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u0148",
+     "glyph": "ncaron.cand2",
+     "base": "ncaron",
+     "cand": 2,
+     "box": [
+      395,
+      1089,
+      631,
+      1239
+     ],
+     "check": [
+      612,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u0148",
+     "glyph": "ncaron.cand3",
+     "base": "ncaron",
+     "cand": 3,
+     "box": [
+      652,
+      1089,
+      888,
+      1239
+     ],
+     "check": [
+      869,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u00f3",
+     "glyph": "oacute.cand1",
+     "base": "oacute",
+     "cand": 1,
+     "box": [
+      909,
+      1089,
+      1145,
+      1239
+     ],
+     "check": [
+      1126,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u00f3",
+     "glyph": "oacute.cand2",
+     "base": "oacute",
+     "cand": 2,
+     "box": [
+      1166,
+      1089,
+      1402,
+      1239
+     ],
+     "check": [
+      1383,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u00f3",
+     "glyph": "oacute.cand3",
+     "base": "oacute",
+     "cand": 3,
+     "box": [
+      1423,
+      1089,
+      1659,
+      1239
+     ],
+     "check": [
+      1640,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u0159",
+     "glyph": "rcaron.cand1",
+     "base": "rcaron",
+     "cand": 1,
+     "box": [
+      138,
+      1317,
+      374,
+      1467
+     ],
+     "check": [
+      355,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0159",
+     "glyph": "rcaron.cand2",
+     "base": "rcaron",
+     "cand": 2,
+     "box": [
+      395,
+      1317,
+      631,
+      1467
+     ],
+     "check": [
+      612,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0159",
+     "glyph": "rcaron.cand3",
+     "base": "rcaron",
+     "cand": 3,
+     "box": [
+      652,
+      1317,
+      888,
+      1467
+     ],
+     "check": [
+      869,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0161",
+     "glyph": "scaron.cand1",
+     "base": "scaron",
+     "cand": 1,
+     "box": [
+      909,
+      1317,
+      1145,
+      1467
+     ],
+     "check": [
+      1126,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0161",
+     "glyph": "scaron.cand2",
+     "base": "scaron",
+     "cand": 2,
+     "box": [
+      1166,
+      1317,
+      1402,
+      1467
+     ],
+     "check": [
+      1383,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0161",
+     "glyph": "scaron.cand3",
+     "base": "scaron",
+     "cand": 3,
+     "box": [
+      1423,
+      1317,
+      1659,
+      1467
+     ],
+     "check": [
+      1640,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0165",
+     "glyph": "tcaron.cand1",
+     "base": "tcaron",
+     "cand": 1,
+     "box": [
+      138,
+      1545,
+      374,
+      1695
+     ],
+     "check": [
+      355,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u0165",
+     "glyph": "tcaron.cand2",
+     "base": "tcaron",
+     "cand": 2,
+     "box": [
+      395,
+      1545,
+      631,
+      1695
+     ],
+     "check": [
+      612,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u0165",
+     "glyph": "tcaron.cand3",
+     "base": "tcaron",
+     "cand": 3,
+     "box": [
+      652,
+      1545,
+      888,
+      1695
+     ],
+     "check": [
+      869,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u00fa",
+     "glyph": "uacute.cand1",
+     "base": "uacute",
+     "cand": 1,
+     "box": [
+      909,
+      1545,
+      1145,
+      1695
+     ],
+     "check": [
+      1126,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u00fa",
+     "glyph": "uacute.cand2",
+     "base": "uacute",
+     "cand": 2,
+     "box": [
+      1166,
+      1545,
+      1402,
+      1695
+     ],
+     "check": [
+      1383,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u00fa",
+     "glyph": "uacute.cand3",
+     "base": "uacute",
+     "cand": 3,
+     "box": [
+      1423,
+      1545,
+      1659,
+      1695
+     ],
+     "check": [
+      1640,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u016f",
+     "glyph": "uring.cand1",
+     "base": "uring",
+     "cand": 1,
+     "box": [
+      138,
+      1773,
+      374,
+      1923
+     ],
+     "check": [
+      355,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u016f",
+     "glyph": "uring.cand2",
+     "base": "uring",
+     "cand": 2,
+     "box": [
+      395,
+      1773,
+      631,
+      1923
+     ],
+     "check": [
+      612,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u016f",
+     "glyph": "uring.cand3",
+     "base": "uring",
+     "cand": 3,
+     "box": [
+      652,
+      1773,
+      888,
+      1923
+     ],
+     "check": [
+      869,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u00fd",
+     "glyph": "yacute.cand1",
+     "base": "yacute",
+     "cand": 1,
+     "box": [
+      909,
+      1773,
+      1145,
+      1923
+     ],
+     "check": [
+      1126,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u00fd",
+     "glyph": "yacute.cand2",
+     "base": "yacute",
+     "cand": 2,
+     "box": [
+      1166,
+      1773,
+      1402,
+      1923
+     ],
+     "check": [
+      1383,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u00fd",
+     "glyph": "yacute.cand3",
+     "base": "yacute",
+     "cand": 3,
+     "box": [
+      1423,
+      1773,
+      1659,
+      1923
+     ],
+     "check": [
+      1640,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u017e",
+     "glyph": "zcaron.cand1",
+     "base": "zcaron",
+     "cand": 1,
+     "box": [
+      138,
+      2001,
+      374,
+      2151
+     ],
+     "check": [
+      355,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "\u017e",
+     "glyph": "zcaron.cand2",
+     "base": "zcaron",
+     "cand": 2,
+     "box": [
+      395,
+      2001,
+      631,
+      2151
+     ],
+     "check": [
+      612,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "\u017e",
+     "glyph": "zcaron.cand3",
+     "base": "zcaron",
+     "cand": 3,
+     "box": [
+      652,
+      2001,
+      888,
+      2151
+     ],
+     "check": [
+      869,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "\u00c1",
+     "glyph": "Aacute.cand1",
+     "base": "Aacute",
+     "cand": 1,
+     "box": [
+      909,
+      2001,
+      1145,
+      2151
+     ],
+     "check": [
+      1126,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "\u00c1",
+     "glyph": "Aacute.cand2",
+     "base": "Aacute",
+     "cand": 2,
+     "box": [
+      1166,
+      2001,
+      1402,
+      2151
+     ],
+     "check": [
+      1383,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "\u00c1",
+     "glyph": "Aacute.cand3",
+     "base": "Aacute",
+     "cand": 3,
+     "box": [
+      1423,
+      2001,
+      1659,
+      2151
+     ],
+     "check": [
+      1640,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "\u010c",
+     "glyph": "Ccaron.cand1",
+     "base": "Ccaron",
+     "cand": 1,
+     "box": [
+      1824,
+      405,
+      2060,
+      555
+     ],
+     "check": [
+      2041,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010c",
+     "glyph": "Ccaron.cand2",
+     "base": "Ccaron",
+     "cand": 2,
+     "box": [
+      2081,
+      405,
+      2317,
+      555
+     ],
+     "check": [
+      2298,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010c",
+     "glyph": "Ccaron.cand3",
+     "base": "Ccaron",
+     "cand": 3,
+     "box": [
+      2338,
+      405,
+      2574,
+      555
+     ],
+     "check": [
+      2555,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010e",
+     "glyph": "Dcaron.cand1",
+     "base": "Dcaron",
+     "cand": 1,
+     "box": [
+      2595,
+      405,
+      2831,
+      555
+     ],
+     "check": [
+      2812,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010e",
+     "glyph": "Dcaron.cand2",
+     "base": "Dcaron",
+     "cand": 2,
+     "box": [
+      2852,
+      405,
+      3088,
+      555
+     ],
+     "check": [
+      3069,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u010e",
+     "glyph": "Dcaron.cand3",
+     "base": "Dcaron",
+     "cand": 3,
+     "box": [
+      3109,
+      405,
+      3345,
+      555
+     ],
+     "check": [
+      3326,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "\u00c9",
+     "glyph": "Eacute.cand1",
+     "base": "Eacute",
+     "cand": 1,
+     "box": [
+      1824,
+      633,
+      2060,
+      783
+     ],
+     "check": [
+      2041,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u00c9",
+     "glyph": "Eacute.cand2",
+     "base": "Eacute",
+     "cand": 2,
+     "box": [
+      2081,
+      633,
+      2317,
+      783
+     ],
+     "check": [
+      2298,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u00c9",
+     "glyph": "Eacute.cand3",
+     "base": "Eacute",
+     "cand": 3,
+     "box": [
+      2338,
+      633,
+      2574,
+      783
+     ],
+     "check": [
+      2555,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u011a",
+     "glyph": "Ecaron.cand1",
+     "base": "Ecaron",
+     "cand": 1,
+     "box": [
+      2595,
+      633,
+      2831,
+      783
+     ],
+     "check": [
+      2812,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u011a",
+     "glyph": "Ecaron.cand2",
+     "base": "Ecaron",
+     "cand": 2,
+     "box": [
+      2852,
+      633,
+      3088,
+      783
+     ],
+     "check": [
+      3069,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u011a",
+     "glyph": "Ecaron.cand3",
+     "base": "Ecaron",
+     "cand": 3,
+     "box": [
+      3109,
+      633,
+      3345,
+      783
+     ],
+     "check": [
+      3326,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "\u00cd",
+     "glyph": "Iacute.cand1",
+     "base": "Iacute",
+     "cand": 1,
+     "box": [
+      1824,
+      861,
+      2060,
+      1011
+     ],
+     "check": [
+      2041,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u00cd",
+     "glyph": "Iacute.cand2",
+     "base": "Iacute",
+     "cand": 2,
+     "box": [
+      2081,
+      861,
+      2317,
+      1011
+     ],
+     "check": [
+      2298,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u00cd",
+     "glyph": "Iacute.cand3",
+     "base": "Iacute",
+     "cand": 3,
+     "box": [
+      2338,
+      861,
+      2574,
+      1011
+     ],
+     "check": [
+      2555,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u0147",
+     "glyph": "Ncaron.cand1",
+     "base": "Ncaron",
+     "cand": 1,
+     "box": [
+      2595,
+      861,
+      2831,
+      1011
+     ],
+     "check": [
+      2812,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u0147",
+     "glyph": "Ncaron.cand2",
+     "base": "Ncaron",
+     "cand": 2,
+     "box": [
+      2852,
+      861,
+      3088,
+      1011
+     ],
+     "check": [
+      3069,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u0147",
+     "glyph": "Ncaron.cand3",
+     "base": "Ncaron",
+     "cand": 3,
+     "box": [
+      3109,
+      861,
+      3345,
+      1011
+     ],
+     "check": [
+      3326,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "\u00d3",
+     "glyph": "Oacute.cand1",
+     "base": "Oacute",
+     "cand": 1,
+     "box": [
+      1824,
+      1089,
+      2060,
+      1239
+     ],
+     "check": [
+      2041,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u00d3",
+     "glyph": "Oacute.cand2",
+     "base": "Oacute",
+     "cand": 2,
+     "box": [
+      2081,
+      1089,
+      2317,
+      1239
+     ],
+     "check": [
+      2298,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u00d3",
+     "glyph": "Oacute.cand3",
+     "base": "Oacute",
+     "cand": 3,
+     "box": [
+      2338,
+      1089,
+      2574,
+      1239
+     ],
+     "check": [
+      2555,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u0158",
+     "glyph": "Rcaron.cand1",
+     "base": "Rcaron",
+     "cand": 1,
+     "box": [
+      2595,
+      1089,
+      2831,
+      1239
+     ],
+     "check": [
+      2812,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u0158",
+     "glyph": "Rcaron.cand2",
+     "base": "Rcaron",
+     "cand": 2,
+     "box": [
+      2852,
+      1089,
+      3088,
+      1239
+     ],
+     "check": [
+      3069,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u0158",
+     "glyph": "Rcaron.cand3",
+     "base": "Rcaron",
+     "cand": 3,
+     "box": [
+      3109,
+      1089,
+      3345,
+      1239
+     ],
+     "check": [
+      3326,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "\u0160",
+     "glyph": "Scaron.cand1",
+     "base": "Scaron",
+     "cand": 1,
+     "box": [
+      1824,
+      1317,
+      2060,
+      1467
+     ],
+     "check": [
+      2041,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0160",
+     "glyph": "Scaron.cand2",
+     "base": "Scaron",
+     "cand": 2,
+     "box": [
+      2081,
+      1317,
+      2317,
+      1467
+     ],
+     "check": [
+      2298,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0160",
+     "glyph": "Scaron.cand3",
+     "base": "Scaron",
+     "cand": 3,
+     "box": [
+      2338,
+      1317,
+      2574,
+      1467
+     ],
+     "check": [
+      2555,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0164",
+     "glyph": "Tcaron.cand1",
+     "base": "Tcaron",
+     "cand": 1,
+     "box": [
+      2595,
+      1317,
+      2831,
+      1467
+     ],
+     "check": [
+      2812,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0164",
+     "glyph": "Tcaron.cand2",
+     "base": "Tcaron",
+     "cand": 2,
+     "box": [
+      2852,
+      1317,
+      3088,
+      1467
+     ],
+     "check": [
+      3069,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u0164",
+     "glyph": "Tcaron.cand3",
+     "base": "Tcaron",
+     "cand": 3,
+     "box": [
+      3109,
+      1317,
+      3345,
+      1467
+     ],
+     "check": [
+      3326,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "\u00da",
+     "glyph": "Uacute.cand1",
+     "base": "Uacute",
+     "cand": 1,
+     "box": [
+      1824,
+      1545,
+      2060,
+      1695
+     ],
+     "check": [
+      2041,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u00da",
+     "glyph": "Uacute.cand2",
+     "base": "Uacute",
+     "cand": 2,
+     "box": [
+      2081,
+      1545,
+      2317,
+      1695
+     ],
+     "check": [
+      2298,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u00da",
+     "glyph": "Uacute.cand3",
+     "base": "Uacute",
+     "cand": 3,
+     "box": [
+      2338,
+      1545,
+      2574,
+      1695
+     ],
+     "check": [
+      2555,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u016e",
+     "glyph": "Uring.cand1",
+     "base": "Uring",
+     "cand": 1,
+     "box": [
+      2595,
+      1545,
+      2831,
+      1695
+     ],
+     "check": [
+      2812,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u016e",
+     "glyph": "Uring.cand2",
+     "base": "Uring",
+     "cand": 2,
+     "box": [
+      2852,
+      1545,
+      3088,
+      1695
+     ],
+     "check": [
+      3069,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u016e",
+     "glyph": "Uring.cand3",
+     "base": "Uring",
+     "cand": 3,
+     "box": [
+      3109,
+      1545,
+      3345,
+      1695
+     ],
+     "check": [
+      3326,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "\u00dd",
+     "glyph": "Yacute.cand1",
+     "base": "Yacute",
+     "cand": 1,
+     "box": [
+      1824,
+      1773,
+      2060,
+      1923
+     ],
+     "check": [
+      2041,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u00dd",
+     "glyph": "Yacute.cand2",
+     "base": "Yacute",
+     "cand": 2,
+     "box": [
+      2081,
+      1773,
+      2317,
+      1923
+     ],
+     "check": [
+      2298,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u00dd",
+     "glyph": "Yacute.cand3",
+     "base": "Yacute",
+     "cand": 3,
+     "box": [
+      2338,
+      1773,
+      2574,
+      1923
+     ],
+     "check": [
+      2555,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u017d",
+     "glyph": "Zcaron.cand1",
+     "base": "Zcaron",
+     "cand": 1,
+     "box": [
+      2595,
+      1773,
+      2831,
+      1923
+     ],
+     "check": [
+      2812,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u017d",
+     "glyph": "Zcaron.cand2",
+     "base": "Zcaron",
+     "cand": 2,
+     "box": [
+      2852,
+      1773,
+      3088,
+      1923
+     ],
+     "check": [
+      3069,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "\u017d",
+     "glyph": "Zcaron.cand3",
+     "base": "Zcaron",
+     "cand": 3,
+     "box": [
+      3109,
+      1773,
+      3345,
+      1923
+     ],
+     "check": [
+      3326,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    }
+   ]
+  }
+ ]
+}
