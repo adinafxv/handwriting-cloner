@@ -19,6 +19,7 @@ import os
 import re
 import subprocess
 import tempfile
+import unicodedata
 
 import numpy as np
 from PIL import Image
@@ -57,8 +58,29 @@ def trace_cell(binary, turdsize):
     return (sx, 0, 0, sy, tx, ty), SVG_PATH_RE.findall(text)
 
 
+KERN_BIN = 50  # font-unit height of each ink-profile band used for kerning
+
+
+def ink_profiles(crop, scale, x_off, baseline_in_crop):
+    """Per-band left/right ink edges of a glyph, in font units. Bands are
+    horizontal slices KERN_BIN units tall; each maps to (min_x, max_x) of the
+    ink in that band. Used to slot neighbouring letters close without
+    collision (auto-kerning)."""
+    prof = {}
+    ys, xs = np.where(crop)
+    if len(xs) == 0:
+        return prof
+    yf = (baseline_in_crop - ys) * scale        # font-unit y (up positive)
+    xlf = xs * scale + x_off                     # font-unit x
+    bands = np.floor(yf / KERN_BIN).astype(int)
+    for b in np.unique(bands):
+        m = bands == b
+        prof[int(b)] = (float(xlf[m].min()), float(xlf[m].max()))
+    return prof
+
+
 def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb):
-    """Return (TTGlyph, advance_width, lsb) or None if the cell is empty."""
+    """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
 
@@ -77,8 +99,8 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb):
 
     baseline_in_crop = meta["baseline_y"] - y0 + pad
     # crop pixels (y down) -> font units (y up), ink left edge at x=lsb
-    font_transform = (scale, 0, 0, -scale,
-                      lsb - pad * scale, baseline_in_crop * scale)
+    x_off = lsb - pad * scale
+    font_transform = (scale, 0, 0, -scale, x_off, baseline_in_crop * scale)
 
     tt_pen = TTGlyphPen(None)
     quad_pen = Cu2QuPen(tt_pen, max_err=2.0)
@@ -87,11 +109,13 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb):
         parse_path(d, pen)
 
     advance = int(round((x1 - x0) * scale)) + lsb + rsb
-    return tt_pen.glyph(), advance, lsb
+    prof = ink_profiles(crop, scale, x_off, baseline_in_crop)
+    return tt_pen.glyph(), advance, lsb, prof
 
 
 def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
-               turdsize=15, lsb=30, rsb=30, space_width=280):
+               turdsize=15, lsb=18, rsb=18, space_width=250,
+               target_gap=40, kern_min=8):
     glyphs, metrics, cmap = {}, {}, {}
 
     notdef_pen = TTGlyphPen(None)
@@ -122,6 +146,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         groups.setdefault(base, []).append((meta.get("cand") or 0, png, meta))
 
     skipped, rejected, ligatures, alternates, smallcaps = [], 0, {}, {}, {}
+    profiles, advances = {}, {}   # per-glyph, for auto-kerning
     for base, cands in sorted(groups.items()):
         cands.sort(key=lambda c: c[0])
         built = []
@@ -136,10 +161,12 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         chosen = marked if marked else built
         rejected += len(built) - len(chosen)
         text = chosen[0][0]["text"]
-        for idx, (meta, (glyph, advance, glyph_lsb)) in enumerate(chosen[:3]):
+        for idx, (meta, (glyph, advance, glyph_lsb, prof)) in enumerate(chosen[:3]):
             name = base if idx == 0 else f"{base}.alt{idx}"
             glyphs[name] = glyph
             metrics[name] = (advance, glyph_lsb)
+            profiles[name] = prof
+            advances[name] = advance
             if idx == 0:
                 if len(text) == 1 and "." not in name:
                     cmap[ord(text)] = name
@@ -173,22 +200,96 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                 usWinDescent=abs(DESCENDER) + 50)
     fb.setupPost()
 
-    fea = build_features(glyphs, ligatures, alternates, smallcaps)
+    kern = compute_kerning(glyphs, cmap, profiles, advances, alternates,
+                           target_gap, kern_min)
+    fea = build_features(glyphs, ligatures, alternates, smallcaps, kern)
     if fea:
         addOpenTypeFeaturesFromString(fb.font, fea)
     fb.save(out_path)
     print(f"wrote {out_path}  ({len(order)} glyphs, {len(ligatures)} ligatures, "
-          f"{len(alternates)} alternates, {len(smallcaps)} small caps)")
+          f"{len(alternates)} alternates, {len(smallcaps)} small caps, "
+          f"{len(kern['pairs'])} kern pairs)")
 
 
-def build_features(glyphs, ligatures, alternates, smallcaps):
-    """Generate liga (ligatures) + calt (alternate rotation) feature code
-    from whatever glyphs actually exist. Cells left blank simply produce no
-    rules."""
+def compute_kerning(glyphs, cmap, profiles, advances, alternates,
+                    target_gap, kern_min):
+    """Auto-kern letter/digit pairs by their ink shapes: slide the right glyph
+    until its closest approach to the left glyph equals target_gap. Letters
+    that interlock (To, Va, r., ...) tuck closer or overlap; blocky pairs stay
+    apart - the same thing a hand does. Accented letters (a, a, a) and a
+    letter's alternates all ride in that base letter's kern class, so the table
+    stays small while variation and diacritics keep the same spacing."""
+    # Identities are the plain ASCII letters/digits present. Each accented
+    # letter folds onto its ASCII base (e -> e), sharing its kerning.
+    name2cp = {}
+    for cp, n in cmap.items():
+        name2cp.setdefault(n, cp)
+
+    def ascii_base(cp):
+        d = unicodedata.normalize("NFD", chr(cp))
+        return d[0] if d and d[0].isascii() and d[0].isalnum() else None
+
+    ident, cls = [], {}
+    for cp, n in sorted(cmap.items(), key=lambda kv: kv[1]):
+        if ascii_base(cp) == chr(cp) and chr(cp).isalnum() and profiles.get(n):
+            ident.append(n)
+            cls[n] = [n]
+    ascii_name = {chr(name2cp[n]): n for n in ident}
+    # pass 1: fold accented letters onto their ASCII base class (e -> e)
+    for cp, n in cmap.items():
+        b = ascii_base(cp)
+        if b in ascii_name and n != ascii_name[b]:
+            cls[ascii_name[b]].append(n)
+    # pass 2: fold every glyph's alternates into whatever class holds its base
+    for n in list(glyphs):
+        if ".alt" not in n:
+            continue
+        base = n[:-5]
+        for members in cls.values():
+            if base in members:
+                members.append(n)
+                break
+
+    def pair_kern(nl, nr):
+        pl, pr = profiles[nl], profiles[nr]
+        shared = set(pl) & set(pr)
+        if not shared:
+            return 0
+        # closest approach if right origin sits at advances[nl]:
+        # gap(band) = advances[nl] + pr_left[band] - pl_right[band]
+        slack = min(pr[b][0] - pl[b][1] for b in shared)
+        kern = int(round(target_gap - advances[nl] - slack))
+        return kern
+
+    pairs = {}
+    for nl in ident:
+        for nr in ident:
+            k = pair_kern(nl, nr)
+            if abs(k) >= kern_min:
+                pairs[(nl, nr)] = k
+    return {"classes": cls, "pairs": pairs}
+
+
+def build_features(glyphs, ligatures, alternates, smallcaps, kern=None):
+    """Generate liga (ligatures) + calt (alternate rotation) + kern feature
+    code from whatever glyphs actually exist. Cells left blank simply produce
+    no rules."""
     def base_name(ch):
         return agl.UV2AGL.get(ord(ch), f"uni{ord(ch):04X}")
 
     lines = ["languagesystem DFLT dflt;", "languagesystem latn dflt;"]
+
+    # Kerning: class-based GPOS pairs (a glyph and its alternates kern alike).
+    if kern and kern["pairs"]:
+        for name, members in sorted(kern["classes"].items()):
+            if len(members) > 1:
+                lines.append(f"@K_{name} = [{' '.join(members)}];")
+        krules = []
+        for (nl, nr), v in sorted(kern["pairs"].items()):
+            gl = f"@K_{nl}" if len(kern["classes"].get(nl, [nl])) > 1 else nl
+            gr = f"@K_{nr}" if len(kern["classes"].get(nr, [nr])) > 1 else nr
+            krules.append(f"    pos {gl} {gr} {v};")
+        lines += ["feature kern {"] + krules + ["} kern;"]
 
     # Ligatures, longest first so 'ffi' wins over 'ff'/'fi'.
     liga_rules = []
@@ -253,14 +354,20 @@ def main():
                     help="ink threshold 0-255; lower it if gray guides leak in")
     ap.add_argument("--turdsize", type=int, default=15,
                     help="potrace speckle suppression, in pixels")
-    ap.add_argument("--lsb", type=int, default=30, help="left side bearing (units)")
-    ap.add_argument("--rsb", type=int, default=30, help="right side bearing (units)")
-    ap.add_argument("--space-width", type=int, default=280)
+    ap.add_argument("--lsb", type=int, default=18, help="left side bearing (units)")
+    ap.add_argument("--rsb", type=int, default=18, help="right side bearing (units)")
+    ap.add_argument("--space-width", type=int, default=250)
+    ap.add_argument("--target-gap", type=int, default=40,
+                    help="auto-kern: font-unit gap between adjacent letters at "
+                         "their closest point (lower = tighter/more joined)")
+    ap.add_argument("--kern-min", type=int, default=8,
+                    help="skip kern pairs smaller than this many units")
     args = ap.parse_args()
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     build_font(args.cells, args.out, args.family, args.style, args.threshold,
-               args.turdsize, args.lsb, args.rsb, args.space_width)
+               args.turdsize, args.lsb, args.rsb, args.space_width,
+               args.target_gap, args.kern_min)
 
 
 if __name__ == "__main__":
