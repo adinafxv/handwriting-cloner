@@ -18,16 +18,16 @@ you want:
     small-caps  capital letterforms written small
 
 Every character appears in THREE boxes in a row, each with a small circle
-above it. Write the character three times, then TICK the circle above every
-version you actually like:
+above it. Write the character three times, then FILL IN the circle above
+every version you actually like:
 
-    - the first ticked version becomes the character in the font,
-    - further ticked versions become rotating alternates (so repeated
+    - the first filled-in version becomes the character in the font,
+    - further filled-in versions become rotating alternates (so repeated
       letters don't look cloned),
-    - unticked versions are thrown away - a bad box costs nothing,
-    - if you tick nothing for a character, all non-empty boxes are used.
+    - versions left unfilled are thrown away - a bad box costs nothing,
+    - if you fill in nothing for a character, all non-empty boxes are used.
 
-Guides (box borders, baseline, x-height line, tick circles) are printed in
+Guides (box borders, baseline, x-height line, fill circles) are printed in
 light gray so they can be removed by thresholding after scanning; only the
 four corner registration marks and the page-ID dots are solid black. Labels
 sit above each triple, outside the region that gets cropped: the character
@@ -60,8 +60,10 @@ PAPER_SIZES_IN = {"a4": (8.27, 11.69), "letter": (8.5, 11.0)}
 
 # Bumped whenever box positions/ordering change. Printed on every sheet and
 # stored in the layout JSON so a scan can be matched to the right layout.
-# (v3 introduced modules + the three-boxes-with-tick-circles system.)
-LAYOUT_VERSION = 3
+# (v3 introduced modules + the three-boxes-with-tick-circles system.
+#  v4 narrowed the letter/symbol boxes toward single-letter proportions and
+#  enlarged the fill circles for the tick -> fill-in-solid signal change.)
+LAYOUT_VERSION = 4
 
 # Grayscale values (0 = black). Guides must survive printing but die at the
 # binarization threshold used by build_font.py (default 110).
@@ -78,20 +80,23 @@ ID_DOT_IN = 0.07   # side of the page-ID squares
 XHEIGHT_FRAC = 0.40
 BASELINE_FRAC = 0.75
 
-# Every character gets this many boxes; tick the circle above the keepers.
+# Every character gets this many boxes; fill in the circle above the keepers.
 CANDIDATES = 3
 
 # cols must be a multiple of CANDIDATES so a triple never wraps mid-row.
 SIZE_PARAMS = {
     "normal": {"box_h": 1.05, "label_h": 0.26, "row_gap": 0.10, "col_gap": 0.10,
-               "label_font": 0.11, "char_font": 0.17, "check_r": 0.055,
+               "label_font": 0.11, "char_font": 0.17, "check_r": 0.06,
                "cols": {"letters": 6, "symbols": 6, "ligatures": 3}},
     # "book": A4/letter turned landscape, split into a left and a right half
     # that fill like the two pages of an open notebook (left page top-to-
-    # bottom first, then the right page). cols are PER HALF.
-    "book": {"box_h": 0.50, "label_h": 0.20, "row_gap": 0.06, "col_gap": 0.07,
-             "label_font": 0.085, "char_font": 0.13, "check_r": 0.042,
-             "cols": {"letters": 6, "symbols": 6, "ligatures": 3},
+    # bottom first, then the right page). cols are PER HALF. letters/symbols
+    # use 9/half (3 triples per half-row) with a tighter col_gap so the box
+    # width/height ratio lands close to single-letter proportions (~1.1-1.35
+    # on a4) instead of the old ~1.57.
+    "book": {"box_h": 0.50, "label_h": 0.20, "row_gap": 0.06, "col_gap": 0.03,
+             "label_font": 0.085, "char_font": 0.13, "check_r": 0.05,
+             "cols": {"letters": 9, "symbols": 9, "ligatures": 3},
              "gutter": 0.55},
 }
 
@@ -178,8 +183,8 @@ FUN = "←→↑↓↔☞☜☝☟☺☹♥♡♠♤♦♢♣♧★☆✓✗♪�
 LIGATURES = ["ff", "fi", "fl", "ffi", "ffl", "th", "ch", "sh", "st", "ct",
              "ck", "qu", "tt", "ll", "ss", "ee", "oo", "ft"]
 
-PICK_NOTE = ("write each character 3x, then TICK the circle above every "
-             "version you like - unticked versions are discarded")
+PICK_NOTE = ("write each character 3x, then FILL IN the circle above every "
+             "version you like - versions left unfilled are discarded")
 
 
 def glyph_name(text, suffix=""):
@@ -371,7 +376,7 @@ def render_page(paper, size, module, page_def, page_index, total_pages):
         draw.text((margin + mark, margin + px(0.26) + i * px(0.14)), note,
                   fill=LABEL_GRAY, font=label_font)
     tip = ("black pen · sit letters on the SOLID line, body up to the DASHED"
-           " line · tick the circle above the versions you keep")
+           " line · fill the circle above the versions you keep")
     if size == "book":
         tip += " · scan at 600 DPI, sheet FLAT, never folded"
     draw.text((margin - mark // 2, H - margin + mark), tip,
@@ -430,7 +435,7 @@ def render_page(paper, size, module, page_def, page_index, total_pages):
         y0 = grid_y0 + r * row_h + label_h
         x1, y1 = x0 + bw, y0 + bh
 
-        # tick circle, top-right of the box, in the label strip
+        # fill-in circle, top-right of the box, in the label strip
         ccx = x1 - check_r - 6
         ccy = y0 - label_h // 2
         draw.ellipse([ccx - check_r, ccy - check_r,

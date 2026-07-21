@@ -132,12 +132,12 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
     metrics["space"] = (space_width, 0)
     cmap[0x20] = "space"
 
-    # Group cells by base glyph. v3 templates give every character three
-    # candidate boxes ("a.cand1"...) plus a tick circle; the writer ticks the
-    # versions they want. First ticked candidate = the glyph, further ticked
-    # ones = rotating alternates. Ticked-but-empty or unticked boxes are
-    # dropped; if nothing is ticked, every non-empty box is used. Old-style
-    # cells without candidate metadata pass through one-to-one.
+    # Group cells by base glyph. Templates give every character three
+    # candidate boxes ("a.cand1"...) plus a circle the writer fills in for the
+    # versions they want. First filled-in candidate = the glyph, further
+    # filled-in ones = rotating alternates. Filled-but-empty or unfilled boxes
+    # are dropped; if nothing is filled in, every non-empty box is used.
+    # Old-style cells without candidate metadata pass through one-to-one.
     groups = {}
     for png in sorted(glob.glob(os.path.join(cells_dir, "*.png"))):
         with open(png[:-4] + ".json") as f:
@@ -179,7 +179,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
     if skipped:
         print(f"  skipped empty characters: {' '.join(skipped)}")
     if rejected:
-        print(f"  discarded {rejected} unticked versions")
+        print(f"  discarded {rejected} unfilled versions")
 
     order = [".notdef", "space"] + sorted(n for n in glyphs if n not in (".notdef", "space"))
     fb = FontBuilder(UPM, isTTF=True)
@@ -317,7 +317,7 @@ def build_features(glyphs, ligatures, alternates, smallcaps, kern=None):
         lines += ["feature c2sc {"] + c2sc_rules + ["} c2sc;"]
 
     # Pseudo-random alternates: rotate default -> alt1 -> alt2 along a line.
-    # Any character can have alternates (its extra ticked versions). Both
+    # Any character can have alternates (its extra filled-in versions). Both
     # rules are chained contextual substitutions; within one lookup, earlier
     # substitutions change the context seen by later positions, which is
     # exactly what makes the states alternate.

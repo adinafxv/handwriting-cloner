@@ -100,9 +100,12 @@ def glyph_filename(cell):
     return f"{cell['glyph']}.png"
 
 
-def check_is_ticked(gray, A, check, scale):
-    """True if the tick circle above a box contains pen ink. The circle
-    itself is printed in light gray, so only a real pen mark counts."""
+def check_is_filled(gray, A, check, scale):
+    """True if the circle above a box has been filled in solid. The circle
+    itself is printed in light gray, so only real pen ink counts. A deliberate
+    fill covers roughly 0.5-0.8 of the circle's area; a stray mark or thin
+    accidental line covers roughly 0.05-0.15, so the threshold sits well above
+    that band to require an unambiguous fill."""
     cx, cy, r = check
     sx, sy = apply_affine(A, cx, cy)
     sr = max(3, int(r * scale * 0.8))
@@ -110,7 +113,7 @@ def check_is_ticked(gray, A, check, scale):
                  max(0, int(sx) - sr):int(sx) + sr]
     if patch.size == 0:
         return False
-    return float(np.mean(patch < 120)) > 0.04
+    return float(np.mean(patch < 120)) > 0.30
 
 
 def try_orientation(img, page0):
@@ -178,10 +181,10 @@ def segment_scan(path, layout, outdir, forced_page=None, supersample=2):
     os.makedirs(outdir, exist_ok=True)
     inset = 5
     s = supersample
-    # affine scale factor (template px -> scan px), for sizing the tick probe
+    # affine scale factor (template px -> scan px), for sizing the fill probe
     scan_scale = float(np.hypot(A[0, 0], A[1, 0]))
     gray_full = np.asarray(img, dtype=np.uint8)
-    written, ticked = [], 0
+    written, filled = [], 0
     for cell in page["cells"]:
         x0, y0, x1, y1 = cell["box"]
         x0, y0, x1, y1 = x0 + inset, y0 + inset, x1 - inset, y1 - inset
@@ -204,15 +207,15 @@ def segment_scan(path, layout, outdir, forced_page=None, supersample=2):
             "box_h": (cell["box"][3] - cell["box"][1]) * s,
         }
         if "check" in cell:
-            meta["marked"] = check_is_ticked(gray_full, A, cell["check"],
+            meta["marked"] = check_is_filled(gray_full, A, cell["check"],
                                              scan_scale)
-            ticked += meta["marked"]
+            filled += meta["marked"]
         fname = glyph_filename(cell)
         cell_img.save(os.path.join(outdir, fname))
         with open(os.path.join(outdir, fname[:-4] + ".json"), "w") as f:
             json.dump(meta, f)
         written.append(cell["text"])
-    print(f"  wrote {len(written)} cells to {outdir}  ({ticked} ticked)")
+    print(f"  wrote {len(written)} cells to {outdir}  ({filled} filled)")
 
 
 def main():

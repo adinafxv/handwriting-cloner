@@ -9,9 +9,9 @@ full **Czech, Slovak and Polish** diacritics.
 ## How it works
 
 ```
-print sheets  →  write 3x, tick  →  scan  →  segment  →  trace  →  compile
-    PDF          the keepers      600dpi    per-letter   potrace   fontTools
-                                            crops        beziers   .ttf / VF
+print sheets  →  write 3x, fill in →  scan  →  segment  →  trace  →  compile
+    PDF          the keepers        600dpi    per-letter   potrace   fontTools
+                                              crops        beziers   .ttf / VF
 ```
 
 ## Modules: print only what you want
@@ -48,26 +48,27 @@ same — the fill order never alternates back and forth across the spine.
 Print at **100% / "actual size"** — never "fit to page"; the layout JSON
 must match the printed geometry.
 
-## Write 3, tick the keepers
+## Write 3, fill in the keepers
 
 Every character appears in **three boxes in a row**, each with a small
 circle above it. Write the character three times (vary naturally — don't
-trace-copy), then **tick the circle** above every version you actually
-like:
+trace-copy), then **fill in the circle** solid above every version you
+actually like:
 
-- the **first ticked** version becomes the character in your font — ticking
-  just **one** box is a completely fine outcome; it simply means "use this
-  one, no alternates",
-- **further ticked** versions become rotating OpenType `calt` alternates,
-  so "book" never shows two identical o's — ticking two or all three is
-  just as valid as ticking one,
-- **unticked** versions are thrown away — a botched box costs nothing,
-- **no tick at all** on a character = all non-empty boxes are used
-  (forgetting to tick never loses a character).
+- the **first filled-in** version becomes the character in your font —
+  filling in just **one** box is a completely fine outcome; it simply means
+  "use this one, no alternates",
+- **further filled-in** versions become rotating OpenType `calt` alternates,
+  so "book" never shows two identical o's — filling in two or all three is
+  just as valid as filling in one,
+- versions **left unfilled** are thrown away — a botched box costs nothing,
+- **no fill at all** on a character = all non-empty boxes are used
+  (forgetting to fill in never loses a character).
 
 The circles are printed in the same light gray as the box guides, outside
-the region that gets cropped, so ticking can't break the scanning — just
-keep the tick *inside* the circle.
+the region that gets cropped, so filling one in can't break the scanning —
+just color it in solidly and keep it *inside* the circle (a light or partial
+mark may not register as a fill).
 
 Labels are designed to survive a mediocre printer: the character is printed
 **big** above the first box of each triple, with a plain-language name for
@@ -77,7 +78,7 @@ anything ambiguous ("ě  e + háček", "% percent").
 
 1. Print `templates/handwriting-english-a4-book.pdf` (or `-normal`, or the
    `letter` variant). Its first two pages are the **how-to guide** — vertical
-   zones, horizontal placement, the ticking rules. Keep them next to you;
+   zones, horizontal placement, the fill-in rules. Keep them next to you;
    they are never scanned (also available standalone as
    `templates/filling-guide.pdf`).
 2. Write with a **black pen** (gel, fineliner ≥0.5 mm, or a fountain pen —
@@ -88,7 +89,7 @@ anything ambiguous ("ě  e + háček", "% percent").
    - ascenders go up toward the box top; descenders hang below the solid line,
    - left–right position inside the box doesn't matter — spacing is measured
      from the ink itself,
-   - write at your natural speed, then tick the keepers.
+   - write at your natural speed, then fill in the keepers.
 3. Scan **grayscale, pages flat** — 600 DPI for `book`, 300 DPI is enough
    for `normal`. Phone photos can work if the page fills the frame and is
    evenly lit, but a flatbed is better.
@@ -126,13 +127,13 @@ module later? Segment its scans into the same `work/cells` and rerun
 3. **`segment.py`** finds the four registration marks on each scan, fits an
    affine transform (absorbing rotation, scale and offset — no careful
    scanning required), crops every box back into perfect alignment, and
-   reads the tick circles.
+   reads which circles were filled in.
 4. **`build_font.py`** thresholds each crop (the gray guides disappear),
-   applies the tick selection, traces the ink into smooth Beziers with
+   applies the fill-in selection, traces the ink into smooth Beziers with
    potrace, aligns each glyph to the baseline printed in its box, and
    compiles a static `.ttf` with feature code generated from whatever cells
    had ink: `liga` for ligature pairs, `smcp`/`c2sc` for small caps, a
-   chained-context `calt` rotation over every character's extra ticked
+   chained-context `calt` rotation over every character's extra filled-in
    versions, and shape-based `kern` pairs so letters sit as close as your
    hand spaces them (`--target-gap`).
 5. **`make_variable.py`** derives point-compatible Light and Bold masters by
@@ -146,7 +147,7 @@ module later? Segment its scans into the same `work/cells` and rerun
 |---|---|
 | Gray guide lines appear in glyphs | lower `--threshold` (build_font.py) |
 | Faint pen strokes break apart | raise `--threshold`, or rescan darker |
-| A tick wasn't detected | make it darker/bigger (still inside the circle), rescan |
+| A fill wasn't detected | color the circle in more solidly/darker (fully inside it), rescan |
 | Dust specks become tiny glyph blobs | raise `--turdsize` |
 | Words too loose / too airy | lower `--target-gap` (auto-kern closeness) |
 | Letters collide | raise `--target-gap`, or `--lsb` / `--rsb` |
@@ -158,7 +159,7 @@ module later? Segment its scans into the same `work/cells` and rerun
 ## Testing without a scanner
 
 `simulate_scan.py` fakes filled-in scans using a system font (with rotation,
-rescaling and ticked circles), so the whole pipeline can be exercised
+rescaling and filled-in circles), so the whole pipeline can be exercised
 end-to-end:
 
 ```bash
@@ -171,15 +172,18 @@ python3 segment.py --layout templates/layout-english-a4-book.json work/sim/*.png
 - **Why boxes instead of drawing boxes around free writing?** Known geometry
   buys automatic alignment, baseline placement, and consistent scaling for
   free. Freeform capture needs manual annotation of every letter and baseline.
-- **Why tick circles instead of circling the letter?** A circle drawn around
-  a letter would merge with the letter's ink at threshold time. The tick
-  circle lives outside the cropped region, so the mark can never contaminate
-  a glyph — and an unticked mistake is simply ignored.
+- **Why fill-in circles instead of circling the letter?** A circle drawn
+  around a letter would merge with the letter's ink at threshold time. The
+  fill-in circle lives outside the cropped region, so the mark can never
+  contaminate a glyph — and an unfilled mistake is simply ignored. Filling
+  the circle solid (rather than ticking it) is also a more binary, robust
+  scan signal: a light or thin accidental mark stays well below the
+  detection threshold, while a deliberate fill clears it easily.
 - **Why a synthetic weight axis?** True multi-master handwriting produces
   outlines that are not point-compatible after autotracing.
   Normal-offsetting one master guarantees compatibility.
-- Sheets are versioned (`template v3` in the footer, `version` in the layout
-  JSON). A v2 sheet won't line up with a v3 layout — reprint.
+- Sheets are versioned (`template v4` in the footer, `version` in the layout
+  JSON). A v3 sheet won't line up with a v4 layout — reprint.
 - **Book fill order is a deliberate invariant:** the left A5 half fills
   completely, top to bottom, before the right half starts — it never
   zig-zags across the spine. This matches how someone actually writes in
@@ -187,7 +191,9 @@ python3 segment.py --layout templates/layout-english-a4-book.json work/sim/*.png
   (`render_page` / `SIZE_PARAMS` in `make_template.py`) is ever touched.
 - Later idea: a second sheet per character where you mark usable extras to
   grow the alternate pool beyond three. The selection metadata
-  (`base`/`cand`/`marked`) already supports it.
+  (`base`/`cand`/`marked`) already supports it. (`marked` is still the
+  metadata key name even though the on-paper signal changed from a tick to
+  a solid fill.)
 - **Auto-kerning is shape-based:** every letter's per-band left/right ink
   profile is measured, and each ordered pair is slid until its closest
   approach equals `--target-gap` — so `To`/`Va`/`r.` tuck in and blocky
@@ -196,6 +202,6 @@ python3 segment.py --layout templates/layout-english-a4-book.json work/sim/*.png
   table small. It does **not** add letter *joins* — those come from the
   `ligatures` module (write the pairs connected).
 - Getting it closer to your hand: the three levers are **alternates**
-  (tick 2–3 versions so repeats differ), **ligatures** (captured joins),
+  (fill in 2–3 versions so repeats differ), **ligatures** (captured joins),
   and **kerning/spacing** (above). Remaining next step: a real second axis
   (e.g. slant) via a second writing pass.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the how-to sheet(s): example boxes with a model glyph correctly
 placed on the guides and a short caption, plus the rules of the
-three-boxes-tick-the-keepers system. This is a reference to keep next to you
+three-boxes-fill-the-keepers system. This is a reference to keep next to you
 while writing - it is never scanned (it has no registration marks), and it
 also rides along as the first pages of the "english" module PDF.
 
@@ -63,13 +63,13 @@ LIGATURE_ROW = ("LIGATURES - write the PAIR as one joined movement, no pen lift 
 
 PICK_RULES = [
     "write the character in all THREE boxes - vary naturally, don't trace-copy",
-    "then TICK the circle above every version you actually like",
-    "1st ticked version  =  the letter in your font (1, 2 or 3 ticks is fine)",
-    "2nd & 3rd ticked    =  rotating alternates (repeats won't look cloned)",
-    "no tick on a version = it is thrown away - a botched box costs nothing",
-    "no tick on ANY of the three = all non-empty boxes get used",
-    "keep the tick INSIDE the circle - a stray tick inside the box would",
-    "    become part of the letter",
+    "then FILL IN the circle above every version you actually like",
+    "1st filled version  =  the letter in your font (1, 2 or 3 fills is fine)",
+    "2nd & 3rd filled    =  rotating alternates (repeats won't look cloned)",
+    "no fill on a version = it is thrown away - a botched box costs nothing",
+    "no fill on ANY of the three = all non-empty boxes get used",
+    "fill the circle solidly - a light mark may be missed",
+    "    keep it inside the circle; a stray mark in the box joins the letter",
 ]
 
 HORIZONTAL_RULES = [
@@ -140,16 +140,14 @@ def render_pages(paper="a4"):
         font = ImageFont.truetype(pick(model), size)
         draw.text((x + w * (0.30 if not wide else 0.32), baseline_y),
                   model, font=font, fill=30, anchor="ls")
-        if check is not None:  # ticked / unticked circle above the box
+        if check is not None:  # filled / unfilled circle above the box
             r = px(0.055)
             ccx, ccy = x + w - r - 8, y - r - 10
             draw.ellipse([ccx - r, ccy - r, ccx + r, ccy + r],
                          outline=GUIDE_GRAY, width=2)
             if check:
-                draw.line([(ccx - r * 0.5, ccy), (ccx - r * 0.1, ccy + r * 0.5)],
-                          fill=20, width=5)
-                draw.line([(ccx - r * 0.1, ccy + r * 0.5), (ccx + r * 0.6, ccy - r * 0.6)],
-                          fill=20, width=5)
+                fr = r * 0.75
+                draw.ellipse([ccx - fr, ccy - fr, ccx + fr, ccy + fr], fill=20)
         for i, cap in enumerate(captions):
             draw.text((x + 4, y + bh + 8 + i * px(0.115)), cap,
                       fill=LABEL_GRAY, font=caption_font)
@@ -169,15 +167,15 @@ def render_pages(paper="a4"):
     img1, draw = new_page("READ ME FIRST - how to fill the sheets  (do not scan this page)")
     y = margin + px(0.35)
 
-    draw.text((margin, y), "EVERY CHARACTER GETS 3 BOXES - TICK THE KEEPERS",
+    draw.text((margin, y), "EVERY CHARACTER GETS 3 BOXES - FILL IN THE KEEPERS",
               fill=LABEL_GRAY, font=header_font)
     y += px(0.34)
-    demo = [("a", True, ["ticked: becomes", "your letter 'a'"]),
-            ("a", False, ["not ticked:", "thrown away"]),
-            ("a", True, ["ticked: becomes", "an alternate 'a'"])]
+    demo = [("a", True, ["filled: becomes", "your letter 'a'"]),
+            ("a", False, ["not filled:", "thrown away"]),
+            ("a", True, ["filled: becomes", "an alternate 'a'"])]
     x = margin
-    for model, ticked, captions in demo:
-        draw_box(draw, x, y, model, 1.0, captions, check=ticked)
+    for model, filled, captions in demo:
+        draw_box(draw, x, y, model, 1.0, captions, check=filled)
         x += bw + gap
     y_rules = y + px(0.12)
     x_rules = x + px(0.25)
@@ -185,7 +183,7 @@ def render_pages(paper="a4"):
                 PICK_RULES[:6])
     y += bh + px(0.55)
 
-    rules_block(draw, margin, y, "TICKING", PICK_RULES[6:])
+    rules_block(draw, margin, y, "FILLING IN", PICK_RULES[6:])
     y += px(0.24) + 2 * px(0.185) + px(0.28)
 
     header, cells = VERTICAL_ROW
