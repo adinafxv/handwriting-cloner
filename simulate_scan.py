@@ -72,14 +72,12 @@ def main():
                 text = text.upper()  # small caps: small capital forms
                 size = int(size * 0.72)
             font = ImageFont.truetype(pick_font(text), size)
-            # tick candidates 1 and 3 (skip 2), exercising the selection:
-            # cand1 -> the glyph, cand3 -> .alt1, unticked cand2 -> dropped
+            # fill in candidates 1 and 3 (skip 2), exercising the selection:
+            # cand1 -> the glyph, cand3 -> .alt1, unfilled cand2 -> dropped
             if "check" in cell and cell.get("cand") in (1, 3):
                 cx, cy, r = cell["check"]
-                draw.line([(cx - r * 0.5, cy), (cx - r * 0.1, cy + r * 0.5)],
-                          fill=15, width=4)
-                draw.line([(cx - r * 0.1, cy + r * 0.5),
-                           (cx + r * 0.6, cy - r * 0.6)], fill=15, width=4)
+                fr = r * 0.75  # slightly inside the printed circle outline
+                draw.ellipse([cx - fr, cy - fr, cx + fr, cy + fr], fill=15)
             # make the versions visibly different by tilting them
             tilt = {2: 8, 3: -8}.get(cell.get("cand"), 0)
             if tilt:
