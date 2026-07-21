@@ -1,0 +1,1623 @@
+{
+ "version": 3,
+ "dpi": 300,
+ "paper": "a4",
+ "size_mode": "normal",
+ "module": "small-caps",
+ "guide_gray": 185,
+ "baseline_frac": 0.75,
+ "xheight_frac": 0.4,
+ "pages": [
+  {
+   "page": 1,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "a",
+     "glyph": "a.sc.cand1",
+     "base": "a.sc",
+     "cand": 1,
+     "box": [
+      138,
+      423,
+      480,
+      738
+     ],
+     "check": [
+      458,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "a",
+     "glyph": "a.sc.cand2",
+     "base": "a.sc",
+     "cand": 2,
+     "box": [
+      510,
+      423,
+      852,
+      738
+     ],
+     "check": [
+      830,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "a",
+     "glyph": "a.sc.cand3",
+     "base": "a.sc",
+     "cand": 3,
+     "box": [
+      882,
+      423,
+      1224,
+      738
+     ],
+     "check": [
+      1202,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "b",
+     "glyph": "b.sc.cand1",
+     "base": "b.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      423,
+      1596,
+      738
+     ],
+     "check": [
+      1574,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "b",
+     "glyph": "b.sc.cand2",
+     "base": "b.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      423,
+      1968,
+      738
+     ],
+     "check": [
+      1946,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "b",
+     "glyph": "b.sc.cand3",
+     "base": "b.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      423,
+      2340,
+      738
+     ],
+     "check": [
+      2318,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "c",
+     "glyph": "c.sc.cand1",
+     "base": "c.sc",
+     "cand": 1,
+     "box": [
+      138,
+      846,
+      480,
+      1161
+     ],
+     "check": [
+      458,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "c",
+     "glyph": "c.sc.cand2",
+     "base": "c.sc",
+     "cand": 2,
+     "box": [
+      510,
+      846,
+      852,
+      1161
+     ],
+     "check": [
+      830,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "c",
+     "glyph": "c.sc.cand3",
+     "base": "c.sc",
+     "cand": 3,
+     "box": [
+      882,
+      846,
+      1224,
+      1161
+     ],
+     "check": [
+      1202,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "d",
+     "glyph": "d.sc.cand1",
+     "base": "d.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      846,
+      1596,
+      1161
+     ],
+     "check": [
+      1574,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "d",
+     "glyph": "d.sc.cand2",
+     "base": "d.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      846,
+      1968,
+      1161
+     ],
+     "check": [
+      1946,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "d",
+     "glyph": "d.sc.cand3",
+     "base": "d.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      846,
+      2340,
+      1161
+     ],
+     "check": [
+      2318,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "e",
+     "glyph": "e.sc.cand1",
+     "base": "e.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1269,
+      480,
+      1584
+     ],
+     "check": [
+      458,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "e",
+     "glyph": "e.sc.cand2",
+     "base": "e.sc",
+     "cand": 2,
+     "box": [
+      510,
+      1269,
+      852,
+      1584
+     ],
+     "check": [
+      830,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "e",
+     "glyph": "e.sc.cand3",
+     "base": "e.sc",
+     "cand": 3,
+     "box": [
+      882,
+      1269,
+      1224,
+      1584
+     ],
+     "check": [
+      1202,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "f",
+     "glyph": "f.sc.cand1",
+     "base": "f.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      1269,
+      1596,
+      1584
+     ],
+     "check": [
+      1574,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "f",
+     "glyph": "f.sc.cand2",
+     "base": "f.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      1269,
+      1968,
+      1584
+     ],
+     "check": [
+      1946,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "f",
+     "glyph": "f.sc.cand3",
+     "base": "f.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      1269,
+      2340,
+      1584
+     ],
+     "check": [
+      2318,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "g",
+     "glyph": "g.sc.cand1",
+     "base": "g.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1692,
+      480,
+      2007
+     ],
+     "check": [
+      458,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "g",
+     "glyph": "g.sc.cand2",
+     "base": "g.sc",
+     "cand": 2,
+     "box": [
+      510,
+      1692,
+      852,
+      2007
+     ],
+     "check": [
+      830,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "g",
+     "glyph": "g.sc.cand3",
+     "base": "g.sc",
+     "cand": 3,
+     "box": [
+      882,
+      1692,
+      1224,
+      2007
+     ],
+     "check": [
+      1202,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "h",
+     "glyph": "h.sc.cand1",
+     "base": "h.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      1692,
+      1596,
+      2007
+     ],
+     "check": [
+      1574,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "h",
+     "glyph": "h.sc.cand2",
+     "base": "h.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      1692,
+      1968,
+      2007
+     ],
+     "check": [
+      1946,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "h",
+     "glyph": "h.sc.cand3",
+     "base": "h.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      1692,
+      2340,
+      2007
+     ],
+     "check": [
+      2318,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "i",
+     "glyph": "i.sc.cand1",
+     "base": "i.sc",
+     "cand": 1,
+     "box": [
+      138,
+      2115,
+      480,
+      2430
+     ],
+     "check": [
+      458,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "i",
+     "glyph": "i.sc.cand2",
+     "base": "i.sc",
+     "cand": 2,
+     "box": [
+      510,
+      2115,
+      852,
+      2430
+     ],
+     "check": [
+      830,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "i",
+     "glyph": "i.sc.cand3",
+     "base": "i.sc",
+     "cand": 3,
+     "box": [
+      882,
+      2115,
+      1224,
+      2430
+     ],
+     "check": [
+      1202,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "j",
+     "glyph": "j.sc.cand1",
+     "base": "j.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      2115,
+      1596,
+      2430
+     ],
+     "check": [
+      1574,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "j",
+     "glyph": "j.sc.cand2",
+     "base": "j.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      2115,
+      1968,
+      2430
+     ],
+     "check": [
+      1946,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "j",
+     "glyph": "j.sc.cand3",
+     "base": "j.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      2115,
+      2340,
+      2430
+     ],
+     "check": [
+      2318,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "k",
+     "glyph": "k.sc.cand1",
+     "base": "k.sc",
+     "cand": 1,
+     "box": [
+      138,
+      2538,
+      480,
+      2853
+     ],
+     "check": [
+      458,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "k",
+     "glyph": "k.sc.cand2",
+     "base": "k.sc",
+     "cand": 2,
+     "box": [
+      510,
+      2538,
+      852,
+      2853
+     ],
+     "check": [
+      830,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "k",
+     "glyph": "k.sc.cand3",
+     "base": "k.sc",
+     "cand": 3,
+     "box": [
+      882,
+      2538,
+      1224,
+      2853
+     ],
+     "check": [
+      1202,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "l",
+     "glyph": "l.sc.cand1",
+     "base": "l.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      2538,
+      1596,
+      2853
+     ],
+     "check": [
+      1574,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "l",
+     "glyph": "l.sc.cand2",
+     "base": "l.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      2538,
+      1968,
+      2853
+     ],
+     "check": [
+      1946,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "l",
+     "glyph": "l.sc.cand3",
+     "base": "l.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      2538,
+      2340,
+      2853
+     ],
+     "check": [
+      2318,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    }
+   ]
+  },
+  {
+   "page": 2,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "m",
+     "glyph": "m.sc.cand1",
+     "base": "m.sc",
+     "cand": 1,
+     "box": [
+      138,
+      423,
+      480,
+      738
+     ],
+     "check": [
+      458,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "m",
+     "glyph": "m.sc.cand2",
+     "base": "m.sc",
+     "cand": 2,
+     "box": [
+      510,
+      423,
+      852,
+      738
+     ],
+     "check": [
+      830,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "m",
+     "glyph": "m.sc.cand3",
+     "base": "m.sc",
+     "cand": 3,
+     "box": [
+      882,
+      423,
+      1224,
+      738
+     ],
+     "check": [
+      1202,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "n",
+     "glyph": "n.sc.cand1",
+     "base": "n.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      423,
+      1596,
+      738
+     ],
+     "check": [
+      1574,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "n",
+     "glyph": "n.sc.cand2",
+     "base": "n.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      423,
+      1968,
+      738
+     ],
+     "check": [
+      1946,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "n",
+     "glyph": "n.sc.cand3",
+     "base": "n.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      423,
+      2340,
+      738
+     ],
+     "check": [
+      2318,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "o",
+     "glyph": "o.sc.cand1",
+     "base": "o.sc",
+     "cand": 1,
+     "box": [
+      138,
+      846,
+      480,
+      1161
+     ],
+     "check": [
+      458,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "o",
+     "glyph": "o.sc.cand2",
+     "base": "o.sc",
+     "cand": 2,
+     "box": [
+      510,
+      846,
+      852,
+      1161
+     ],
+     "check": [
+      830,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "o",
+     "glyph": "o.sc.cand3",
+     "base": "o.sc",
+     "cand": 3,
+     "box": [
+      882,
+      846,
+      1224,
+      1161
+     ],
+     "check": [
+      1202,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "p",
+     "glyph": "p.sc.cand1",
+     "base": "p.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      846,
+      1596,
+      1161
+     ],
+     "check": [
+      1574,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "p",
+     "glyph": "p.sc.cand2",
+     "base": "p.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      846,
+      1968,
+      1161
+     ],
+     "check": [
+      1946,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "p",
+     "glyph": "p.sc.cand3",
+     "base": "p.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      846,
+      2340,
+      1161
+     ],
+     "check": [
+      2318,
+      807,
+      16
+     ],
+     "baseline_y": 1082,
+     "xheight_y": 972
+    },
+    {
+     "text": "q",
+     "glyph": "q.sc.cand1",
+     "base": "q.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1269,
+      480,
+      1584
+     ],
+     "check": [
+      458,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "q",
+     "glyph": "q.sc.cand2",
+     "base": "q.sc",
+     "cand": 2,
+     "box": [
+      510,
+      1269,
+      852,
+      1584
+     ],
+     "check": [
+      830,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "q",
+     "glyph": "q.sc.cand3",
+     "base": "q.sc",
+     "cand": 3,
+     "box": [
+      882,
+      1269,
+      1224,
+      1584
+     ],
+     "check": [
+      1202,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "r",
+     "glyph": "r.sc.cand1",
+     "base": "r.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      1269,
+      1596,
+      1584
+     ],
+     "check": [
+      1574,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "r",
+     "glyph": "r.sc.cand2",
+     "base": "r.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      1269,
+      1968,
+      1584
+     ],
+     "check": [
+      1946,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "r",
+     "glyph": "r.sc.cand3",
+     "base": "r.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      1269,
+      2340,
+      1584
+     ],
+     "check": [
+      2318,
+      1230,
+      16
+     ],
+     "baseline_y": 1505,
+     "xheight_y": 1395
+    },
+    {
+     "text": "s",
+     "glyph": "s.sc.cand1",
+     "base": "s.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1692,
+      480,
+      2007
+     ],
+     "check": [
+      458,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "s",
+     "glyph": "s.sc.cand2",
+     "base": "s.sc",
+     "cand": 2,
+     "box": [
+      510,
+      1692,
+      852,
+      2007
+     ],
+     "check": [
+      830,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "s",
+     "glyph": "s.sc.cand3",
+     "base": "s.sc",
+     "cand": 3,
+     "box": [
+      882,
+      1692,
+      1224,
+      2007
+     ],
+     "check": [
+      1202,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "t",
+     "glyph": "t.sc.cand1",
+     "base": "t.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      1692,
+      1596,
+      2007
+     ],
+     "check": [
+      1574,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "t",
+     "glyph": "t.sc.cand2",
+     "base": "t.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      1692,
+      1968,
+      2007
+     ],
+     "check": [
+      1946,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "t",
+     "glyph": "t.sc.cand3",
+     "base": "t.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      1692,
+      2340,
+      2007
+     ],
+     "check": [
+      2318,
+      1653,
+      16
+     ],
+     "baseline_y": 1928,
+     "xheight_y": 1818
+    },
+    {
+     "text": "u",
+     "glyph": "u.sc.cand1",
+     "base": "u.sc",
+     "cand": 1,
+     "box": [
+      138,
+      2115,
+      480,
+      2430
+     ],
+     "check": [
+      458,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "u",
+     "glyph": "u.sc.cand2",
+     "base": "u.sc",
+     "cand": 2,
+     "box": [
+      510,
+      2115,
+      852,
+      2430
+     ],
+     "check": [
+      830,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "u",
+     "glyph": "u.sc.cand3",
+     "base": "u.sc",
+     "cand": 3,
+     "box": [
+      882,
+      2115,
+      1224,
+      2430
+     ],
+     "check": [
+      1202,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "v",
+     "glyph": "v.sc.cand1",
+     "base": "v.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      2115,
+      1596,
+      2430
+     ],
+     "check": [
+      1574,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "v",
+     "glyph": "v.sc.cand2",
+     "base": "v.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      2115,
+      1968,
+      2430
+     ],
+     "check": [
+      1946,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "v",
+     "glyph": "v.sc.cand3",
+     "base": "v.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      2115,
+      2340,
+      2430
+     ],
+     "check": [
+      2318,
+      2076,
+      16
+     ],
+     "baseline_y": 2351,
+     "xheight_y": 2241
+    },
+    {
+     "text": "w",
+     "glyph": "w.sc.cand1",
+     "base": "w.sc",
+     "cand": 1,
+     "box": [
+      138,
+      2538,
+      480,
+      2853
+     ],
+     "check": [
+      458,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "w",
+     "glyph": "w.sc.cand2",
+     "base": "w.sc",
+     "cand": 2,
+     "box": [
+      510,
+      2538,
+      852,
+      2853
+     ],
+     "check": [
+      830,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "w",
+     "glyph": "w.sc.cand3",
+     "base": "w.sc",
+     "cand": 3,
+     "box": [
+      882,
+      2538,
+      1224,
+      2853
+     ],
+     "check": [
+      1202,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "x",
+     "glyph": "x.sc.cand1",
+     "base": "x.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      2538,
+      1596,
+      2853
+     ],
+     "check": [
+      1574,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "x",
+     "glyph": "x.sc.cand2",
+     "base": "x.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      2538,
+      1968,
+      2853
+     ],
+     "check": [
+      1946,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    },
+    {
+     "text": "x",
+     "glyph": "x.sc.cand3",
+     "base": "x.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      2538,
+      2340,
+      2853
+     ],
+     "check": [
+      2318,
+      2499,
+      16
+     ],
+     "baseline_y": 2774,
+     "xheight_y": 2664
+    }
+   ]
+  },
+  {
+   "page": 3,
+   "size": [
+    2481,
+    3507
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     2316,
+     165
+    ],
+    [
+     165,
+     3342
+    ],
+    [
+     2316,
+     3342
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ],
+    [
+     303,
+     165
+    ],
+    [
+     351,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "y",
+     "glyph": "y.sc.cand1",
+     "base": "y.sc",
+     "cand": 1,
+     "box": [
+      138,
+      423,
+      480,
+      738
+     ],
+     "check": [
+      458,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "y",
+     "glyph": "y.sc.cand2",
+     "base": "y.sc",
+     "cand": 2,
+     "box": [
+      510,
+      423,
+      852,
+      738
+     ],
+     "check": [
+      830,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "y",
+     "glyph": "y.sc.cand3",
+     "base": "y.sc",
+     "cand": 3,
+     "box": [
+      882,
+      423,
+      1224,
+      738
+     ],
+     "check": [
+      1202,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "z",
+     "glyph": "z.sc.cand1",
+     "base": "z.sc",
+     "cand": 1,
+     "box": [
+      1254,
+      423,
+      1596,
+      738
+     ],
+     "check": [
+      1574,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "z",
+     "glyph": "z.sc.cand2",
+     "base": "z.sc",
+     "cand": 2,
+     "box": [
+      1626,
+      423,
+      1968,
+      738
+     ],
+     "check": [
+      1946,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    },
+    {
+     "text": "z",
+     "glyph": "z.sc.cand3",
+     "base": "z.sc",
+     "cand": 3,
+     "box": [
+      1998,
+      423,
+      2340,
+      738
+     ],
+     "check": [
+      2318,
+      384,
+      16
+     ],
+     "baseline_y": 659,
+     "xheight_y": 549
+    }
+   ]
+  }
+ ]
+}

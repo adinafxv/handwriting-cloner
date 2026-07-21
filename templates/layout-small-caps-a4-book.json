@@ -1,0 +1,1529 @@
+{
+ "version": 3,
+ "dpi": 300,
+ "paper": "a4",
+ "size_mode": "book",
+ "module": "small-caps",
+ "guide_gray": 185,
+ "baseline_frac": 0.75,
+ "xheight_frac": 0.4,
+ "pages": [
+  {
+   "page": 1,
+   "size": [
+    3507,
+    2481
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     3342,
+     165
+    ],
+    [
+     165,
+     2316
+    ],
+    [
+     3342,
+     2316
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "a",
+     "glyph": "a.sc.cand1",
+     "base": "a.sc",
+     "cand": 1,
+     "box": [
+      138,
+      405,
+      374,
+      555
+     ],
+     "check": [
+      355,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "a",
+     "glyph": "a.sc.cand2",
+     "base": "a.sc",
+     "cand": 2,
+     "box": [
+      395,
+      405,
+      631,
+      555
+     ],
+     "check": [
+      612,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "a",
+     "glyph": "a.sc.cand3",
+     "base": "a.sc",
+     "cand": 3,
+     "box": [
+      652,
+      405,
+      888,
+      555
+     ],
+     "check": [
+      869,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "b",
+     "glyph": "b.sc.cand1",
+     "base": "b.sc",
+     "cand": 1,
+     "box": [
+      909,
+      405,
+      1145,
+      555
+     ],
+     "check": [
+      1126,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "b",
+     "glyph": "b.sc.cand2",
+     "base": "b.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      405,
+      1402,
+      555
+     ],
+     "check": [
+      1383,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "b",
+     "glyph": "b.sc.cand3",
+     "base": "b.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      405,
+      1659,
+      555
+     ],
+     "check": [
+      1640,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "c",
+     "glyph": "c.sc.cand1",
+     "base": "c.sc",
+     "cand": 1,
+     "box": [
+      138,
+      633,
+      374,
+      783
+     ],
+     "check": [
+      355,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "c",
+     "glyph": "c.sc.cand2",
+     "base": "c.sc",
+     "cand": 2,
+     "box": [
+      395,
+      633,
+      631,
+      783
+     ],
+     "check": [
+      612,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "c",
+     "glyph": "c.sc.cand3",
+     "base": "c.sc",
+     "cand": 3,
+     "box": [
+      652,
+      633,
+      888,
+      783
+     ],
+     "check": [
+      869,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "d",
+     "glyph": "d.sc.cand1",
+     "base": "d.sc",
+     "cand": 1,
+     "box": [
+      909,
+      633,
+      1145,
+      783
+     ],
+     "check": [
+      1126,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "d",
+     "glyph": "d.sc.cand2",
+     "base": "d.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      633,
+      1402,
+      783
+     ],
+     "check": [
+      1383,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "d",
+     "glyph": "d.sc.cand3",
+     "base": "d.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      633,
+      1659,
+      783
+     ],
+     "check": [
+      1640,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "e",
+     "glyph": "e.sc.cand1",
+     "base": "e.sc",
+     "cand": 1,
+     "box": [
+      138,
+      861,
+      374,
+      1011
+     ],
+     "check": [
+      355,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "e",
+     "glyph": "e.sc.cand2",
+     "base": "e.sc",
+     "cand": 2,
+     "box": [
+      395,
+      861,
+      631,
+      1011
+     ],
+     "check": [
+      612,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "e",
+     "glyph": "e.sc.cand3",
+     "base": "e.sc",
+     "cand": 3,
+     "box": [
+      652,
+      861,
+      888,
+      1011
+     ],
+     "check": [
+      869,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "f",
+     "glyph": "f.sc.cand1",
+     "base": "f.sc",
+     "cand": 1,
+     "box": [
+      909,
+      861,
+      1145,
+      1011
+     ],
+     "check": [
+      1126,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "f",
+     "glyph": "f.sc.cand2",
+     "base": "f.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      861,
+      1402,
+      1011
+     ],
+     "check": [
+      1383,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "f",
+     "glyph": "f.sc.cand3",
+     "base": "f.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      861,
+      1659,
+      1011
+     ],
+     "check": [
+      1640,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "g",
+     "glyph": "g.sc.cand1",
+     "base": "g.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1089,
+      374,
+      1239
+     ],
+     "check": [
+      355,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "g",
+     "glyph": "g.sc.cand2",
+     "base": "g.sc",
+     "cand": 2,
+     "box": [
+      395,
+      1089,
+      631,
+      1239
+     ],
+     "check": [
+      612,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "g",
+     "glyph": "g.sc.cand3",
+     "base": "g.sc",
+     "cand": 3,
+     "box": [
+      652,
+      1089,
+      888,
+      1239
+     ],
+     "check": [
+      869,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "h",
+     "glyph": "h.sc.cand1",
+     "base": "h.sc",
+     "cand": 1,
+     "box": [
+      909,
+      1089,
+      1145,
+      1239
+     ],
+     "check": [
+      1126,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "h",
+     "glyph": "h.sc.cand2",
+     "base": "h.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      1089,
+      1402,
+      1239
+     ],
+     "check": [
+      1383,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "h",
+     "glyph": "h.sc.cand3",
+     "base": "h.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      1089,
+      1659,
+      1239
+     ],
+     "check": [
+      1640,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "i",
+     "glyph": "i.sc.cand1",
+     "base": "i.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1317,
+      374,
+      1467
+     ],
+     "check": [
+      355,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "i",
+     "glyph": "i.sc.cand2",
+     "base": "i.sc",
+     "cand": 2,
+     "box": [
+      395,
+      1317,
+      631,
+      1467
+     ],
+     "check": [
+      612,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "i",
+     "glyph": "i.sc.cand3",
+     "base": "i.sc",
+     "cand": 3,
+     "box": [
+      652,
+      1317,
+      888,
+      1467
+     ],
+     "check": [
+      869,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "j",
+     "glyph": "j.sc.cand1",
+     "base": "j.sc",
+     "cand": 1,
+     "box": [
+      909,
+      1317,
+      1145,
+      1467
+     ],
+     "check": [
+      1126,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "j",
+     "glyph": "j.sc.cand2",
+     "base": "j.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      1317,
+      1402,
+      1467
+     ],
+     "check": [
+      1383,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "j",
+     "glyph": "j.sc.cand3",
+     "base": "j.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      1317,
+      1659,
+      1467
+     ],
+     "check": [
+      1640,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "k",
+     "glyph": "k.sc.cand1",
+     "base": "k.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1545,
+      374,
+      1695
+     ],
+     "check": [
+      355,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "k",
+     "glyph": "k.sc.cand2",
+     "base": "k.sc",
+     "cand": 2,
+     "box": [
+      395,
+      1545,
+      631,
+      1695
+     ],
+     "check": [
+      612,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "k",
+     "glyph": "k.sc.cand3",
+     "base": "k.sc",
+     "cand": 3,
+     "box": [
+      652,
+      1545,
+      888,
+      1695
+     ],
+     "check": [
+      869,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "l",
+     "glyph": "l.sc.cand1",
+     "base": "l.sc",
+     "cand": 1,
+     "box": [
+      909,
+      1545,
+      1145,
+      1695
+     ],
+     "check": [
+      1126,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "l",
+     "glyph": "l.sc.cand2",
+     "base": "l.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      1545,
+      1402,
+      1695
+     ],
+     "check": [
+      1383,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "l",
+     "glyph": "l.sc.cand3",
+     "base": "l.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      1545,
+      1659,
+      1695
+     ],
+     "check": [
+      1640,
+      1515,
+      13
+     ],
+     "baseline_y": 1657,
+     "xheight_y": 1605
+    },
+    {
+     "text": "m",
+     "glyph": "m.sc.cand1",
+     "base": "m.sc",
+     "cand": 1,
+     "box": [
+      138,
+      1773,
+      374,
+      1923
+     ],
+     "check": [
+      355,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "m",
+     "glyph": "m.sc.cand2",
+     "base": "m.sc",
+     "cand": 2,
+     "box": [
+      395,
+      1773,
+      631,
+      1923
+     ],
+     "check": [
+      612,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "m",
+     "glyph": "m.sc.cand3",
+     "base": "m.sc",
+     "cand": 3,
+     "box": [
+      652,
+      1773,
+      888,
+      1923
+     ],
+     "check": [
+      869,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "n",
+     "glyph": "n.sc.cand1",
+     "base": "n.sc",
+     "cand": 1,
+     "box": [
+      909,
+      1773,
+      1145,
+      1923
+     ],
+     "check": [
+      1126,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "n",
+     "glyph": "n.sc.cand2",
+     "base": "n.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      1773,
+      1402,
+      1923
+     ],
+     "check": [
+      1383,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "n",
+     "glyph": "n.sc.cand3",
+     "base": "n.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      1773,
+      1659,
+      1923
+     ],
+     "check": [
+      1640,
+      1743,
+      13
+     ],
+     "baseline_y": 1885,
+     "xheight_y": 1833
+    },
+    {
+     "text": "o",
+     "glyph": "o.sc.cand1",
+     "base": "o.sc",
+     "cand": 1,
+     "box": [
+      138,
+      2001,
+      374,
+      2151
+     ],
+     "check": [
+      355,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "o",
+     "glyph": "o.sc.cand2",
+     "base": "o.sc",
+     "cand": 2,
+     "box": [
+      395,
+      2001,
+      631,
+      2151
+     ],
+     "check": [
+      612,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "o",
+     "glyph": "o.sc.cand3",
+     "base": "o.sc",
+     "cand": 3,
+     "box": [
+      652,
+      2001,
+      888,
+      2151
+     ],
+     "check": [
+      869,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "p",
+     "glyph": "p.sc.cand1",
+     "base": "p.sc",
+     "cand": 1,
+     "box": [
+      909,
+      2001,
+      1145,
+      2151
+     ],
+     "check": [
+      1126,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "p",
+     "glyph": "p.sc.cand2",
+     "base": "p.sc",
+     "cand": 2,
+     "box": [
+      1166,
+      2001,
+      1402,
+      2151
+     ],
+     "check": [
+      1383,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "p",
+     "glyph": "p.sc.cand3",
+     "base": "p.sc",
+     "cand": 3,
+     "box": [
+      1423,
+      2001,
+      1659,
+      2151
+     ],
+     "check": [
+      1640,
+      1971,
+      13
+     ],
+     "baseline_y": 2113,
+     "xheight_y": 2061
+    },
+    {
+     "text": "q",
+     "glyph": "q.sc.cand1",
+     "base": "q.sc",
+     "cand": 1,
+     "box": [
+      1824,
+      405,
+      2060,
+      555
+     ],
+     "check": [
+      2041,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "q",
+     "glyph": "q.sc.cand2",
+     "base": "q.sc",
+     "cand": 2,
+     "box": [
+      2081,
+      405,
+      2317,
+      555
+     ],
+     "check": [
+      2298,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "q",
+     "glyph": "q.sc.cand3",
+     "base": "q.sc",
+     "cand": 3,
+     "box": [
+      2338,
+      405,
+      2574,
+      555
+     ],
+     "check": [
+      2555,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "r",
+     "glyph": "r.sc.cand1",
+     "base": "r.sc",
+     "cand": 1,
+     "box": [
+      2595,
+      405,
+      2831,
+      555
+     ],
+     "check": [
+      2812,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "r",
+     "glyph": "r.sc.cand2",
+     "base": "r.sc",
+     "cand": 2,
+     "box": [
+      2852,
+      405,
+      3088,
+      555
+     ],
+     "check": [
+      3069,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "r",
+     "glyph": "r.sc.cand3",
+     "base": "r.sc",
+     "cand": 3,
+     "box": [
+      3109,
+      405,
+      3345,
+      555
+     ],
+     "check": [
+      3326,
+      375,
+      13
+     ],
+     "baseline_y": 517,
+     "xheight_y": 465
+    },
+    {
+     "text": "s",
+     "glyph": "s.sc.cand1",
+     "base": "s.sc",
+     "cand": 1,
+     "box": [
+      1824,
+      633,
+      2060,
+      783
+     ],
+     "check": [
+      2041,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "s",
+     "glyph": "s.sc.cand2",
+     "base": "s.sc",
+     "cand": 2,
+     "box": [
+      2081,
+      633,
+      2317,
+      783
+     ],
+     "check": [
+      2298,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "s",
+     "glyph": "s.sc.cand3",
+     "base": "s.sc",
+     "cand": 3,
+     "box": [
+      2338,
+      633,
+      2574,
+      783
+     ],
+     "check": [
+      2555,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "t",
+     "glyph": "t.sc.cand1",
+     "base": "t.sc",
+     "cand": 1,
+     "box": [
+      2595,
+      633,
+      2831,
+      783
+     ],
+     "check": [
+      2812,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "t",
+     "glyph": "t.sc.cand2",
+     "base": "t.sc",
+     "cand": 2,
+     "box": [
+      2852,
+      633,
+      3088,
+      783
+     ],
+     "check": [
+      3069,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "t",
+     "glyph": "t.sc.cand3",
+     "base": "t.sc",
+     "cand": 3,
+     "box": [
+      3109,
+      633,
+      3345,
+      783
+     ],
+     "check": [
+      3326,
+      603,
+      13
+     ],
+     "baseline_y": 745,
+     "xheight_y": 693
+    },
+    {
+     "text": "u",
+     "glyph": "u.sc.cand1",
+     "base": "u.sc",
+     "cand": 1,
+     "box": [
+      1824,
+      861,
+      2060,
+      1011
+     ],
+     "check": [
+      2041,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "u",
+     "glyph": "u.sc.cand2",
+     "base": "u.sc",
+     "cand": 2,
+     "box": [
+      2081,
+      861,
+      2317,
+      1011
+     ],
+     "check": [
+      2298,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "u",
+     "glyph": "u.sc.cand3",
+     "base": "u.sc",
+     "cand": 3,
+     "box": [
+      2338,
+      861,
+      2574,
+      1011
+     ],
+     "check": [
+      2555,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "v",
+     "glyph": "v.sc.cand1",
+     "base": "v.sc",
+     "cand": 1,
+     "box": [
+      2595,
+      861,
+      2831,
+      1011
+     ],
+     "check": [
+      2812,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "v",
+     "glyph": "v.sc.cand2",
+     "base": "v.sc",
+     "cand": 2,
+     "box": [
+      2852,
+      861,
+      3088,
+      1011
+     ],
+     "check": [
+      3069,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "v",
+     "glyph": "v.sc.cand3",
+     "base": "v.sc",
+     "cand": 3,
+     "box": [
+      3109,
+      861,
+      3345,
+      1011
+     ],
+     "check": [
+      3326,
+      831,
+      13
+     ],
+     "baseline_y": 973,
+     "xheight_y": 921
+    },
+    {
+     "text": "w",
+     "glyph": "w.sc.cand1",
+     "base": "w.sc",
+     "cand": 1,
+     "box": [
+      1824,
+      1089,
+      2060,
+      1239
+     ],
+     "check": [
+      2041,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "w",
+     "glyph": "w.sc.cand2",
+     "base": "w.sc",
+     "cand": 2,
+     "box": [
+      2081,
+      1089,
+      2317,
+      1239
+     ],
+     "check": [
+      2298,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "w",
+     "glyph": "w.sc.cand3",
+     "base": "w.sc",
+     "cand": 3,
+     "box": [
+      2338,
+      1089,
+      2574,
+      1239
+     ],
+     "check": [
+      2555,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "x",
+     "glyph": "x.sc.cand1",
+     "base": "x.sc",
+     "cand": 1,
+     "box": [
+      2595,
+      1089,
+      2831,
+      1239
+     ],
+     "check": [
+      2812,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "x",
+     "glyph": "x.sc.cand2",
+     "base": "x.sc",
+     "cand": 2,
+     "box": [
+      2852,
+      1089,
+      3088,
+      1239
+     ],
+     "check": [
+      3069,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "x",
+     "glyph": "x.sc.cand3",
+     "base": "x.sc",
+     "cand": 3,
+     "box": [
+      3109,
+      1089,
+      3345,
+      1239
+     ],
+     "check": [
+      3326,
+      1059,
+      13
+     ],
+     "baseline_y": 1201,
+     "xheight_y": 1149
+    },
+    {
+     "text": "y",
+     "glyph": "y.sc.cand1",
+     "base": "y.sc",
+     "cand": 1,
+     "box": [
+      1824,
+      1317,
+      2060,
+      1467
+     ],
+     "check": [
+      2041,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "y",
+     "glyph": "y.sc.cand2",
+     "base": "y.sc",
+     "cand": 2,
+     "box": [
+      2081,
+      1317,
+      2317,
+      1467
+     ],
+     "check": [
+      2298,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "y",
+     "glyph": "y.sc.cand3",
+     "base": "y.sc",
+     "cand": 3,
+     "box": [
+      2338,
+      1317,
+      2574,
+      1467
+     ],
+     "check": [
+      2555,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "z",
+     "glyph": "z.sc.cand1",
+     "base": "z.sc",
+     "cand": 1,
+     "box": [
+      2595,
+      1317,
+      2831,
+      1467
+     ],
+     "check": [
+      2812,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "z",
+     "glyph": "z.sc.cand2",
+     "base": "z.sc",
+     "cand": 2,
+     "box": [
+      2852,
+      1317,
+      3088,
+      1467
+     ],
+     "check": [
+      3069,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    },
+    {
+     "text": "z",
+     "glyph": "z.sc.cand3",
+     "base": "z.sc",
+     "cand": 3,
+     "box": [
+      3109,
+      1317,
+      3345,
+      1467
+     ],
+     "check": [
+      3326,
+      1287,
+      13
+     ],
+     "baseline_y": 1429,
+     "xheight_y": 1377
+    }
+   ]
+  }
+ ]
+}
