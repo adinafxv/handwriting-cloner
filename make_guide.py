@@ -81,8 +81,8 @@ HORIZONTAL_RULES = [
 ]
 
 TIPS = [
-    "the BIG character above the first box (with its name, e.g.",
-    "    \"ě  e + háček\") tells you what the three boxes want",
+    "the BIG character at the start of each triple is what those",
+    "    three boxes want - write that character three times",
     "one pen for everything - Light & Bold are computed later",
     "empty boxes = character skipped, that's OK",
     "natural speed beats careful hesitation",
