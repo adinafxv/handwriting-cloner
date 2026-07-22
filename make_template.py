@@ -29,10 +29,13 @@ every version you actually like:
 
 Guides (box borders, baseline, x-height line, fill circles) are printed in
 light gray so they can be removed by thresholding after scanning; only the
-four corner registration marks and the page-ID dots are solid black. Labels
-sit above each triple, outside the region that gets cropped: the character
-printed BIG, plus a plain-language name for anything ambiguous
-("ě   e + háček").
+four corner registration marks and the page-ID dots are solid black. The
+character to write is printed BIG at the start of each triple, above and
+outside the region that gets cropped.
+
+Letter boxes are narrow (portrait: taller than wide) so a single letter
+isn't lost in a wide box and there's little horizontal slack to fight when
+placing it; symbol boxes stay wider for glyphs that need the room.
 
 Two sizes:
     normal   large boxes, easy to fill, good first-time experience
@@ -61,9 +64,12 @@ PAPER_SIZES_IN = {"a4": (8.27, 11.69), "letter": (8.5, 11.0)}
 # Bumped whenever box positions/ordering change. Printed on every sheet and
 # stored in the layout JSON so a scan can be matched to the right layout.
 # (v3 introduced modules + the three-boxes-with-tick-circles system.
-#  v4 narrowed the letter/symbol boxes toward single-letter proportions and
-#  enlarged the fill circles for the tick -> fill-in-solid signal change.)
-LAYOUT_VERSION = 4
+#  v4 narrowed the letter/symbol boxes and switched tick -> fill-in-solid.
+#  v5 dropped the per-box description text (just the big character now),
+#  narrowed the LETTER boxes further to a portrait shape (taller than wide,
+#  so there's little horizontal slack to fight), and pulled the fill circle
+#  back down snug against the box.)
+LAYOUT_VERSION = 5
 
 # Grayscale values (0 = black). Guides must survive printing but die at the
 # binarization threshold used by build_font.py (default 110).
@@ -84,19 +90,23 @@ BASELINE_FRAC = 0.75
 CANDIDATES = 3
 
 # cols must be a multiple of CANDIDATES so a triple never wraps mid-row.
+# cols must be a multiple of CANDIDATES so a triple never wraps mid-row.
+# LETTER boxes are deliberately narrow (portrait: taller than wide) - a single
+# letter is a small fraction of a square box, and all that horizontal slack
+# just makes it harder to place the letter consistently. SYMBOL boxes stay
+# wider because some glyphs (em dash, arrows, guillemets) genuinely need it.
 SIZE_PARAMS = {
-    "normal": {"box_h": 1.05, "label_h": 0.36, "row_gap": 0.10, "col_gap": 0.10,
+    "normal": {"box_h": 1.05, "label_h": 0.24, "row_gap": 0.10, "col_gap": 0.10,
                "label_font": 0.11, "char_font": 0.17, "check_r": 0.06,
-               "cols": {"letters": 6, "symbols": 6, "ligatures": 3}},
+               "cols": {"letters": 9, "symbols": 6, "ligatures": 3}},
     # "book": A4/letter turned landscape, split into a left and a right half
     # that fill like the two pages of an open notebook (left page top-to-
-    # bottom first, then the right page). cols are PER HALF. letters/symbols
-    # use 9/half (3 triples per half-row) with a tighter col_gap so the box
-    # width/height ratio lands close to single-letter proportions (~1.1-1.35
-    # on a4) instead of the old ~1.57.
-    "book": {"box_h": 0.50, "label_h": 0.30, "row_gap": 0.06, "col_gap": 0.03,
+    # bottom first, then the right page). cols are PER HALF. Letters use
+    # 12/half (4 triples per half-row) => ~portrait boxes (w/h ~0.8); symbols
+    # stay at 9/half so the wide typographic glyphs still fit.
+    "book": {"box_h": 0.50, "label_h": 0.18, "row_gap": 0.06, "col_gap": 0.03,
              "label_font": 0.085, "char_font": 0.13, "check_r": 0.05,
-             "cols": {"letters": 9, "symbols": 9, "ligatures": 3},
+             "cols": {"letters": 12, "symbols": 9, "ligatures": 3},
              "gutter": 0.55},
 }
 
@@ -111,63 +121,6 @@ def page_dims(paper, size):
 def effective_cols(size, kind):
     n = SIZE_PARAMS[size]["cols"][kind]
     return n * 2 if size == "book" else n
-
-PUNCT_NAMES = {
-    ".": "period", ",": "comma", ";": "semicolon", ":": "colon",
-    "!": "exclam", "?": "question", "'": "apostrophe", '"': "quote",
-    "(": "paren open", ")": "paren close", "-": "hyphen", "_": "underscore",
-    "/": "slash", "@": "at", "#": "hash", "&": "ampersand",
-    "%": "percent", "+": "plus", "=": "equals", "*": "asterisk", "$": "dollar",
-    "`": "backtick", "€": "euro", "£": "pound", "¥": "yen", "¢": "cent",
-    "<": "less than", ">": "greater than",
-    "[": "bracket open", "]": "bracket close",
-    "{": "brace open", "}": "brace close", "×": "multiply", "÷": "divide",
-    "−": "minus", "±": "plus-minus", "≈": "approx", "≠": "not equal",
-    "≤": "less or eq", "≥": "greater or eq", "~": "tilde", "^": "caret",
-    "|": "bar", "\\": "backslash", "°": "degree", "§": "section",
-    "…": "ellipsis", "–": "en dash", "—": "em dash", "•": "bullet",
-    "„": "low quote", "“": "open quote", "”": "close quote",
-    "‘": "open single", "’": "close single", "‚": "low single",
-    "«": "guillemet <<", "»": "guillemet >>", "‹": "guillemet <", "›": "guillemet >",
-    "¡": "inv. exclam", "¿": "inv. question",
-    "©": "copyright", "®": "registered", "™": "trademark",
-    "←": "arrow left", "→": "arrow right", "↑": "arrow up", "↓": "arrow down",
-    "↔": "arrow both",
-    "☞": "hand right", "☜": "hand left", "☝": "hand up", "☟": "hand down",
-    "☺": "smiley", "☹": "frowny", "♥": "heart", "♡": "white heart",
-    "♠": "spade", "♤": "white spade", "♦": "diamond", "♢": "white diamond",
-    "♣": "club", "♧": "white club", "★": "star", "☆": "star outline",
-    "✓": "check", "✗": "cross", "♪": "note", "☀": "sun", "☾": "moon",
-    "✿": "flower", "❦": "fleuron", "❧": "fleuron 2", "⁂": "asterism",
-    "⁓": "swung dash", "✎": "pencil", "✂": "scissors",
-}
-
-# Plain-language names so a slightly smudged print can't leave you guessing
-# which accented letter a box wants. Uppercase versions are derived.
-DIACRITIC_NAMES = {
-    "á": "a + čárka", "č": "c + háček", "ď": "d + háček", "é": "e + čárka",
-    "ě": "e + háček", "í": "i + čárka", "ň": "n + háček", "ó": "o + čárka",
-    "ř": "r + háček", "š": "s + háček", "ť": "t + háček", "ú": "u + čárka",
-    "ů": "u + kroužek", "ý": "y + čárka", "ž": "z + háček",
-    "ä": "a + 2 dots", "ĺ": "l + čárka", "ľ": "l + háček", "ŕ": "r + čárka",
-    "ô": "o + vokáň",
-    "ą": "a + ogonek", "ć": "c + kreska", "ę": "e + ogonek", "ł": "l + stroke",
-    "ń": "n + kreska", "ś": "s + kreska", "ź": "z + kreska", "ż": "z + dot",
-}
-
-
-def char_desc(text):
-    """Plain-language name shown next to the big character label."""
-    if len(text) != 1:
-        return ""
-    if text in PUNCT_NAMES:
-        return PUNCT_NAMES[text]
-    lower = text.lower()
-    if lower in DIACRITIC_NAMES:
-        name = DIACRITIC_NAMES[lower]
-        return name[0].upper() + name[1:] if text.isupper() else name
-    return ""
-
 
 LOWER = "abcdefghijklmnopqrstuvwxyz"
 UPPER = LOWER.upper()
@@ -193,8 +146,8 @@ def glyph_name(text, suffix=""):
 
 
 def candidate_cells(texts, suffix=""):
-    """Three boxes per character. The label (big character + description)
-    is drawn once, over the first box of the triple."""
+    """Three boxes per character. The big character label is drawn once, over
+    the first box of the triple; the other two boxes carry only their circle."""
     cells = []
     for text in texts:
         base = glyph_name(text, suffix)
@@ -203,7 +156,6 @@ def candidate_cells(texts, suffix=""):
                 "text": text, "base": base, "cand": cand,
                 "glyph": f"{base}.cand{cand}",
                 "label": text if cand == 1 else "",
-                "desc": char_desc(text) if cand == 1 else "",
             })
     return cells
 
@@ -212,7 +164,6 @@ def smallcap_cells():
     cells = candidate_cells(LOWER, suffix=".sc")
     for c in cells:
         c["label"] = c["text"].upper() if c["label"] else ""
-        c["desc"] = "small cap" if c["label"] else ""
     return cells
 
 
@@ -435,27 +386,19 @@ def render_page(paper, size, module, page_def, page_index, total_pages):
         y0 = grid_y0 + r * row_h + label_h
         x1, y1 = x0 + bw, y0 + bh
 
-        # Label strip layout (top -> bottom): the fill-in circle sits centered
-        # near the TOP of the strip, and the big character + description go on
-        # a line just ABOVE the box. Keeping them on separate rows means a long
-        # accent name ("u + kroužek") can span the whole triple without ever
-        # colliding with a neighbour box's circle, even at book box widths.
-        ccx = x0 + bw // 2
-        ccy = y0 - label_h + check_r + px(0.02)
+        # Compact label strip: the fill-in circle sits just above the box at
+        # its top-right corner; the big character label goes at the top-left of
+        # the first box of the triple only. No description text, so the circle
+        # and the char never fight for space and the strip stays short.
+        ccx = x1 - check_r - px(0.02)
+        ccy = y0 - check_r - px(0.03)
         draw.ellipse([ccx - check_r, ccy - check_r,
                       ccx + check_r, ccy + check_r],
                      outline=GUIDE_GRAY, width=2)
 
         if spec.get("label"):
-            # big character label over the first box of the triple; the
-            # description continues to its right, along the bottom of the
-            # strip (the circles are higher up, so it never overlaps them)
-            draw.text((x0 + 4, y0 - 6), spec["label"],
+            draw.text((x0 + 2, y0 - px(0.03)), spec["label"],
                       fill=LABEL_GRAY, font=char_font, anchor="ls")
-            if spec.get("desc"):
-                lw = draw.textlength(spec["label"], font=char_font)
-                draw.text((x0 + 4 + lw + px(0.05), y0 - 8), spec["desc"],
-                          fill=LABEL_GRAY, font=label_font, anchor="ls")
 
         draw.rectangle([x0, y0, x1, y1], outline=GUIDE_GRAY, width=2)
         baseline_y = y0 + int(bh * BASELINE_FRAC)

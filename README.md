@@ -70,9 +70,11 @@ the region that gets cropped, so filling one in can't break the scanning —
 just color it in solidly and keep it *inside* the circle (a light or partial
 mark may not register as a fill).
 
-Labels are designed to survive a mediocre printer: the character is printed
-**big** above the first box of each triple, with a plain-language name for
-anything ambiguous ("ě  e + háček", "% percent").
+The character to write is printed **big** at the start of each triple.
+Letter boxes are deliberately **narrow** (portrait — taller than wide): a
+single letter is a small fraction of a square box, and all that horizontal
+slack just makes it harder to drop the letter in consistently. Symbol boxes
+stay wider for glyphs (em dash, arrows, guillemets) that need the room.
 
 ## The workflow
 
@@ -182,8 +184,8 @@ python3 segment.py --layout templates/layout-english-a4-book.json work/sim/*.png
 - **Why a synthetic weight axis?** True multi-master handwriting produces
   outlines that are not point-compatible after autotracing.
   Normal-offsetting one master guarantees compatibility.
-- Sheets are versioned (`template v4` in the footer, `version` in the layout
-  JSON). A v3 sheet won't line up with a v4 layout — reprint.
+- Sheets are versioned (`template v5` in the footer, `version` in the layout
+  JSON). An older sheet won't line up with a newer layout — reprint.
 - **Book fill order is a deliberate invariant:** the left A5 half fills
   completely, top to bottom, before the right half starts — it never
   zig-zags across the spine. This matches how someone actually writes in
