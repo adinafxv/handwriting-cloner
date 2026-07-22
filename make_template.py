@@ -85,7 +85,7 @@ CANDIDATES = 3
 
 # cols must be a multiple of CANDIDATES so a triple never wraps mid-row.
 SIZE_PARAMS = {
-    "normal": {"box_h": 1.05, "label_h": 0.26, "row_gap": 0.10, "col_gap": 0.10,
+    "normal": {"box_h": 1.05, "label_h": 0.36, "row_gap": 0.10, "col_gap": 0.10,
                "label_font": 0.11, "char_font": 0.17, "check_r": 0.06,
                "cols": {"letters": 6, "symbols": 6, "ligatures": 3}},
     # "book": A4/letter turned landscape, split into a left and a right half
@@ -94,7 +94,7 @@ SIZE_PARAMS = {
     # use 9/half (3 triples per half-row) with a tighter col_gap so the box
     # width/height ratio lands close to single-letter proportions (~1.1-1.35
     # on a4) instead of the old ~1.57.
-    "book": {"box_h": 0.50, "label_h": 0.20, "row_gap": 0.06, "col_gap": 0.03,
+    "book": {"box_h": 0.50, "label_h": 0.30, "row_gap": 0.06, "col_gap": 0.03,
              "label_font": 0.085, "char_font": 0.13, "check_r": 0.05,
              "cols": {"letters": 9, "symbols": 9, "ligatures": 3},
              "gutter": 0.55},
@@ -435,17 +435,21 @@ def render_page(paper, size, module, page_def, page_index, total_pages):
         y0 = grid_y0 + r * row_h + label_h
         x1, y1 = x0 + bw, y0 + bh
 
-        # fill-in circle, top-right of the box, in the label strip
-        ccx = x1 - check_r - 6
-        ccy = y0 - label_h // 2
+        # Label strip layout (top -> bottom): the fill-in circle sits centered
+        # near the TOP of the strip, and the big character + description go on
+        # a line just ABOVE the box. Keeping them on separate rows means a long
+        # accent name ("u + kroužek") can span the whole triple without ever
+        # colliding with a neighbour box's circle, even at book box widths.
+        ccx = x0 + bw // 2
+        ccy = y0 - label_h + check_r + px(0.02)
         draw.ellipse([ccx - check_r, ccy - check_r,
                       ccx + check_r, ccy + check_r],
                      outline=GUIDE_GRAY, width=2)
 
         if spec.get("label"):
             # big character label over the first box of the triple; the
-            # description may spill over the (otherwise empty) label strip
-            # of box 2 - that space is reserved for it
+            # description continues to its right, along the bottom of the
+            # strip (the circles are higher up, so it never overlaps them)
             draw.text((x0 + 4, y0 - 6), spec["label"],
                       fill=LABEL_GRAY, font=char_font, anchor="ls")
             if spec.get("desc"):
