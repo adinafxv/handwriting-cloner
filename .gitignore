@@ -2,3 +2,11 @@ work/
 scans/
 __pycache__/
 _master-*.ttf
+
+# Generated template sheets (PDF + layout JSON) - regenerate locally with
+# `python3 make_guide.py && python3 make_template.py`. Not committed: dozens
+# of language modules x paper/size variants adds up to hundreds of MB.
+templates/*.pdf
+templates/*.json
+templates/*.png
+!templates/.gitkeep

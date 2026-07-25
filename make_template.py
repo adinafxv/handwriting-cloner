@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
 """Generate printable handwriting-capture sheets (PDF) plus layout JSONs.
 
-The sheets are organized as self-contained MODULES so you only print what
-you want:
+The sheets are organized as self-contained MODULES, grouped into three
+tiers (see MODULES_BASE / MODULES_LANGUAGES / MODULES_EXTRAS below) so you
+only print what you want:
 
-    english     the base: a-z, A-Z, digits and every symbol on a normal
-                (Mac/US) keyboard, plus the writing-sample page and the
-                how-to guide as the first pages
-    czech / slovak / polish
-                one language add-on each; every module is complete on its
-                own, so "english + slovak but not polish" just works
-    symbols     typographic extras: „uvozovky“, guillemets, dashes, € £ ¥,
-                (c) (r) TM, inverted ?!
-    math        multiply, divide, plus-minus, approx, not-equal, <= >=
-    fun         arrows, smileys, hands, card suits, stars, flourishes
-    ligatures   joined letter pairs (fi, th, ck...)
-    small-caps  capital letterforms written small
+    base       english - a-z, A-Z, digits and every symbol on a normal
+               (Mac/US) keyboard, plus the writing-sample page and the
+               how-to guide as the first pages
+    languages  one diacritic/alphabet add-on per language (Czech, Slovak,
+               Polish, Greek, Cyrillic languages, and Latin-diacritic
+               languages from French to Esperanto - see LANGUAGE_SETS).
+               Every module is complete on its own, so e.g. "english +
+               slovak but not polish" just works; uppercase is derived
+               automatically via with_upper() (handles ß, dotless i,
+               final sigma, etc. - see its docstring)
+    extras     symbols (typographic extras), math, fun (optional extras),
+               ligatures (joined letter pairs), small-caps
 
 Every character appears in THREE boxes in a row, each with a small circle
 above it. Write the character three times, then FILL IN the circle above
@@ -127,9 +128,104 @@ UPPER = LOWER.upper()
 DIGITS = "0123456789"
 # Everything typeable on a plain Mac/US keyboard (minus letters and space).
 MAC_PUNCT = ".,;:!?'\"()-_/@#&%+=*$`~^[]{}\\|<>"
+
+
+def with_upper(chars):
+    """De-duplicate chars (preserving order), then append each character's
+    uppercase - but ONLY when that uppercase is exactly one character and
+    isn't already present. Plain `chars + chars.upper()` breaks on:
+      - chars whose .upper() is multiple characters, e.g. German 'ss' <-
+        'ß'.upper() == 'SS' (would create a broken 2-char cell/glyph),
+        or Greek 'ΐ'/'ΰ', which have no single-codepoint uppercase at all,
+      - chars that map to an uppercase already produced by another
+        character, e.g. Greek final sigma 'ς'.upper() == 'Σ', the same as
+        regular sigma 'σ'.upper() - would duplicate a cell/glyph name.
+    Order is preserved: every lowercase first, then every derived
+    uppercase, both in first-seen order."""
+    seen = []
+    for c in chars:
+        if c not in seen:
+            seen.append(c)
+    result = list(seen)
+    for c in seen:
+        u = c.upper()
+        if len(u) == 1 and u not in result:
+            result.append(u)
+    return "".join(result)
+
+
 CZECH = "áčďéěíňóřšťúůýž"
 SLOVAK = "áäčďéíĺľňóôŕšťúýž"   # complete on its own; overlaps Czech on purpose
 POLISH = "ąćęłńóśźż"
+
+# Greek and Cyrillic-script languages.
+GREEK = "αβγδεζηθικλμνξοπρστυφχψωςάέήίόύώϊϋΐΰ"
+UKRAINIAN = "абвгдеєжзиіїйклмнопрстуфхцчшщьюяґ"
+RUSSIAN = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+BULGARIAN = "абвгдежзийклмнопрстуфхцчшщъьюя"
+SERBIAN = "абвгдђежзијклљмнњопрстћуфхцчџш"  # Cyrillic
+
+# Latin-script languages: just the letters/diacritics beyond plain a-z
+# (already covered by `english`), each module complete on its own.
+GERMAN = "äöüß"
+FRENCH = "àâçéèêëîïôùûüÿœæ"
+SPANISH = "áéíóúüñ¡¿"
+PORTUGUESE = "áâãàçéêíóôõú"
+ITALIAN = "àèéìíòóù"
+HUNGARIAN = "áéíóöőúüű"
+ROMANIAN = "ăâîșț"
+TURKISH = "çğıöşü"
+DUTCH = "ëïéèáíóú"
+CROATIAN = "čćđšž"
+SLOVENIAN = "čšž"
+LITHUANIAN = "ąčęėįšųūž"
+LATVIAN = "āčēģīķļņšūž"
+ESTONIAN = "šžõäöü"
+DANISH_NORWEGIAN = "æøå"
+SWEDISH = "åäö"
+FINNISH = "äöå"
+ICELANDIC = "áðéíóúýþæö"
+WELSH = "âêîôûŵŷ"
+ESPERANTO = "ĉĝĥĵŝŭ"
+
+# module key -> (display title, characters). Order here is the print/browse
+# order: Czech/Slovak/Polish (the original three), then Greek + Cyrillic,
+# then Latin-diacritic languages roughly Western -> Northern -> Central/
+# Eastern Europe, plus Welsh and Esperanto at the end.
+LANGUAGE_SETS = {
+    "czech": ("Czech", CZECH),
+    "slovak": ("Slovak", SLOVAK),
+    "polish": ("Polish", POLISH),
+    "greek": ("Greek", GREEK),
+    "ukrainian": ("Ukrainian", UKRAINIAN),
+    "russian": ("Russian", RUSSIAN),
+    "bulgarian": ("Bulgarian", BULGARIAN),
+    "serbian": ("Serbian", SERBIAN),
+    "german": ("German", GERMAN),
+    "french": ("French", FRENCH),
+    "spanish": ("Spanish", SPANISH),
+    "portuguese": ("Portuguese", PORTUGUESE),
+    "italian": ("Italian", ITALIAN),
+    "hungarian": ("Hungarian", HUNGARIAN),
+    "romanian": ("Romanian", ROMANIAN),
+    "turkish": ("Turkish", TURKISH),
+    "dutch": ("Dutch", DUTCH),
+    "croatian": ("Croatian", CROATIAN),
+    "slovenian": ("Slovenian", SLOVENIAN),
+    "lithuanian": ("Lithuanian", LITHUANIAN),
+    "latvian": ("Latvian", LATVIAN),
+    "estonian": ("Estonian", ESTONIAN),
+    "danish-norwegian": ("Danish/Norwegian", DANISH_NORWEGIAN),
+    "swedish": ("Swedish", SWEDISH),
+    "finnish": ("Finnish", FINNISH),
+    "icelandic": ("Icelandic", ICELANDIC),
+    "welsh": ("Welsh", WELSH),
+    "esperanto": ("Esperanto", ESPERANTO),
+}
+# Vietnamese is deliberately not included: its alphabet needs 130+
+# precomposed base+tone-mark characters, which doesn't fit this module's
+# one-page-ish add-on shape - it would need a bespoke multi-page treatment.
+
 SYMBOLS_TYPO = "„“”‘’‚«»‹›–—…•°§¡¿€£¥¢©®™"
 MATH = "×÷−±≈≠≤≥"
 FUN = "←→↑↓↔☞☜☝☟☺☹♥♡♠♤♦♢♣♧★☆✓✗♪☀☾✿❦❧⁂⁓✎✂"
@@ -167,8 +263,14 @@ def smallcap_cells():
     return cells
 
 
-MODULES = ["english", "czech", "slovak", "polish", "symbols", "math", "fun",
-           "ligatures", "small-caps"]
+# Three tiers, concatenated into the one flat MODULES list everything else
+# uses (--modules, argparse help, etc.) - existing module names/order for
+# english/czech/slovak/polish/symbols/math/fun/ligatures/small-caps are
+# unchanged, languages are just inserted between base and extras.
+MODULES_BASE = ["english"]
+MODULES_LANGUAGES = list(LANGUAGE_SETS.keys())
+MODULES_EXTRAS = ["symbols", "math", "fun", "ligatures", "small-caps"]
+MODULES = MODULES_BASE + MODULES_LANGUAGES + MODULES_EXTRAS
 
 # The writing-sample page: copy each gray model line onto the guides below
 # it, at your natural pace. This page is a style reference for tuning
@@ -200,15 +302,10 @@ def get_sets(module):
             ("symbols", "0-9 & keyboard symbols", "",
              candidate_cells(DIGITS + MAC_PUNCT)),
         ]
-    if module == "czech":
-        return [("letters", "Czech", PICK_NOTE,
-                 candidate_cells(CZECH + CZECH.upper()))]
-    if module == "slovak":
-        return [("letters", "Slovak", PICK_NOTE,
-                 candidate_cells(SLOVAK + SLOVAK.upper()))]
-    if module == "polish":
-        return [("letters", "Polish", PICK_NOTE,
-                 candidate_cells(POLISH + POLISH.upper()))]
+    if module in LANGUAGE_SETS:
+        title, chars = LANGUAGE_SETS[module]
+        return [("letters", title, PICK_NOTE,
+                 candidate_cells(with_upper(chars)))]
     if module == "symbols":
         return [("symbols", "typographic symbols", PICK_NOTE,
                  candidate_cells(SYMBOLS_TYPO))]
