@@ -92,6 +92,7 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 | symptom | fix |
 |---|---|
 | letters are different sizes | raise `--normalize` (0.8 evens them out) |
+| some letters look lighter than others | on by default (`--no-even-weight` to disable) |
 | one letter is too big / sits wrong | `--adjust-file` — see below |
 | your worst version became the letter | `--primary h=3` picks another box |
 | repeated letters look doubled/ghosted | alternates are height-matched by default (`--no-even-alternates` to disable) |

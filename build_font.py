@@ -103,7 +103,8 @@ CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—")
 # float in running text; place them from their own ink instead.
 BASELINE_PUNCT = set("&@$%#")
 BRACKETS = set("()[]{}")
-BRACKET_DROP = 0.18   # share of the bracket's height that sits below baseline
+BRACKET_DROP = 0.09   # share of the bracket's height that sits below baseline
+AT_DROP = 0.09        # @ dips slightly below the line
 
 
 SHORT_LETTERS = set("acemnorsuvwxz")     # tops define the x-height
@@ -120,8 +121,10 @@ def measure_cells(cells_dir, threshold, glyph_scale, snap_baseline=False):
     """Cheap pre-pass (no tracing): how tall each character will actually end
     up, in font units. Must match how the glyph gets placed later - a snapped
     letter stands on its own ink bottom, so its height is the ink height; a
-    descender keeps the printed baseline, so measure its body above that."""
-    heights = {}
+    descender keeps the printed baseline, so measure its body above that.
+    Also returns each character's stroke width in font units, for evening out
+    pen weight."""
+    heights, strokes = {}, {}
     for png in sorted(glob.glob(os.path.join(cells_dir, "*.png"))):
         try:
             with open(png[:-4] + ".json") as f:
@@ -143,7 +146,10 @@ def measure_cells(cells_dir, threshold, glyph_scale, snap_baseline=False):
         else:
             height = (meta["baseline_y"] - ys.min()) * scale
         heights.setdefault(text, []).append(height)
-    return {c: sorted(v)[len(v) // 2] for c, v in heights.items()}
+        dt = ndimage.distance_transform_edt(ink)
+        strokes.setdefault(text, []).append(2.0 * float(np.median(dt[ink])) * scale)
+    med = lambda d: {c: sorted(v)[len(v) // 2] for c, v in d.items()}
+    return med(heights), med(strokes)
 
 
 def is_clipped(png, threshold):
@@ -217,10 +223,31 @@ def normalization(heights, strength):
 def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
                 snap_baseline=False, glyph_scale=1.0,
                 center_symbols=False, extra_scale=1.0, dy=0.0,
-                math_axis=None, accent_overhang=True):
+                math_axis=None, accent_overhang=True,
+                target_stroke=None):
     """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
+
+    # Even out pen weight: a lighter-pressure letter traces thinner than its
+    # neighbours. Nudging the ink THRESHOLD grows or shrinks the stroke
+    # smoothly (it eats into the scanner's antialiased edge), which beats
+    # dilating by whole pixels - at these cell sizes one pixel is already a
+    # ~10% jump in weight.
+    if target_stroke and ink.any():
+        px_to_units = UPM / meta["box_h"] * glyph_scale * extra_scale
+        want = target_stroke / max(px_to_units, 1e-6)
+        best, best_err = ink, None
+        for t in range(max(35, threshold - 60), threshold + 71, 4):
+            cand = gray < t
+            if not cand.any():
+                continue
+            w = 2.0 * float(np.median(
+                ndimage.distance_transform_edt(cand)[cand]))
+            err = abs(w - want)
+            if best_err is None or err < best_err:
+                best, best_err = cand, err
+        ink = best
 
     # A solidly filled selection circle sits just above its box, so a few
     # pixels of it can land inside the crop and show up as a speck floating
@@ -276,7 +303,8 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
     elif center_symbols and text in BASELINE_PUNCT:
-        baseline_in_crop = (y1 - 1 - y0) + pad          # stand it on the line
+        drop = AT_DROP if text == "@" else 0.0
+        baseline_in_crop = (y1 - 1 - y0) + pad - drop * (y1 - 1 - y0)
     elif center_symbols and text in BRACKETS:
         baseline_in_crop = (y1 - 1 - y0) + pad - BRACKET_DROP * (y1 - 1 - y0)
     elif center_symbols and text in CENTERED:
@@ -320,15 +348,22 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                target_gap=40, kern_min=8, snap_baseline=False,
                glyph_scale=1.0, center_symbols=False, max_tuck=0.15,
                primary=None, normalize=0.0, adjust=None,
-               accent_overhang=True, even_alternates=True):
+               accent_overhang=True, even_alternates=True,
+               even_weight=True):
     glyphs, metrics, cmap = {}, {}, {}
     primary = primary or {}
     adjust = adjust or {}
 
     # Even out letter sizes, and locate the math axis from this font's own
     # x-height, before any tracing happens.
-    heights = measure_cells(cells_dir, threshold, glyph_scale,
-                            snap_baseline)
+    heights, strokes = measure_cells(cells_dir, threshold, glyph_scale,
+                                     snap_baseline)
+    # Pen pressure drifts between letters, so some come out visibly lighter.
+    # Aim every glyph at the median stroke width of the plain letters.
+    letter_strokes = [v for c, v in strokes.items()
+                      if len(c) == 1 and c.isalpha() and ascii_base(c) == c]
+    target_stroke = (sorted(letter_strokes)[len(letter_strokes) // 2]
+                     if letter_strokes and even_weight else None)
     norm, target_x = normalization(heights, normalize) if normalize else ({}, None)
     math_axis = target_x / 2.0 if target_x else None
     if norm:
@@ -424,7 +459,8 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                             extra_scale=extra,
                             dy=tweak.get("dy", 0.0),
                             math_axis=math_axis,
-                            accent_overhang=accent_overhang)
+                            accent_overhang=accent_overhang,
+                            target_stroke=target_stroke)
             if r is not None:
                 results.append(r)
         if not results:
@@ -654,6 +690,9 @@ def main():
     ap.add_argument("--glyph-scale", type=float, default=1.0,
                     help="shrink the drawn letters within the em (0.92 sets a "
                          "bit smaller next to other fonts at the same pt size)")
+    ap.add_argument("--no-even-weight", action="store_true",
+                    help="keep each letter's own pen weight instead of "
+                         "matching the median stroke width")
     ap.add_argument("--no-even-alternates", action="store_true",
                     help="let alternates keep their own size (by default each "
                          "alternate is scaled to the primary's height)")
@@ -690,7 +729,8 @@ def main():
                args.normalize,
                json.load(open(args.adjust_file)) if args.adjust_file else None,
                not args.no_accent_overhang,
-               not args.no_even_alternates)
+               not args.no_even_alternates,
+               not args.no_even_weight)
 
 
 if __name__ == "__main__":
