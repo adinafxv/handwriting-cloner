@@ -83,9 +83,17 @@ def ink_profiles(crop, scale, x_off, baseline_in_crop):
 # bottom must NOT be snapped to the line.
 DESCENDERS = set("gjpqy")
 
+# Symbols that belong on the math axis - vertically centred about half the
+# x-height rather than sitting wherever the pen happened to land in the box.
+# Written freehand, arrows and operators drift high or low and then look
+# misaligned in running text; centring them is what a type designer does.
+MATH_AXIS = 175  # font units above the baseline
+CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—")
+
 
 def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
-                snap_baseline=False, glyph_scale=1.0):
+                snap_baseline=False, glyph_scale=1.0,
+                center_symbols=False):
     """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
@@ -118,6 +126,10 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
                  and text not in DESCENDERS)
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
+    elif center_symbols and text in CENTERED:
+        # put the ink's vertical middle on the math axis
+        mid_row = (y1 - 1 - y0) / 2.0 + pad
+        baseline_in_crop = mid_row + MATH_AXIS / scale
     # crop pixels (y down) -> font units (y up), ink left edge at x=lsb
     x_off = lsb - pad * scale
     font_transform = (scale, 0, 0, -scale, x_off, baseline_in_crop * scale)
@@ -136,8 +148,10 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
 def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                turdsize=15, lsb=18, rsb=18, space_width=250,
                target_gap=40, kern_min=8, snap_baseline=False,
-               glyph_scale=1.0):
+               glyph_scale=1.0, center_symbols=False, max_tuck=0.15,
+               primary=None):
     glyphs, metrics, cmap = {}, {}, {}
+    primary = primary or {}
 
     notdef_pen = TTGlyphPen(None)
     for contour in ([(80, 0), (80, 700), (420, 700), (420, 0)],
@@ -174,7 +188,8 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         for _, png, meta in cands:
             result = build_glyph(png, meta, threshold, turdsize, lsb, rsb,
                                  snap_baseline=snap_baseline,
-                                 glyph_scale=glyph_scale)
+                                 glyph_scale=glyph_scale,
+                                 center_symbols=center_symbols)
             if result is not None:
                 built.append((meta, result))
         if not built:
@@ -183,6 +198,14 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         marked = [b for b in built if b[0].get("marked")]
         chosen = marked if marked else built
         rejected += len(built) - len(chosen)
+        # --primary lets you promote a different one of your three versions to
+        # be THE letter (the rest stay as alternates) without rescanning -
+        # handy when box 1 happens to hold your worst 'o'.
+        want = primary.get(chosen[0][0].get("text", ""))
+        if want is not None:
+            pick = [c for c in chosen if c[0].get("cand") == want]
+            if pick:
+                chosen = pick + [c for c in chosen if c is not pick[0]]
         text = chosen[0][0]["text"]
         for idx, (meta, (glyph, advance, glyph_lsb, prof)) in enumerate(chosen[:3]):
             name = base if idx == 0 else f"{base}.alt{idx}"
@@ -224,7 +247,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
     fb.setupPost()
 
     kern = compute_kerning(glyphs, cmap, profiles, advances, alternates,
-                           target_gap, kern_min)
+                           target_gap, kern_min, max_tuck)
     fea = build_features(glyphs, ligatures, alternates, smallcaps, kern)
     if fea:
         addOpenTypeFeaturesFromString(fb.font, fea)
@@ -235,7 +258,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
 
 
 def compute_kerning(glyphs, cmap, profiles, advances, alternates,
-                    target_gap, kern_min):
+                    target_gap, kern_min, max_tuck=0.15):
     """Auto-kern letter/digit pairs by their ink shapes: slide the right glyph
     until its closest approach to the left glyph equals target_gap. Letters
     that interlock (To, Va, r., ...) tuck closer or overlap; blocky pairs stay
@@ -282,7 +305,13 @@ def compute_kerning(glyphs, cmap, profiles, advances, alternates,
         # gap(band) = advances[nl] + pr_left[band] - pl_right[band]
         slack = min(pr[b][0] - pl[b][1] for b in shared)
         kern = int(round(target_gap - advances[nl] - slack))
-        return kern
+        # Clamp how far a pair may tuck. A letter with a big overhang (y, j,
+        # f, T, V) otherwise drags its neighbour a quarter of a glyph width
+        # underneath itself - the closest approach is still "correct", but it
+        # reads as two letters merging. Cap the tuck at a share of the left
+        # glyph's advance.
+        limit = int(round(max_tuck * advances[nl]))
+        return max(kern, -limit)
 
     pairs = {}
     for nl in ident:
@@ -388,6 +417,15 @@ def main():
     ap.add_argument("--glyph-scale", type=float, default=1.0,
                     help="shrink the drawn letters within the em (0.92 sets a "
                          "bit smaller next to other fonts at the same pt size)")
+    ap.add_argument("--primary", default="",
+                    help="promote a different filled-in version to be the "
+                         "letter itself, e.g. 'o=2,a=3' (box numbers 1-3)")
+    ap.add_argument("--max-tuck", type=float, default=0.15,
+                    help="cap a negative kern at this share of the left "
+                         "glyph's width, so overhangs don't swallow neighbours")
+    ap.add_argument("--center-symbols", action="store_true",
+                    help="vertically centre arrows and math operators on the "
+                         "math axis instead of where the pen sat")
     ap.add_argument("--snap-baseline", action="store_true",
                     help="drop each letter/digit's ink bottom onto the baseline "
                          "(cancels per-letter vertical float; descenders exempt)")
@@ -397,7 +435,9 @@ def main():
     build_font(args.cells, args.out, args.family, args.style, args.threshold,
                args.turdsize, args.lsb, args.rsb, args.space_width,
                args.target_gap, args.kern_min, args.snap_baseline,
-               args.glyph_scale)
+               args.glyph_scale, args.center_symbols, args.max_tuck,
+               {k: int(v) for k, v in
+                (p.split("=") for p in args.primary.split(",") if p)})
 
 
 if __name__ == "__main__":
