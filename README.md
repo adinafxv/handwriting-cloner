@@ -93,7 +93,8 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 |---|---|
 | letters are different sizes | raise `--normalize` (0.8 evens them out) |
 | one letter is too big / sits wrong | `--adjust-file` — see below |
-| your worst version became the letter | `--primary o=2` picks another box |
+| your worst version became the letter | `--primary h=3` picks another box |
+| repeated letters look doubled/ghosted | alternates are height-matched by default (`--no-even-alternates` to disable) |
 | arrows and dashes ride high | `--center-symbols` |
 | two letters merge | lower `--max-tuck` |
 | gap after ď, ť, Ó | accents overhang by default (`--no-accent-overhang` to disable) |

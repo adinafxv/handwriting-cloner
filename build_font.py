@@ -132,6 +132,28 @@ def measure_cells(cells_dir, threshold, glyph_scale, snap_baseline=False):
     return {c: sorted(v)[len(v) // 2] for c, v in heights.items()}
 
 
+def cell_height(png, threshold, glyph_scale, snap_baseline):
+    """Height one cell will occupy, in font units - same metric as
+    measure_cells, but for a single candidate rather than a median."""
+    try:
+        with open(png[:-4] + ".json") as f:
+            meta = json.load(f)
+    except OSError:
+        return None
+    ink = np.asarray(Image.open(png).convert("L")) < threshold
+    ys, xs = np.where(ink)
+    if len(xs) == 0:
+        return None
+    scale = UPM / meta["box_h"] * glyph_scale
+    text = meta.get("text", "")
+    snapped = (snap_baseline and len(text) == 1
+               and (text.isalpha() or text.isdigit())
+               and text not in DESCENDERS)
+    if snapped:
+        return (ys.max() - ys.min()) * scale
+    return (meta["baseline_y"] - ys.min()) * scale
+
+
 def normalization(heights, strength):
     """Per-character scale factors that pull every letter toward a common
     x-height (and ascenders toward a common ascender height). Handwriting
@@ -270,7 +292,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                target_gap=40, kern_min=8, snap_baseline=False,
                glyph_scale=1.0, center_symbols=False, max_tuck=0.15,
                primary=None, normalize=0.0, adjust=None,
-               accent_overhang=True):
+               accent_overhang=True, even_alternates=True):
     glyphs, metrics, cmap = {}, {}, {}
     primary = primary or {}
     adjust = adjust or {}
@@ -317,39 +339,61 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
     profiles, advances = {}, {}   # per-glyph, for auto-kerning
     for base, cands in sorted(groups.items()):
         cands.sort(key=lambda c: c[0])
-        built = []
-        for _, png, meta in cands:
-            ch = meta.get("text", "")
-            tweak = adjust.get(ch, {})
-            g_lsb = lsb + int(tweak.get("lsb", 0))
-            g_rsb = rsb + int(tweak.get("rsb", 0))
-            result = build_glyph(png, meta, threshold, turdsize, g_lsb, g_rsb,
-                                 snap_baseline=snap_baseline,
-                                 glyph_scale=glyph_scale,
-                                 center_symbols=center_symbols,
-                                 extra_scale=(norm.get(ch, 1.0)
-                                              * tweak.get("scale", 1.0)),
-                                 dy=tweak.get("dy", 0.0),
-                                 math_axis=math_axis,
-                                 accent_overhang=accent_overhang)
-            if result is not None:
-                built.append((meta, result))
-        if not built:
+        # Measure first (cheap, no tracing) so selection and sizing are decided
+        # before anything gets traced - then only the keepers are built.
+        usable = []
+        for cand_no, png, meta in cands:
+            h = cell_height(png, threshold, glyph_scale, snap_baseline)
+            if h is not None:
+                usable.append({"cand": cand_no, "png": png, "meta": meta, "h": h})
+        if not usable:
             skipped.append(base)
             continue
-        marked = [b for b in built if b[0].get("marked")]
-        chosen = marked if marked else built
-        rejected += len(built) - len(chosen)
-        # --primary lets you promote a different one of your three versions to
-        # be THE letter (the rest stay as alternates) without rescanning -
-        # handy when box 1 happens to hold your worst 'o'.
-        want = primary.get(chosen[0][0].get("text", ""))
+
+        marked = [u for u in usable if u["meta"].get("marked")]
+        chosen = marked if marked else usable
+        rejected += len(usable) - len(chosen)
+        # --primary promotes a different one of your three versions to be THE
+        # letter (the rest stay alternates), no rescanning needed.
+        text = chosen[0]["meta"].get("text", "")
+        want = primary.get(text)
         if want is not None:
-            pick = [c for c in chosen if c[0].get("cand") == want]
+            pick = [u for u in chosen if u["cand"] == want]
             if pick:
-                chosen = pick + [c for c in chosen if c is not pick[0]]
-        text = chosen[0][0]["text"]
-        for idx, (meta, (glyph, advance, glyph_lsb, prof)) in enumerate(chosen[:3]):
+                chosen = pick + [u for u in chosen if u is not pick[0]]
+        chosen = chosen[:3]
+        text = chosen[0]["meta"]["text"]
+
+        tweak = adjust.get(text, {})
+        base_scale = norm.get(text, 1.0) * tweak.get("scale", 1.0)
+        g_lsb = lsb + int(tweak.get("lsb", 0))
+        g_rsb = rsb + int(tweak.get("rsb", 0))
+        h0 = chosen[0]["h"]
+
+        results = []
+        for idx, u in enumerate(chosen):
+            extra = base_scale
+            # Alternates should vary in SHAPE, not size. If one version of 'i'
+            # carries its dot higher, neighbouring i's read as a doubled dot
+            # rather than as natural variation, so match the primary's height.
+            if even_alternates and idx > 0 and h0 and u["h"] > 0:
+                extra *= h0 / u["h"]
+            r = build_glyph(u["png"], u["meta"], threshold, turdsize,
+                            g_lsb, g_rsb,
+                            snap_baseline=snap_baseline,
+                            glyph_scale=glyph_scale,
+                            center_symbols=center_symbols,
+                            extra_scale=extra,
+                            dy=tweak.get("dy", 0.0),
+                            math_axis=math_axis,
+                            accent_overhang=accent_overhang)
+            if r is not None:
+                results.append(r)
+        if not results:
+            skipped.append(base)
+            continue
+
+        for idx, (glyph, advance, glyph_lsb, prof) in enumerate(results):
             name = base if idx == 0 else f"{base}.alt{idx}"
             glyphs[name] = glyph
             metrics[name] = (advance, glyph_lsb)
@@ -569,6 +613,9 @@ def main():
     ap.add_argument("--glyph-scale", type=float, default=1.0,
                     help="shrink the drawn letters within the em (0.92 sets a "
                          "bit smaller next to other fonts at the same pt size)")
+    ap.add_argument("--no-even-alternates", action="store_true",
+                    help="let alternates keep their own size (by default each "
+                         "alternate is scaled to the primary's height)")
     ap.add_argument("--no-accent-overhang", action="store_true",
                     help="charge sideways accents (d-caron, t-caron) to the "
                          "letter's width instead of letting them overhang")
@@ -601,7 +648,8 @@ def main():
                 (p.split("=") for p in args.primary.split(",") if p)},
                args.normalize,
                json.load(open(args.adjust_file)) if args.adjust_file else None,
-               not args.no_accent_overhang)
+               not args.no_accent_overhang,
+               not args.no_even_alternates)
 
 
 if __name__ == "__main__":
