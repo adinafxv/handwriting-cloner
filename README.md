@@ -88,11 +88,26 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 
 | symptom | fix |
 |---|---|
+| letters are different sizes | raise `--normalize` (0.8 evens them out) |
+| one letter is too big / sits wrong | `--adjust-file` — see below |
+| your worst version became the letter | `--primary o=2` picks another box |
+| arrows and dashes ride high | `--center-symbols` |
+| two letters merge | lower `--max-tuck` |
 | gray guides show up in glyphs | lower `--threshold` |
 | thin strokes break apart | raise `--threshold`, or rescan darker |
 | words too loose | lower `--target-gap` |
 | font sets too large | lower `--glyph-scale` |
 | bold looks clogged | lower `--bold-offset` |
+
+Any single character can be nudged without rescanning anything:
+
+```json
+{ "o": {"scale": 0.95}, "y": {"dy": -30}, "-": {"dy": -20} }
+```
+
+```bash
+python3 build_font.py --cells work/cells --out my.ttf --adjust-file tweaks.json
+```
 
 ## Good to know
 

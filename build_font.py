@@ -61,7 +61,7 @@ def trace_cell(binary, turdsize):
 KERN_BIN = 50  # font-unit height of each ink-profile band used for kerning
 
 
-def ink_profiles(crop, scale, x_off, baseline_in_crop):
+def ink_profiles(crop, scale, x_off, baseline_in_crop, dy=0.0):
     """Per-band left/right ink edges of a glyph, in font units. Bands are
     horizontal slices KERN_BIN units tall; each maps to (min_x, max_x) of the
     ink in that band. Used to slot neighbouring letters close without
@@ -70,7 +70,7 @@ def ink_profiles(crop, scale, x_off, baseline_in_crop):
     ys, xs = np.where(crop)
     if len(xs) == 0:
         return prof
-    yf = (baseline_in_crop - ys) * scale        # font-unit y (up positive)
+    yf = (baseline_in_crop - ys) * scale + dy   # font-unit y (up positive)
     xlf = xs * scale + x_off                     # font-unit x
     bands = np.floor(yf / KERN_BIN).astype(int)
     for b in np.unique(bands):
@@ -91,9 +91,85 @@ MATH_AXIS = 175  # font units above the baseline
 CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—")
 
 
+SHORT_LETTERS = set("acemnorsuvwxz")     # tops define the x-height
+ASCENDER_LETTERS = set("bdfhklt")
+
+
+def ascii_base(ch):
+    """'é' -> 'e'; returns None if it isn't a plain letter underneath."""
+    d = unicodedata.normalize("NFD", ch)
+    return d[0] if d and d[0].isascii() and d[0].isalpha() else None
+
+
+def measure_cells(cells_dir, threshold, glyph_scale, snap_baseline=False):
+    """Cheap pre-pass (no tracing): how tall each character will actually end
+    up, in font units. Must match how the glyph gets placed later - a snapped
+    letter stands on its own ink bottom, so its height is the ink height; a
+    descender keeps the printed baseline, so measure its body above that."""
+    heights = {}
+    for png in sorted(glob.glob(os.path.join(cells_dir, "*.png"))):
+        try:
+            with open(png[:-4] + ".json") as f:
+                meta = json.load(f)
+        except OSError:
+            continue
+        text = meta.get("text", "")
+        if len(text) != 1:
+            continue
+        ink = np.asarray(Image.open(png).convert("L")) < threshold
+        ys, xs = np.where(ink)
+        if len(xs) == 0:
+            continue
+        scale = UPM / meta["box_h"] * glyph_scale
+        snapped = (snap_baseline and (text.isalpha() or text.isdigit())
+                   and text not in DESCENDERS)
+        if snapped:
+            height = (ys.max() - ys.min()) * scale        # sits on its own ink
+        else:
+            height = (meta["baseline_y"] - ys.min()) * scale
+        heights.setdefault(text, []).append(height)
+    return {c: sorted(v)[len(v) // 2] for c, v in heights.items()}
+
+
+def normalization(heights, strength):
+    """Per-character scale factors that pull every letter toward a common
+    x-height (and ascenders toward a common ascender height). Handwriting
+    drifts in size letter to letter; this evens it out without touching the
+    shapes. strength 0 = off, 1 = fully uniform."""
+    def median(chars):
+        vals = [heights[c] for c in chars if c in heights]
+        return sorted(vals)[len(vals) // 2] if vals else None
+
+    target_x = median(SHORT_LETTERS)
+    target_asc = median(ASCENDER_LETTERS)
+    factors = {}
+    if not target_x:
+        return factors, None
+    for ch, h in heights.items():
+        base = ascii_base(ch)
+        # Only measure UNACCENTED letters: 'á' is taller than 'a' purely
+        # because of the accent, so normalising it on total height would
+        # shrink the whole letter. Accented forms inherit their base's factor.
+        if base is None or base != ch or h <= 0:
+            continue
+        if base in SHORT_LETTERS or base in DESCENDERS:
+            target = target_x          # descenders: body height above baseline
+        elif base in ASCENDER_LETTERS and target_asc:
+            target = target_asc
+        else:
+            continue                   # capitals, digits: leave alone
+        factors[ch] = 1.0 + strength * (target / h - 1.0)
+    for ch in heights:
+        base = ascii_base(ch)
+        if ch not in factors and base in factors:
+            factors[ch] = factors[base]
+    return factors, target_x
+
+
 def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
                 snap_baseline=False, glyph_scale=1.0,
-                center_symbols=False):
+                center_symbols=False, extra_scale=1.0, dy=0.0,
+                math_axis=None):
     """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
@@ -110,7 +186,7 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     # letters within that em so the font sets at a normal size next to other
     # fonts at the same point size (everything - heights, widths, advances,
     # kern profiles - derives from this one factor, so it stays consistent)
-    scale = UPM / meta["box_h"] * glyph_scale
+    scale = UPM / meta["box_h"] * glyph_scale * extra_scale
     if (y1 - y0) * scale < 8:    # a stray dot, not a glyph
         return None
     svg_transform, dees = trace_cell(crop, turdsize)
@@ -127,12 +203,16 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
     elif center_symbols and text in CENTERED:
-        # put the ink's vertical middle on the math axis
+        # put the ink's vertical middle on the math axis (half the x-height,
+        # measured from this font's own letters when we know it)
+        axis = MATH_AXIS if math_axis is None else math_axis
         mid_row = (y1 - 1 - y0) / 2.0 + pad
-        baseline_in_crop = mid_row + MATH_AXIS / scale
-    # crop pixels (y down) -> font units (y up), ink left edge at x=lsb
+        baseline_in_crop = mid_row + axis / scale
+    # crop pixels (y down) -> font units (y up), ink left edge at x=lsb;
+    # dy nudges the whole glyph up or down (per-character tuning)
     x_off = lsb - pad * scale
-    font_transform = (scale, 0, 0, -scale, x_off, baseline_in_crop * scale)
+    font_transform = (scale, 0, 0, -scale, x_off,
+                      baseline_in_crop * scale + dy)
 
     tt_pen = TTGlyphPen(None)
     quad_pen = Cu2QuPen(tt_pen, max_err=2.0)
@@ -141,7 +221,7 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
         parse_path(d, pen)
 
     advance = int(round((x1 - x0) * scale)) + lsb + rsb
-    prof = ink_profiles(crop, scale, x_off, baseline_in_crop)
+    prof = ink_profiles(crop, scale, x_off, baseline_in_crop, dy)
     return tt_pen.glyph(), advance, lsb, prof
 
 
@@ -149,9 +229,21 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                turdsize=15, lsb=18, rsb=18, space_width=250,
                target_gap=40, kern_min=8, snap_baseline=False,
                glyph_scale=1.0, center_symbols=False, max_tuck=0.15,
-               primary=None):
+               primary=None, normalize=0.0, adjust=None):
     glyphs, metrics, cmap = {}, {}, {}
     primary = primary or {}
+    adjust = adjust or {}
+
+    # Even out letter sizes, and locate the math axis from this font's own
+    # x-height, before any tracing happens.
+    heights = measure_cells(cells_dir, threshold, glyph_scale,
+                            snap_baseline)
+    norm, target_x = normalization(heights, normalize) if normalize else ({}, None)
+    math_axis = target_x / 2.0 if target_x else None
+    if norm:
+        worst = sorted(norm.items(), key=lambda kv: -abs(kv[1] - 1))[:4]
+        print("  evened out letter sizes: " +
+              ", ".join(f"{c} x{f:.2f}" for c, f in worst) + " ...")
 
     notdef_pen = TTGlyphPen(None)
     for contour in ([(80, 0), (80, 700), (420, 700), (420, 0)],
@@ -186,10 +278,16 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         cands.sort(key=lambda c: c[0])
         built = []
         for _, png, meta in cands:
+            ch = meta.get("text", "")
+            tweak = adjust.get(ch, {})
             result = build_glyph(png, meta, threshold, turdsize, lsb, rsb,
                                  snap_baseline=snap_baseline,
                                  glyph_scale=glyph_scale,
-                                 center_symbols=center_symbols)
+                                 center_symbols=center_symbols,
+                                 extra_scale=(norm.get(ch, 1.0)
+                                              * tweak.get("scale", 1.0)),
+                                 dy=tweak.get("dy", 0.0),
+                                 math_axis=math_axis)
             if result is not None:
                 built.append((meta, result))
         if not built:
@@ -417,6 +515,12 @@ def main():
     ap.add_argument("--glyph-scale", type=float, default=1.0,
                     help="shrink the drawn letters within the em (0.92 sets a "
                          "bit smaller next to other fonts at the same pt size)")
+    ap.add_argument("--normalize", type=float, default=0.0,
+                    help="even out letter sizes toward a common x-height "
+                         "(0 = off, 1 = fully uniform; 0.7 is a good start)")
+    ap.add_argument("--adjust-file", default=None,
+                    help="JSON of per-character tweaks, e.g. "
+                         '{"o": {"scale": 0.95}, "y": {"dy": -30}}')
     ap.add_argument("--primary", default="",
                     help="promote a different filled-in version to be the "
                          "letter itself, e.g. 'o=2,a=3' (box numbers 1-3)")
@@ -437,7 +541,9 @@ def main():
                args.target_gap, args.kern_min, args.snap_baseline,
                args.glyph_scale, args.center_symbols, args.max_tuck,
                {k: int(v) for k, v in
-                (p.split("=") for p in args.primary.split(",") if p)})
+                (p.split("=") for p in args.primary.split(",") if p)},
+               args.normalize,
+               json.load(open(args.adjust_file)) if args.adjust_file else None)
 
 
 if __name__ == "__main__":
