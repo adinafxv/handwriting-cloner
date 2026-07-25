@@ -1,209 +1,113 @@
-# Handwriting → Variable Font
+# Handwriting → Font
 
-A small toolkit that turns scans of your handwriting into an installable
-TrueType font — including a **variable font** with a Light→Bold weight axis
-(`wght` 300–700), **ligatures** (fi, fl, ffi, th, ck...),
-**pseudo-random alternates** so repeated letters don't look identical, and
-full **Czech, Slovak and Polish** diacritics.
+Turn your handwriting into a real font you can install and type with.
+Print a sheet, write on it, scan it, run one command.
 
-## How it works
+![print, write, scan, font](docs/hero.png)
 
-```
-print sheets  →  write 3x, fill in →  scan  →  segment  →  trace  →  compile
-    PDF          the keepers        600dpi    per-letter   potrace   fontTools
-                                              crops        beziers   .ttf / VF
-```
+- **Variable weight** — Light → Bold from a single pass of one pen
+- **No two letters alike** — write each character up to 3× and they rotate as you type
+- **29 languages** — Latin, Greek and Cyrillic diacritics, printed as separate sheets
+- **Real output** — `.ttf` for macOS/Windows, `.woff2` for the web
 
-## Modules: print only what you want
+---
 
-Each character set is a **self-contained printable module** (its own PDF +
-layout JSON in `templates/`). Start with `english`, add the rest whenever
-you decide the font is worth more of your time:
-
-| module | contents |
-|---|---|
-| **english** | the base: a–z, A–Z, 0–9 and every symbol on a normal (Mac/US) keyboard — plus the how-to guide and the writing-sample page |
-| **czech** | á č ď é ě í ň ó ř š ť ú ů ý ž + uppercase |
-| **slovak** | á ä č ď é í ĺ ľ ň ó ô ŕ š ť ú ý ž + uppercase (complete on its own — it deliberately overlaps Czech, so you can print *only* Slovak) |
-| **polish** | ą ć ę ł ń ó ś ź ż + uppercase |
-| **symbols** | typographic extras: „uvozovky“ « guillemets », – — …, € £ ¥ ¢, © ® ™, ° § • ¡ ¿ |
-| **math** | × ÷ − ± ≈ ≠ ≤ ≥ |
-| **fun** | arrows, smileys ☺, hands ☞, card suits ♥ ♠, stars ★, flourishes ❦ — all optional |
-| **ligatures** | ff fi fl ffi ffl th ch sh st ct ck qu tt ll ss ee oo ft — write the pair **joined**; skipped pairs generate no rule |
-| **small-caps** | capital letterforms written small; compiled into the `smcp`/`c2sc` OpenType features |
-
-Any combination works: *english + slovak but not polish* is just "print
-those two PDFs". If two modules share a character (Czech and Slovak both
-have á), whichever you segment **last** wins.
-
-Each module comes in two sizes: **normal** (large boxes, easy first-time
-experience, 300 DPI scan is enough) and **book** (landscape split like an
-open notebook, natural-size ~4.5 mm x-height boxes — the most comfortable
-to fill; scan at 600 DPI, keep the sheet flat, never fold it). The "book"
-sheet is a single landscape page split into two A5-sized halves, side by
-side, because that's closer to how a person naturally writes than one
-wide page. Characters flow like a real book: the **left half fills
-completely, top to bottom, first**, then the **right half** does the
-same — the fill order never alternates back and forth across the spine.
-Print at **100% / "actual size"** — never "fit to page"; the layout JSON
-must match the printed geometry.
-
-## Write 3, fill in the keepers
-
-Every character appears in **three boxes in a row**, each with a small
-circle above it. Write the character three times (vary naturally — don't
-trace-copy), then **fill in the circle** solid above every version you
-actually like:
-
-- the **first filled-in** version becomes the character in your font —
-  filling in just **one** box is a completely fine outcome; it simply means
-  "use this one, no alternates",
-- **further filled-in** versions become rotating OpenType `calt` alternates,
-  so "book" never shows two identical o's — filling in two or all three is
-  just as valid as filling in one,
-- versions **left unfilled** are thrown away — a botched box costs nothing,
-- **no fill at all** on a character = all non-empty boxes are used
-  (forgetting to fill in never loses a character).
-
-The circles are printed in the same light gray as the box guides, outside
-the region that gets cropped, so filling one in can't break the scanning —
-just color it in solidly and keep it *inside* the circle (a light or partial
-mark may not register as a fill).
-
-The character to write is printed **big** at the start of each triple.
-Letter boxes are deliberately **narrow** (portrait — taller than wide): a
-single letter is a small fraction of a square box, and all that horizontal
-slack just makes it harder to drop the letter in consistently. Symbol boxes
-stay wider for glyphs (em dash, arrows, guillemets) that need the room.
-
-## The workflow
-
-1. Print `templates/handwriting-english-a4-book.pdf` (or `-normal`, or the
-   `letter` variant). Its first two pages are the **how-to guide** — vertical
-   zones, horizontal placement, the fill-in rules. Keep them next to you;
-   they are never scanned (also available standalone as
-   `templates/filling-guide.pdf`).
-2. Write with a **black pen** (gel, fineliner ≥0.5 mm, or a fountain pen —
-   let it dry before scanning; avoid pencil and light blue ink). Use **one
-   pen for everything** — Light/Bold are derived mathematically:
-   - letters sit on the **solid** line,
-   - the body of lowercase letters reaches the **dashed** line,
-   - ascenders go up toward the box top; descenders hang below the solid line,
-   - left–right position inside the box doesn't matter — spacing is measured
-     from the ink itself,
-   - write at your natural speed, then fill in the keepers.
-3. Scan **grayscale, pages flat** — 600 DPI for `book`, 300 DPI is enough
-   for `normal`. Phone photos can work if the page fills the frame and is
-   evenly lit, but a flatbed is better.
-4. The last english page is a **writing sample**: copy the gray model lines
-   at your natural pace. It's never cut into glyphs — it's the reference for
-   tuning spacing and rhythm.
-5. Run, once per module you printed (with that module's layout JSON):
+## Quickstart
 
 ```bash
-pip install -r requirements.txt          # plus: apt install potrace
-python3 segment.py --layout templates/layout-english-a4-book.json \
-    scans/english*.png --outdir work/cells
-python3 segment.py --layout templates/layout-czech-a4-book.json \
-    scans/czech*.png --outdir work/cells      # add-ons land in the same dir
-python3 build_font.py --cells work/cells \
-    --out work/MyHand-Regular.ttf --family "My Hand"
-python3 make_variable.py --regular work/MyHand-Regular.ttf \
-    --out work/MyHandVF.ttf
-python3 proof.py --font work/MyHandVF.ttf --out work/proof.png
+pip install -r requirements.txt        # plus: apt install potrace
+
+# 1. make your sheets (pick the modules you want)
+python3 make_template.py --modules english,czech --paper a4 --size book
+
+# 2. print at 100%, write, scan flat at 600 DPI
+
+# 3. build the font
+python3 scripts/finalize_font.py --family "My Hand" \
+    english=scans/english.jpg czech=scans/czech.jpg
 ```
 
-Install `MyHandVF.ttf` and every app with a weight slider (or CSS
-`font-weight`) gets your handwriting from Light to Bold. Filled in another
-module later? Segment its scans into the same `work/cells` and rerun
-`build_font.py` — the font grows.
+Fonts land in `fonts/font-NN_DD-MM_HH-MM/` — variable, static Regular + Bold,
+and WOFF2. Install the TTFs, or drop the WOFF2 on a website.
 
-## What each script does
+No printer? Fake a filled-in scan and try the pipeline first:
 
-1. **`make_template.py`** renders the module PDFs and their layout JSONs
-   (`--modules`, `--paper`, `--size`). Guides are light gray so they can be
-   thresholded away; only the corner registration marks and page-ID dots are
-   black.
-2. **`make_guide.py`** renders the how-to sheets (standalone + first pages
-   of the english module).
-3. **`segment.py`** finds the four registration marks on each scan, fits an
-   affine transform (absorbing rotation, scale and offset — no careful
-   scanning required), crops every box back into perfect alignment, and
-   reads which circles were filled in.
-4. **`build_font.py`** thresholds each crop (the gray guides disappear),
-   applies the fill-in selection, traces the ink into smooth Beziers with
-   potrace, aligns each glyph to the baseline printed in its box, and
-   compiles a static `.ttf` with feature code generated from whatever cells
-   had ink: `liga` for ligature pairs, `smcp`/`c2sc` for small caps, a
-   chained-context `calt` rotation over every character's extra filled-in
-   versions, and shape-based `kern` pairs so letters sit as close as your
-   hand spaces them (`--target-gap`).
-5. **`make_variable.py`** derives point-compatible Light and Bold masters by
-   displacing every outline point along its ink-outward normal (counters
-   move the opposite way), then interpolates them into a variable font with
-   `fontTools.varLib`.
+```bash
+python3 simulate_scan.py --layout templates/layout-english-a4-book.json --outdir /tmp/sim
+python3 scripts/finalize_font.py --family Test english=/tmp/sim/scan-page1.png
+```
+
+## How you fill the sheet
+
+Every character gets **three boxes** and a circle above each one. Write it
+three times, then **fill in the circle** over the versions you like.
+
+| you do | you get |
+|---|---|
+| fill 1 circle | that version becomes the letter |
+| fill 2–3 | the extras become rotating alternates, so repeats never look cloned |
+| fill none | every non-empty box is used |
+| leave a box empty | that version is skipped — a botched box costs nothing |
+
+Letters sit on the **solid** line, lowercase bodies reach the **dashed** one.
+The sheet's first two pages are a how-to guide; keep them next to you.
+
+## Modules
+
+Print only what you need — every module is a self-contained sheet.
+
+| | |
+|---|---|
+| **base** | `english` — a–z, A–Z, 0–9 and every key on a US/Mac keyboard |
+| **Latin** | `czech` `slovak` `polish` `german` `french` `spanish` `portuguese` `italian` `hungarian` `romanian` `turkish` `dutch` `croatian` `slovenian` `lithuanian` `latvian` `estonian` `danish-norwegian` `swedish` `finnish` `icelandic` `welsh` `esperanto` |
+| **Greek / Cyrillic** | `greek` `ukrainian` `russian` `bulgarian` `serbian` |
+| **extras** | `symbols` (typographic) · `math` · `fun` (arrows, hearts, stars) · `ligatures` (joined pairs) · `small-caps` |
+
+Each language module stands alone, so *english + slovak but not polish* just
+works. Add a module later, rescan, rebuild — the font grows.
+
+Two sizes: `--size book` (landscape, two A5 halves like an open notebook —
+natural writing size, recommended) or `--size normal` (big boxes, portrait).
+
+## What happens under the hood
+
+1. **`make_template.py`** draws the sheets. Guides print light gray so they
+   vanish at threshold; only the corner marks are black.
+2. **`segment.py`** finds those corner marks, fits an affine transform
+   (rotation, scale and offset absorbed — no careful scanning needed), crops
+   every box, and reads which circles you filled.
+3. **`build_font.py`** traces the ink with potrace, **snaps each letter onto
+   the baseline** so the line doesn't bounce, and compiles a TTF — with
+   `calt` alternates, `liga` ligatures, `smcp` small caps, and **shape-based
+   kerning** that measures each letter's outline so `To` and `Va` tuck in.
+4. **`make_variable.py`** derives Light and Bold by pushing every outline
+   point along its normal, then interpolates a variable font.
+5. **`scripts/package_font.py`** exports the installable set.
 
 ## Tuning
 
-| Symptom | Fix |
+| symptom | fix |
 |---|---|
-| Gray guide lines appear in glyphs | lower `--threshold` (build_font.py) |
-| Faint pen strokes break apart | raise `--threshold`, or rescan darker |
-| A fill wasn't detected | color the circle in more solidly/darker (fully inside it), rescan |
-| Dust specks become tiny glyph blobs | raise `--turdsize` |
-| Words too loose / too airy | lower `--target-gap` (auto-kern closeness) |
-| Letters collide | raise `--target-gap`, or `--lsb` / `--rsb` |
-| Odd gap after one letter | raise `--kern-min` to drop small kern pairs |
-| Word spaces too wide/narrow | adjust `--space-width` |
-| Bold looks clogged | lower `--bold-offset` |
-| Light falls apart | lower `--light-offset` |
+| gray guides show up in glyphs | lower `--threshold` |
+| thin strokes break apart | raise `--threshold`, or rescan darker |
+| words too loose | lower `--target-gap` |
+| font sets too large | lower `--glyph-scale` |
+| bold looks clogged | lower `--bold-offset` |
 
-## Testing without a scanner
+## Good to know
 
-`simulate_scan.py` fakes filled-in scans using a system font (with rotation,
-rescaling and filled-in circles), so the whole pipeline can be exercised
-end-to-end:
+- **Print at 100%** — never "fit to page". Sheets are versioned; an old
+  sheet won't line up with a newly generated layout.
+- Use **one pen** for everything (≥0.5 mm, black). Light and Bold are
+  computed, so you never write thick and thin versions.
+- Generated PDFs aren't committed — run `make_template.py` to get them.
+- A font can't reproduce ink exactly; it reuses shapes. Alternates and
+  ligatures are what buy back the hand-drawn feel — use them.
 
-```bash
-python3 simulate_scan.py --layout templates/layout-english-a4-book.json --outdir work/sim
-python3 segment.py --layout templates/layout-english-a4-book.json work/sim/*.png --outdir work/cells
-```
+## Limits & ideas
 
-## Design notes & limits
+No slant axis yet (would need a second writing pass). Vietnamese is missing —
+its 130+ precomposed characters want a differently-shaped sheet. Contributions
+welcome.
 
-- **Why boxes instead of drawing boxes around free writing?** Known geometry
-  buys automatic alignment, baseline placement, and consistent scaling for
-  free. Freeform capture needs manual annotation of every letter and baseline.
-- **Why fill-in circles instead of circling the letter?** A circle drawn
-  around a letter would merge with the letter's ink at threshold time. The
-  fill-in circle lives outside the cropped region, so the mark can never
-  contaminate a glyph — and an unfilled mistake is simply ignored. Filling
-  the circle solid (rather than ticking it) is also a more binary, robust
-  scan signal: a light or thin accidental mark stays well below the
-  detection threshold, while a deliberate fill clears it easily.
-- **Why a synthetic weight axis?** True multi-master handwriting produces
-  outlines that are not point-compatible after autotracing.
-  Normal-offsetting one master guarantees compatibility.
-- Sheets are versioned (`template v5` in the footer, `version` in the layout
-  JSON). An older sheet won't line up with a newer layout — reprint.
-- **Book fill order is a deliberate invariant:** the left A5 half fills
-  completely, top to bottom, before the right half starts — it never
-  zig-zags across the spine. This matches how someone actually writes in
-  an open notebook and must be preserved if the "book" layout code
-  (`render_page` / `SIZE_PARAMS` in `make_template.py`) is ever touched.
-- Later idea: a second sheet per character where you mark usable extras to
-  grow the alternate pool beyond three. The selection metadata
-  (`base`/`cand`/`marked`) already supports it. (`marked` is still the
-  metadata key name even though the on-paper signal changed from a tick to
-  a solid fill.)
-- **Auto-kerning is shape-based:** every letter's per-band left/right ink
-  profile is measured, and each ordered pair is slid until its closest
-  approach equals `--target-gap` — so `To`/`Va`/`r.` tuck in and blocky
-  pairs stay apart, the way a hand spaces them. Accented letters and a
-  letter's alternates ride in the base letter's kern class, keeping the
-  table small. It does **not** add letter *joins* — those come from the
-  `ligatures` module (write the pairs connected).
-- Getting it closer to your hand: the three levers are **alternates**
-  (fill in 2–3 versions so repeats differ), **ligatures** (captured joins),
-  and **kerning/spacing** (above). Remaining next step: a real second axis
-  (e.g. slant) via a second writing pass.
+MIT licensed. Fonts you build from your own handwriting are entirely yours.
