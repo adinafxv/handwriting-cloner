@@ -79,7 +79,13 @@ def ink_profiles(crop, scale, x_off, baseline_in_crop):
     return prof
 
 
-def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb):
+# Lowercase letters that legitimately drop below the baseline; their ink
+# bottom must NOT be snapped to the line.
+DESCENDERS = set("gjpqy")
+
+
+def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
+                snap_baseline=False):
     """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
@@ -98,6 +104,16 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb):
     svg_transform, dees = trace_cell(crop, turdsize)
 
     baseline_in_crop = meta["baseline_y"] - y0 + pad
+    # Baseline snapping: instead of trusting where the pen sat in the box,
+    # drop the glyph's actual ink bottom onto the baseline. This cancels the
+    # per-letter vertical "float" that makes a hand-built font bounce. Skipped
+    # for descenders (they belong below the line) and for anything that isn't a
+    # single letter/digit (punctuation, symbols, ligatures sit by design).
+    text = meta.get("text", "")
+    snappable = (len(text) == 1 and (text.isalpha() or text.isdigit())
+                 and text not in DESCENDERS)
+    if snap_baseline and snappable:
+        baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
     # crop pixels (y down) -> font units (y up), ink left edge at x=lsb
     x_off = lsb - pad * scale
     font_transform = (scale, 0, 0, -scale, x_off, baseline_in_crop * scale)
@@ -115,7 +131,7 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb):
 
 def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                turdsize=15, lsb=18, rsb=18, space_width=250,
-               target_gap=40, kern_min=8):
+               target_gap=40, kern_min=8, snap_baseline=False):
     glyphs, metrics, cmap = {}, {}, {}
 
     notdef_pen = TTGlyphPen(None)
@@ -151,7 +167,8 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         cands.sort(key=lambda c: c[0])
         built = []
         for _, png, meta in cands:
-            result = build_glyph(png, meta, threshold, turdsize, lsb, rsb)
+            result = build_glyph(png, meta, threshold, turdsize, lsb, rsb,
+                                 snap_baseline=snap_baseline)
             if result is not None:
                 built.append((meta, result))
         if not built:
@@ -362,12 +379,15 @@ def main():
                          "their closest point (lower = tighter/more joined)")
     ap.add_argument("--kern-min", type=int, default=8,
                     help="skip kern pairs smaller than this many units")
+    ap.add_argument("--snap-baseline", action="store_true",
+                    help="drop each letter/digit's ink bottom onto the baseline "
+                         "(cancels per-letter vertical float; descenders exempt)")
     args = ap.parse_args()
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     build_font(args.cells, args.out, args.family, args.style, args.threshold,
                args.turdsize, args.lsb, args.rsb, args.space_width,
-               args.target_gap, args.kern_min)
+               args.target_gap, args.kern_min, args.snap_baseline)
 
 
 if __name__ == "__main__":

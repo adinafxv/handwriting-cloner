@@ -53,6 +53,9 @@ def main():
     ap.add_argument("--build-args", default="",
                     help="extra flags forwarded to build_font.py, e.g. "
                          "'--target-gap 35'")
+    ap.add_argument("--no-snap", action="store_true",
+                    help="disable baseline snapping (on by default; snapping "
+                         "sits every letter on the line to cancel float)")
     args = ap.parse_args()
 
     cells = os.path.join(ROOT, "work", "cells_final")
@@ -78,9 +81,11 @@ def main():
     vf = os.path.join(outdir, f"{name}-VF.ttf")
     proof = os.path.join(outdir, f"{name}-proof.png")
 
+    build_flags = args.build_args.split()
+    if not args.no_snap:
+        build_flags.append("--snap-baseline")
     run([sys.executable, os.path.join(ROOT, "build_font.py"),
-         "--cells", cells, "--out", reg, "--family", args.family]
-        + args.build_args.split())
+         "--cells", cells, "--out", reg, "--family", args.family] + build_flags)
     run([sys.executable, os.path.join(ROOT, "make_variable.py"),
          "--regular", reg, "--out", vf])
     run([sys.executable, os.path.join(ROOT, "proof.py"),
