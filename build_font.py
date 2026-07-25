@@ -84,12 +84,26 @@ def ink_profiles(crop, scale, x_off, baseline_in_crop, dy=0.0):
 # bottom must NOT be snapped to the line.
 DESCENDERS = set("gjpqy")
 
+
+def is_descender(ch):
+    """True for g j p q y AND their accented forms - 'ý' is a descender just
+    like 'y'. Testing the raw character would snap 'ý' onto its own tail and
+    shove the whole letter up."""
+    return len(ch) == 1 and (ch in DESCENDERS or ascii_base(ch) in DESCENDERS)
+
 # Symbols that belong on the math axis - vertically centred about half the
 # x-height rather than sitting wherever the pen happened to land in the box.
 # Written freehand, arrows and operators drift high or low and then look
 # misaligned in running text; centring them is what a type designer does.
 MATH_AXIS = 175  # font units above the baseline
 CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—")
+
+# Punctuation that stands on the baseline like a letter, and brackets that
+# straddle it. Written freehand these drift wherever the pen started, so they
+# float in running text; place them from their own ink instead.
+BASELINE_PUNCT = set("&@$%#")
+BRACKETS = set("()[]{}")
+BRACKET_DROP = 0.18   # share of the bracket's height that sits below baseline
 
 
 SHORT_LETTERS = set("acemnorsuvwxz")     # tops define the x-height
@@ -123,13 +137,24 @@ def measure_cells(cells_dir, threshold, glyph_scale, snap_baseline=False):
             continue
         scale = UPM / meta["box_h"] * glyph_scale
         snapped = (snap_baseline and (text.isalpha() or text.isdigit())
-                   and text not in DESCENDERS)
+                   and not is_descender(text))
         if snapped:
             height = (ys.max() - ys.min()) * scale        # sits on its own ink
         else:
             height = (meta["baseline_y"] - ys.min()) * scale
         heights.setdefault(text, []).append(height)
     return {c: sorted(v)[len(v) // 2] for c, v in heights.items()}
+
+
+def is_clipped(png, threshold):
+    """True if the ink runs into the bottom of the cell - a descender written
+    past the box, which comes back with its tail cut off."""
+    ink = np.asarray(Image.open(png).convert("L")) < threshold
+    return bool(ink.any() and ink[-2:, :].any())
+
+
+def text_of(chosen):
+    return chosen[0]["meta"].get("text", "")
 
 
 def cell_height(png, threshold, glyph_scale, snap_baseline):
@@ -148,7 +173,7 @@ def cell_height(png, threshold, glyph_scale, snap_baseline):
     text = meta.get("text", "")
     snapped = (snap_baseline and len(text) == 1
                and (text.isalpha() or text.isdigit())
-               and text not in DESCENDERS)
+               and not is_descender(text))
     if snapped:
         return (ys.max() - ys.min()) * scale
     return (meta["baseline_y"] - ys.min()) * scale
@@ -199,15 +224,14 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
 
     # A solidly filled selection circle sits just above its box, so a few
     # pixels of it can land inside the crop and show up as a speck floating
-    # over the letter. Drop small blobs that TOUCH the crop border - a real
-    # accent sits inside the box, never against its edge.
+    # over the letter. Drop small blobs touching the TOP border only - the
+    # bottom and sides are where a descender tail or a wide letter genuinely
+    # runs to the edge, and eating those would amputate the glyph.
     if ink.any():
         labels, n = ndimage.label(ink)
         if n > 1:
             total = float(ink.sum())
-            edge = set(labels[0, :]) | set(labels[-1, :])
-            edge |= set(labels[:, 0]) | set(labels[:, -1])
-            for lab in edge:
+            for lab in set(labels[0, :]):
                 if lab and (labels == lab).sum() < 0.15 * total:
                     ink &= labels != lab
 
@@ -248,9 +272,13 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     # single letter/digit (punctuation, symbols, ligatures sit by design).
     text = meta.get("text", "")
     snappable = (len(text) == 1 and (text.isalpha() or text.isdigit())
-                 and text not in DESCENDERS)
+                 and not is_descender(text))
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
+    elif center_symbols and text in BASELINE_PUNCT:
+        baseline_in_crop = (y1 - 1 - y0) + pad          # stand it on the line
+    elif center_symbols and text in BRACKETS:
+        baseline_in_crop = (y1 - 1 - y0) + pad - BRACKET_DROP * (y1 - 1 - y0)
     elif center_symbols and text in CENTERED:
         # put the ink's vertical middle on the math axis (half the x-height,
         # measured from this font's own letters when we know it)
@@ -336,6 +364,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         groups.setdefault(base, []).append((meta.get("cand") or 0, png, meta))
 
     skipped, rejected, ligatures, alternates, smallcaps = [], 0, {}, {}, {}
+    clipped = {}
     profiles, advances = {}, {}   # per-glyph, for auto-kerning
     for base, cands in sorted(groups.items()):
         cands.sort(key=lambda c: c[0])
@@ -345,13 +374,22 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         for cand_no, png, meta in cands:
             h = cell_height(png, threshold, glyph_scale, snap_baseline)
             if h is not None:
-                usable.append({"cand": cand_no, "png": png, "meta": meta, "h": h})
+                usable.append({"cand": cand_no, "png": png, "meta": meta,
+                               "h": h, "clipped": is_clipped(png, threshold)})
         if not usable:
             skipped.append(base)
             continue
 
         marked = [u for u in usable if u["meta"].get("marked")]
         chosen = marked if marked else usable
+        # A tail written past the bottom of the box comes back cut off. Prefer
+        # an unclipped version for the letter itself; clipped ones drop to
+        # alternates (or out entirely if there is a clean one).
+        if any(u["clipped"] for u in chosen) and not all(u["clipped"] for u in chosen):
+            clipped_now = [u["cand"] for u in chosen if u["clipped"]]
+            clipped.setdefault(text_of(chosen), []).extend(clipped_now)
+            chosen = ([u for u in chosen if not u["clipped"]]
+                      + [u for u in chosen if u["clipped"]])
         rejected += len(usable) - len(chosen)
         # --primary promotes a different one of your three versions to be THE
         # letter (the rest stay alternates), no rescanning needed.
@@ -408,6 +446,9 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                     smallcaps[name] = text
             else:
                 alternates[name] = text
+    if clipped:
+        print("  clipped tails demoted to alternates: " +
+              ", ".join(f"{c}{v}" for c, v in sorted(clipped.items())))
     if skipped:
         print(f"  skipped empty characters: {' '.join(skipped)}")
     if rejected:

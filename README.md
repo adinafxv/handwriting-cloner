@@ -95,7 +95,8 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 | one letter is too big / sits wrong | `--adjust-file` — see below |
 | your worst version became the letter | `--primary h=3` picks another box |
 | repeated letters look doubled/ghosted | alternates are height-matched by default (`--no-even-alternates` to disable) |
-| arrows and dashes ride high | `--center-symbols` |
+| arrows, dashes, @ & ( ) sit wrong | `--center-symbols` places them from their own ink |
+| a descender comes back cut off | write the tail inside the box; clipped versions are auto-demoted |
 | two letters merge | lower `--max-tuck` |
 | gap after ď, ť, Ó | accents overhang by default (`--no-accent-overhang` to disable) |
 | gray guides show up in glyphs | lower `--threshold` |
