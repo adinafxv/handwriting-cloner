@@ -85,7 +85,7 @@ DESCENDERS = set("gjpqy")
 
 
 def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
-                snap_baseline=False):
+                snap_baseline=False, glyph_scale=1.0):
     """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
@@ -98,7 +98,11 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     crop = np.zeros((y1 - y0 + 2 * pad, x1 - x0 + 2 * pad), dtype=bool)
     crop[pad:-pad, pad:-pad] = ink[y0:y1, x0:x1]
 
-    scale = UPM / meta["box_h"]  # template box height == full em span
+    # template box height == full em span; glyph_scale shrinks the drawn
+    # letters within that em so the font sets at a normal size next to other
+    # fonts at the same point size (everything - heights, widths, advances,
+    # kern profiles - derives from this one factor, so it stays consistent)
+    scale = UPM / meta["box_h"] * glyph_scale
     if (y1 - y0) * scale < 8:    # a stray dot, not a glyph
         return None
     svg_transform, dees = trace_cell(crop, turdsize)
@@ -131,7 +135,8 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
 
 def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                turdsize=15, lsb=18, rsb=18, space_width=250,
-               target_gap=40, kern_min=8, snap_baseline=False):
+               target_gap=40, kern_min=8, snap_baseline=False,
+               glyph_scale=1.0):
     glyphs, metrics, cmap = {}, {}, {}
 
     notdef_pen = TTGlyphPen(None)
@@ -168,7 +173,8 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         built = []
         for _, png, meta in cands:
             result = build_glyph(png, meta, threshold, turdsize, lsb, rsb,
-                                 snap_baseline=snap_baseline)
+                                 snap_baseline=snap_baseline,
+                                 glyph_scale=glyph_scale)
             if result is not None:
                 built.append((meta, result))
         if not built:
@@ -379,6 +385,9 @@ def main():
                          "their closest point (lower = tighter/more joined)")
     ap.add_argument("--kern-min", type=int, default=8,
                     help="skip kern pairs smaller than this many units")
+    ap.add_argument("--glyph-scale", type=float, default=1.0,
+                    help="shrink the drawn letters within the em (0.92 sets a "
+                         "bit smaller next to other fonts at the same pt size)")
     ap.add_argument("--snap-baseline", action="store_true",
                     help="drop each letter/digit's ink bottom onto the baseline "
                          "(cancels per-letter vertical float; descenders exempt)")
@@ -387,7 +396,8 @@ def main():
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     build_font(args.cells, args.out, args.family, args.style, args.threshold,
                args.turdsize, args.lsb, args.rsb, args.space_width,
-               args.target_gap, args.kern_min, args.snap_baseline)
+               args.target_gap, args.kern_min, args.snap_baseline,
+               args.glyph_scale)
 
 
 if __name__ == "__main__":
