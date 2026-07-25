@@ -569,6 +569,9 @@ def compute_kerning(glyphs, cmap, profiles, advances, alternates,
                 members.append(n)
                 break
 
+    adv_list = sorted(advances[n] for n in ident if n in advances)
+    typical_advance = adv_list[len(adv_list) // 2] if adv_list else UPM * 0.4
+
     def pair_kern(nl, nr):
         pl, pr = profiles[nl], profiles[nr]
         shared = set(pl) & set(pr)
@@ -581,9 +584,14 @@ def compute_kerning(glyphs, cmap, profiles, advances, alternates,
         # Clamp how far a pair may tuck. A letter with a big overhang (y, j,
         # f, T, V) otherwise drags its neighbour a quarter of a glyph width
         # underneath itself - the closest approach is still "correct", but it
-        # reads as two letters merging. Cap the tuck at a share of the left
-        # glyph's advance.
-        limit = int(round(max_tuck * advances[nl]))
+        # reads as two letters merging.
+        #
+        # The cap is a share of the font's TYPICAL advance, not of this
+        # letter's own. Scaling it to the left glyph starves the narrow ones:
+        # 'l' is half the width of 'n', so 'ly' got a third less tuck than
+        # 'ny' and stayed visibly apart, even though the gap it needs to close
+        # is the same either way.
+        limit = int(round(max_tuck * typical_advance))
         return max(kern, -limit)
 
     pairs = {}
