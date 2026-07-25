@@ -90,6 +90,8 @@ def main():
          "--regular", reg, "--out", vf])
     run([sys.executable, os.path.join(ROOT, "proof.py"),
          "--font", vf, "--out", proof])
+    run([sys.executable, os.path.join(ROOT, "scripts", "package_font.py"),
+         "--vf", vf, "--family", args.family, "--outdir", outdir])
     print(f"\narchived -> {os.path.relpath(outdir, ROOT)}")
 
 

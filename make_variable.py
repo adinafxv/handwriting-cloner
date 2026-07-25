@@ -123,15 +123,27 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--regular", required=True, help="static TTF from build_font.py")
     ap.add_argument("--out", required=True, help="output variable .ttf")
-    ap.add_argument("--light-offset", type=float, default=12,
-                    help="units to thin strokes for the Light master")
+    ap.add_argument("--base-offset", type=float, default=13,
+                    help="units to thicken the Regular master itself before "
+                         "deriving Light/Bold. Pen-traced handwriting comes out "
+                         "thin, so the default (13) makes the shipped Regular "
+                         "match what wght=550 used to look like; Light then "
+                         "lands on the old untouched weight. 0 = raw trace")
+    ap.add_argument("--light-offset", type=float, default=13,
+                    help="units to thin strokes for the Light master "
+                         "(relative to the base-offset Regular)")
     ap.add_argument("--bold-offset", type=float, default=26,
-                    help="units to thicken strokes for the Bold master")
+                    help="units to thicken strokes for the Bold master "
+                         "(relative to the base-offset Regular)")
     ap.add_argument("--keep-masters", action="store_true",
                     help="also write the Light/Bold master TTFs next to --out")
     args = ap.parse_args()
 
     regular = TTFont(args.regular)
+    if args.base_offset:
+        print(f"thickening Regular master by {args.base_offset:g} units...")
+        regular = make_master(regular, abs(args.base_offset))
+        set_style_name(regular, "Regular")
     print("deriving Light master...")
     light = make_master(regular, -abs(args.light_offset))
     set_style_name(light, "Light")
