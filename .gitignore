@@ -9,4 +9,7 @@ _master-*.ttf
 templates/*.pdf
 templates/*.json
 templates/*.png
+templates/**/*.pdf
+templates/**/*.json
+templates/**/*.png
 !templates/.gitkeep

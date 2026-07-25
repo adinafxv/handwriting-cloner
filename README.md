@@ -115,8 +115,12 @@ python3 build_font.py --cells work/cells --out my.ttf --adjust-file tweaks.json
 
 ## Good to know
 
-- **Print at 100%** — never "fit to page". Sheets are versioned; an old
-  sheet won't line up with a newly generated layout.
+- **Print at 100%** — never "fit to page".
+- **Sheets are versioned** (footer, e.g. `template v6`). Scanning a sheet
+  against a layout from a different version silently misreads the selection
+  circles. To process older sheets, regenerate that version's layout:
+  `git show <old-commit>:make_template.py > /tmp/mt.py && python3 /tmp/mt.py
+  --modules english --outdir templates/v5`
 - Use **one pen** for everything (≥0.5 mm, black). Light and Bold are
   computed, so you never write thick and thin versions.
 - Generated PDFs aren't committed — run `make_template.py` to get them.
