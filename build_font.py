@@ -23,6 +23,7 @@ import unicodedata
 
 import numpy as np
 from PIL import Image
+from scipy import ndimage
 from fontTools import agl
 from fontTools.feaLib.builder import addOpenTypeFeaturesFromString
 from fontTools.fontBuilder import FontBuilder
@@ -178,9 +179,21 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     if len(xs) == 0:
         return None
     x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
-    pad = 4
+    pad = 4 + (8 if extra_scale != 1.0 else 0)
     crop = np.zeros((y1 - y0 + 2 * pad, x1 - x0 + 2 * pad), dtype=bool)
     crop[pad:-pad, pad:-pad] = ink[y0:y1, x0:x1]
+
+    # Scaling a glyph scales its stroke too, so a letter shrunk to match the
+    # x-height comes out visibly thinner than its neighbours. Thicken (or
+    # thin) the ink first by the matching amount so the pen weight survives.
+    if extra_scale != 1.0 and crop.any():
+        stroke = 2.0 * float(np.median(
+            ndimage.distance_transform_edt(crop)[crop]))
+        k = stroke * (1.0 / extra_scale - 1.0) / 2.0
+        if k >= 0.5:
+            crop = ndimage.binary_dilation(crop, iterations=int(round(k)))
+        elif k <= -0.5:
+            crop = ndimage.binary_erosion(crop, iterations=int(round(-k)))
 
     # template box height == full em span; glyph_scale shrinks the drawn
     # letters within that em so the font sets at a normal size next to other
@@ -280,7 +293,9 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         for _, png, meta in cands:
             ch = meta.get("text", "")
             tweak = adjust.get(ch, {})
-            result = build_glyph(png, meta, threshold, turdsize, lsb, rsb,
+            g_lsb = lsb + int(tweak.get("lsb", 0))
+            g_rsb = rsb + int(tweak.get("rsb", 0))
+            result = build_glyph(png, meta, threshold, turdsize, g_lsb, g_rsb,
                                  snap_baseline=snap_baseline,
                                  glyph_scale=glyph_scale,
                                  center_symbols=center_symbols,
@@ -324,6 +339,16 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         print(f"  skipped empty characters: {' '.join(skipped)}")
     if rejected:
         print(f"  discarded {rejected} unfilled versions")
+
+    # Editors type curly quotes and real dashes; without these the text falls
+    # back to another font mid-word ("It's" in a different hand). Point them at
+    # the plain characters we captured.
+    for cp, target in ((0x2019, "quotesingle"), (0x2018, "quotesingle"),
+                       (0x201C, "quotedbl"), (0x201D, "quotedbl"),
+                       (0x2013, "hyphen"), (0x2014, "hyphen"),
+                       (0x00A0, "space"), (0x2212, "hyphen")):
+        if cp not in cmap and target in glyphs:
+            cmap[cp] = target
 
     order = [".notdef", "space"] + sorted(n for n in glyphs if n not in (".notdef", "space"))
     fb = FontBuilder(UPM, isTTF=True)

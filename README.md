@@ -77,9 +77,12 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
    (rotation, scale and offset absorbed — no careful scanning needed), crops
    every box, and reads which circles you filled.
 3. **`build_font.py`** traces the ink with potrace, **snaps each letter onto
-   the baseline** so the line doesn't bounce, and compiles a TTF — with
-   `calt` alternates, `liga` ligatures, `smcp` small caps, and **shape-based
-   kerning** that measures each letter's outline so `To` and `Va` tuck in.
+   the baseline** so the line doesn't bounce, evens out letter sizes (keeping
+   the pen weight — a shrunk letter gets its stroke thickened back), and
+   compiles a TTF with `calt` alternates, `liga` ligatures, `smcp` small caps
+   and **shape-based kerning** so `To` and `Va` tuck in. Curly quotes and
+   dashes are mapped to the plain ones you wrote, so text never falls back to
+   another font mid-word.
 4. **`make_variable.py`** derives Light and Bold by pushing every outline
    point along its normal, then interpolates a variable font.
 5. **`scripts/package_font.py`** exports the installable set.
@@ -99,10 +102,11 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 | font sets too large | lower `--glyph-scale` |
 | bold looks clogged | lower `--bold-offset` |
 
-Any single character can be nudged without rescanning anything:
+Any single character can be nudged without rescanning anything — scale it,
+move it up or down, or give it more air on either side:
 
 ```json
-{ "o": {"scale": 0.95}, "y": {"dy": -30}, "-": {"dy": -20} }
+{ "d": {"scale": 0.93}, "y": {"dy": -30}, "i": {"lsb": 14, "rsb": 14} }
 ```
 
 ```bash
