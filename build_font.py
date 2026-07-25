@@ -170,7 +170,7 @@ def normalization(heights, strength):
 def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
                 snap_baseline=False, glyph_scale=1.0,
                 center_symbols=False, extra_scale=1.0, dy=0.0,
-                math_axis=None):
+                math_axis=None, accent_overhang=True):
     """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
@@ -247,7 +247,20 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     for d in dees:
         parse_path(d, pen)
 
-    advance = int(round((x1 - x0) * scale)) + lsb + rsb
+    # An accent that sticks out sideways (Czech ď, ť, ľ, or an acute written
+    # to the right) must not be charged to the letter's width, or the next
+    # letter starts a caron-width too far away. Real fonts let the accent
+    # overhang the sidebearing; the kern profiles still carry it, so nothing
+    # collides. Only for accented letters - on '%' or '=' the pieces ARE the
+    # character.
+    right = x1 - 1
+    if accent_overhang and len(text) == 1 and ascii_base(text) not in (None, text):
+        labels, n = ndimage.label(ink)
+        if n > 1:
+            sizes = ndimage.sum_labels(ink, labels, index=np.arange(1, n + 1))
+            body = np.argmax(sizes) + 1
+            right = max(x0, int(np.where(labels == body)[1].max()))
+    advance = int(round((right - x0 + 1) * scale)) + lsb + rsb
     prof = ink_profiles(crop, scale, x_off, baseline_in_crop, dy)
     return tt_pen.glyph(), advance, lsb, prof
 
@@ -256,7 +269,8 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                turdsize=15, lsb=18, rsb=18, space_width=250,
                target_gap=40, kern_min=8, snap_baseline=False,
                glyph_scale=1.0, center_symbols=False, max_tuck=0.15,
-               primary=None, normalize=0.0, adjust=None):
+               primary=None, normalize=0.0, adjust=None,
+               accent_overhang=True):
     glyphs, metrics, cmap = {}, {}, {}
     primary = primary or {}
     adjust = adjust or {}
@@ -316,7 +330,8 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                                  extra_scale=(norm.get(ch, 1.0)
                                               * tweak.get("scale", 1.0)),
                                  dy=tweak.get("dy", 0.0),
-                                 math_axis=math_axis)
+                                 math_axis=math_axis,
+                                 accent_overhang=accent_overhang)
             if result is not None:
                 built.append((meta, result))
         if not built:
@@ -554,6 +569,9 @@ def main():
     ap.add_argument("--glyph-scale", type=float, default=1.0,
                     help="shrink the drawn letters within the em (0.92 sets a "
                          "bit smaller next to other fonts at the same pt size)")
+    ap.add_argument("--no-accent-overhang", action="store_true",
+                    help="charge sideways accents (d-caron, t-caron) to the "
+                         "letter's width instead of letting them overhang")
     ap.add_argument("--normalize", type=float, default=0.0,
                     help="even out letter sizes toward a common x-height "
                          "(0 = off, 1 = fully uniform; 0.7 is a good start)")
@@ -582,7 +600,8 @@ def main():
                {k: int(v) for k, v in
                 (p.split("=") for p in args.primary.split(",") if p)},
                args.normalize,
-               json.load(open(args.adjust_file)) if args.adjust_file else None)
+               json.load(open(args.adjust_file)) if args.adjust_file else None,
+               not args.no_accent_overhang)
 
 
 if __name__ == "__main__":

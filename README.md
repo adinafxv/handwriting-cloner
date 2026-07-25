@@ -96,6 +96,7 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 | your worst version became the letter | `--primary o=2` picks another box |
 | arrows and dashes ride high | `--center-symbols` |
 | two letters merge | lower `--max-tuck` |
+| gap after ď, ť, Ó | accents overhang by default (`--no-accent-overhang` to disable) |
 | gray guides show up in glyphs | lower `--threshold` |
 | thin strokes break apart | raise `--threshold`, or rescan darker |
 | words too loose | lower `--target-gap` |
