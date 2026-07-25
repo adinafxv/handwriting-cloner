@@ -175,6 +175,20 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
 
+    # A solidly filled selection circle sits just above its box, so a few
+    # pixels of it can land inside the crop and show up as a speck floating
+    # over the letter. Drop small blobs that TOUCH the crop border - a real
+    # accent sits inside the box, never against its edge.
+    if ink.any():
+        labels, n = ndimage.label(ink)
+        if n > 1:
+            total = float(ink.sum())
+            edge = set(labels[0, :]) | set(labels[-1, :])
+            edge |= set(labels[:, 0]) | set(labels[:, -1])
+            for lab in edge:
+                if lab and (labels == lab).sum() < 0.15 * total:
+                    ink &= labels != lab
+
     ys, xs = np.where(ink)
     if len(xs) == 0:
         return None

@@ -69,8 +69,11 @@ PAPER_SIZES_IN = {"a4": (8.27, 11.69), "letter": (8.5, 11.0)}
 #  v5 dropped the per-box description text (just the big character now),
 #  narrowed the LETTER boxes further to a portrait shape (taller than wide,
 #  so there's little horizontal slack to fight), and pulled the fill circle
-#  back down snug against the box.)
-LAYOUT_VERSION = 5
+#  back down snug against the box.
+#  v6 restored real clearance between the fill circle and the box - a filled
+#  circle was bleeding into the cropped cell and showing up as a speck over
+#  the letter.)
+LAYOUT_VERSION = 6
 
 # Grayscale values (0 = black). Guides must survive printing but die at the
 # binarization threshold used by build_font.py (default 110).
@@ -97,7 +100,7 @@ CANDIDATES = 3
 # just makes it harder to place the letter consistently. SYMBOL boxes stay
 # wider because some glyphs (em dash, arrows, guillemets) genuinely need it.
 SIZE_PARAMS = {
-    "normal": {"box_h": 1.05, "label_h": 0.24, "row_gap": 0.10, "col_gap": 0.10,
+    "normal": {"box_h": 1.05, "label_h": 0.28, "row_gap": 0.10, "col_gap": 0.10,
                "label_font": 0.11, "char_font": 0.17, "check_r": 0.06,
                "cols": {"letters": 9, "symbols": 6, "ligatures": 3}},
     # "book": A4/letter turned landscape, split into a left and a right half
@@ -105,7 +108,7 @@ SIZE_PARAMS = {
     # bottom first, then the right page). cols are PER HALF. Letters use
     # 12/half (4 triples per half-row) => ~portrait boxes (w/h ~0.8); symbols
     # stay at 9/half so the wide typographic glyphs still fit.
-    "book": {"box_h": 0.50, "label_h": 0.18, "row_gap": 0.06, "col_gap": 0.03,
+    "book": {"box_h": 0.50, "label_h": 0.22, "row_gap": 0.06, "col_gap": 0.03,
              "label_font": 0.085, "char_font": 0.13, "check_r": 0.05,
              "cols": {"letters": 12, "symbols": 9, "ligatures": 3},
              "gutter": 0.55},
@@ -488,7 +491,10 @@ def render_page(paper, size, module, page_def, page_index, total_pages):
         # the first box of the triple only. No description text, so the circle
         # and the char never fight for space and the strip stays short.
         ccx = x1 - check_r - px(0.02)
-        ccy = y0 - check_r - px(0.03)
+        # Keep real clearance above the box: a solidly filled circle plus a
+        # few pixels of scan skew must never reach into the cropped cell, or
+        # it lands in the glyph as a speck floating over the letter.
+        ccy = y0 - check_r - px(0.08)
         draw.ellipse([ccx - check_r, ccy - check_r,
                       ccx + check_r, ccy + check_r],
                      outline=GUIDE_GRAY, width=2)
