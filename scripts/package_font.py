@@ -25,10 +25,17 @@ from fontTools.varLib.instancer import instantiateVariableFont
 WIN, MAC = (3, 1, 0x409), (1, 0, 0)
 
 
+def ps_safe(text):
+    """PostScript names must not carry spaces or punctuation, so an
+    apostrophe in a family name ("Adina's Handwriting") has to go - the
+    human-readable family keeps it, the machine name does not."""
+    return "".join(c for c in text if c.isalnum())
+
+
 def set_names(font, family, style, version="1.000"):
     """Write a coherent name table for a static instance."""
     name = font["name"]
-    ps = f"{family.replace(' ', '')}-{style.replace(' ', '')}"
+    ps = f"{ps_safe(family)}-{ps_safe(style)}"
     records = {
         1: family,
         2: style,
@@ -58,7 +65,7 @@ def static(vf_path, family, style, wght, bold, outdir, version):
     instantiateVariableFont(font, {"wght": wght}, inplace=True, updateFontNames=False)
     set_names(font, family, style, version)
     set_weight_bits(font, wght, bold)
-    out = os.path.join(outdir, f"{family.replace(' ', '')}-{style}.ttf")
+    out = os.path.join(outdir, f"{ps_safe(family)}-{style}.ttf")
     font.save(out)
     return out, font
 
@@ -80,7 +87,7 @@ def main():
     args = ap.parse_args()
 
     os.makedirs(args.outdir, exist_ok=True)
-    stem = args.family.replace(" ", "")
+    stem = ps_safe(args.family)
     written = []
 
     vf_out = os.path.join(args.outdir, f"{stem}-VF.ttf")

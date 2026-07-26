@@ -13,7 +13,7 @@ fonts/font-<NN>_<DD-MM>_<HH-MM>/
 dated build with:
 
 ```bash
-python3 scripts/finalize_font.py --family "Adina Hand" \
+python3 scripts/finalize_font.py --family "Adina's Handwriting" \
     english=/path/to/english-scan.jpg czech=/path/to/czech-scan.jpg
 ```
 
