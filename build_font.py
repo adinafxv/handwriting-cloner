@@ -461,9 +461,12 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         text = chosen[0]["meta"].get("text", "")
         want = primary.get(text)
         if want is not None:
-            pick = [u for u in chosen if u["cand"] == want]
+            # An explicit --primary beats the filled-in circles, and may name
+            # a box you never filled: sometimes the version you skipped is the
+            # one that sits best next to the others.
+            pick = [u for u in usable if u["cand"] == want]
             if pick:
-                chosen = pick + [u for u in chosen if u is not pick[0]]
+                chosen = pick + [u for u in chosen if u["cand"] != want]
         # An alternate should read as the same letter written again, not as a
         # different letter. Matching heights is not enough - one version of
         # 'h' came out 28% wider than the primary and looked unhinged in
