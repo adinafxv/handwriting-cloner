@@ -101,7 +101,7 @@ CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—")
 # Punctuation that stands on the baseline like a letter, and brackets that
 # straddle it. Written freehand these drift wherever the pen started, so they
 # float in running text; place them from their own ink instead.
-BASELINE_PUNCT = set("&@$%#")
+BASELINE_PUNCT = set("&@$%#?!")
 BRACKETS = set("()[]{}")
 BRACKET_DROP = 0.09   # share of the bracket's height that sits below baseline
 AT_DROP = 0.09        # @ dips slightly below the line
@@ -109,6 +109,8 @@ AT_DROP = 0.09        # @ dips slightly below the line
 
 SHORT_LETTERS = set("acemnorsuvwxz")     # tops define the x-height
 ASCENDER_LETTERS = set("bdfhklt")
+CAPITALS = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+DIGITS = set("0123456789")
 
 
 def ascii_base(ch):
@@ -150,6 +152,21 @@ def measure_cells(cells_dir, threshold, glyph_scale, snap_baseline=False):
         strokes.setdefault(text, []).append(2.0 * float(np.median(dt[ink])) * scale)
     med = lambda d: {c: sorted(v)[len(v) // 2] for c, v in d.items()}
     return med(heights), med(strokes)
+
+
+def cell_width(png, threshold, glyph_scale):
+    """Ink width of one cell in font units, for comparing an alternate's
+    proportions against the primary's."""
+    try:
+        with open(png[:-4] + ".json") as f:
+            meta = json.load(f)
+    except OSError:
+        return 0.0
+    ink = np.asarray(Image.open(png).convert("L")) < threshold
+    xs = np.where(ink.any(axis=0))[0]
+    if len(xs) == 0:
+        return 0.0
+    return (xs.max() - xs.min()) * UPM / meta["box_h"] * glyph_scale
 
 
 def is_clipped(png, threshold):
@@ -196,6 +213,8 @@ def normalization(heights, strength):
 
     target_x = median(SHORT_LETTERS)
     target_asc = median(ASCENDER_LETTERS)
+    target_cap = median(CAPITALS)
+    target_dig = median(DIGITS)
     factors = {}
     if not target_x:
         return factors, None
@@ -210,9 +229,16 @@ def normalization(heights, strength):
             target = target_x          # descenders: body height above baseline
         elif base in ASCENDER_LETTERS and target_asc:
             target = target_asc
+        elif base in CAPITALS and target_cap:
+            target = target_cap        # capitals drift as much as lowercase
         else:
-            continue                   # capitals, digits: leave alone
+            continue
         factors[ch] = 1.0 + strength * (target / h - 1.0)
+    # digits have no ascii_base (not letters), so handle them directly
+    if target_dig:
+        for ch, h in heights.items():
+            if ch in DIGITS and h > 0:
+                factors[ch] = 1.0 + strength * (target_dig / h - 1.0)
     for ch in heights:
         base = ascii_base(ch)
         if ch not in factors and base in factors:
@@ -349,7 +375,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                glyph_scale=1.0, center_symbols=False, max_tuck=0.15,
                primary=None, normalize=0.0, adjust=None,
                accent_overhang=True, even_alternates=True,
-               even_weight=True):
+               even_weight=True, alt_tolerance=0.18):
     glyphs, metrics, cmap = {}, {}, {}
     primary = primary or {}
     adjust = adjust or {}
@@ -400,6 +426,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
 
     skipped, rejected, ligatures, alternates, smallcaps = [], 0, {}, {}, {}
     clipped = {}
+    odd_shape = {}
     profiles, advances = {}, {}   # per-glyph, for auto-kerning
     for base, cands in sorted(groups.items()):
         cands.sort(key=lambda c: c[0])
@@ -410,7 +437,9 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
             h = cell_height(png, threshold, glyph_scale, snap_baseline)
             if h is not None:
                 usable.append({"cand": cand_no, "png": png, "meta": meta,
-                               "h": h, "clipped": is_clipped(png, threshold)})
+                               "h": h, "w": cell_width(png, threshold,
+                                                       glyph_scale),
+                               "clipped": is_clipped(png, threshold)})
         if not usable:
             skipped.append(base)
             continue
@@ -421,10 +450,11 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
         # an unclipped version for the letter itself; clipped ones drop to
         # alternates (or out entirely if there is a clean one).
         if any(u["clipped"] for u in chosen) and not all(u["clipped"] for u in chosen):
-            clipped_now = [u["cand"] for u in chosen if u["clipped"]]
-            clipped.setdefault(text_of(chosen), []).extend(clipped_now)
-            chosen = ([u for u in chosen if not u["clipped"]]
-                      + [u for u in chosen if u["clipped"]])
+            # Drop them, do not demote: a cut-off tail is just as wrong in an
+            # alternate, and the rotation puts it on screen anyway.
+            clipped.setdefault(text_of(chosen), []).extend(
+                u["cand"] for u in chosen if u["clipped"])
+            chosen = [u for u in chosen if not u["clipped"]]
         rejected += len(usable) - len(chosen)
         # --primary promotes a different one of your three versions to be THE
         # letter (the rest stay alternates), no rescanning needed.
@@ -434,6 +464,20 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
             pick = [u for u in chosen if u["cand"] == want]
             if pick:
                 chosen = pick + [u for u in chosen if u is not pick[0]]
+        # An alternate should read as the same letter written again, not as a
+        # different letter. Matching heights is not enough - one version of
+        # 'h' came out 28% wider than the primary and looked unhinged in
+        # running text. Compare proportions and drop the outliers.
+        if even_alternates and len(chosen) > 1:
+            a0 = chosen[0]["w"] / max(chosen[0]["h"], 1e-6)
+            keep = [chosen[0]]
+            for u in chosen[1:]:
+                a = u["w"] / max(u["h"], 1e-6)
+                if abs(a - a0) / max(a0, 1e-6) <= alt_tolerance:
+                    keep.append(u)
+                else:
+                    odd_shape.setdefault(text_of(chosen), []).append(u["cand"])
+            chosen = keep
         chosen = chosen[:3]
         text = chosen[0]["meta"]["text"]
 
@@ -482,8 +526,11 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                     smallcaps[name] = text
             else:
                 alternates[name] = text
+    if odd_shape:
+        print("  alternates dropped for odd proportions: " +
+              ", ".join(f"{c}{v}" for c, v in sorted(odd_shape.items())))
     if clipped:
-        print("  clipped tails demoted to alternates: " +
+        print("  clipped versions dropped: " +
               ", ".join(f"{c}{v}" for c, v in sorted(clipped.items())))
     if skipped:
         print(f"  skipped empty characters: {' '.join(skipped)}")
@@ -698,6 +745,9 @@ def main():
     ap.add_argument("--glyph-scale", type=float, default=1.0,
                     help="shrink the drawn letters within the em (0.92 sets a "
                          "bit smaller next to other fonts at the same pt size)")
+    ap.add_argument("--alt-tolerance", type=float, default=0.18,
+                    help="how far an alternate's proportions may stray from "
+                         "the primary before it is dropped")
     ap.add_argument("--no-even-weight", action="store_true",
                     help="keep each letter's own pen weight instead of "
                          "matching the median stroke width")
@@ -738,7 +788,7 @@ def main():
                json.load(open(args.adjust_file)) if args.adjust_file else None,
                not args.no_accent_overhang,
                not args.no_even_alternates,
-               not args.no_even_weight)
+               not args.no_even_weight, args.alt_tolerance)
 
 
 if __name__ == "__main__":
