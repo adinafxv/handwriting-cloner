@@ -76,8 +76,10 @@ PAPER_SIZES_IN = {"a4": (8.27, 11.69), "letter": (8.5, 11.0)}
 #  v7 narrowed ligature boxes to ~2x a letter box.
 #  v8 added Celsius/Fahrenheit signs to the symbols module.
 #  v9 merged the math signs (plus superscripts/root/infinity/empty-set/pi/
-#  sum) into the symbols sheet.)
-LAYOUT_VERSION = 9
+#  sum) into the symbols sheet.
+#  v10 added more joinable pairs (al/el/ol/ul/yl/li/to/ca/am) to the
+#  ligatures sheet.)
+LAYOUT_VERSION = 10
 
 # Grayscale values (0 = black). Guides must survive printing but die at the
 # binarization threshold used by build_font.py (default 110).
@@ -237,7 +239,8 @@ SYMBOLS_TYPO = "„“”‘’‚«»‹›–—…•°℃℉§¡¿€£¥¢�
 MATH = "×÷−±≈≠≤≥²³√∞∅π∑"
 FUN = "←→↑↓↔☞☜☝☟☺☹♥♡♠♤♦♢♣♧★☆✓✗♪☀☾✿❦❧⁂⁓✎✂"
 LIGATURES = ["ff", "fi", "fl", "ffi", "ffl", "th", "ch", "sh", "st", "ct",
-             "ck", "qu", "tt", "ll", "ss", "ee", "oo", "ft"]
+             "ck", "qu", "tt", "ll", "ss", "ee", "oo", "ft",
+             "al", "el", "ol", "ul", "yl", "li", "to", "ca", "am"]
 
 PICK_NOTE = ("write each character 3x, then FILL IN the circle above every "
              "version you like - versions left unfilled are discarded")
