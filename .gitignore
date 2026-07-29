@@ -3,13 +3,8 @@ scans/
 __pycache__/
 _master-*.ttf
 
-# Generated template sheets (PDF + layout JSON) - regenerate locally with
-# `python3 make_guide.py && python3 make_template.py`. Not committed: dozens
-# of language modules x paper/size variants adds up to hundreds of MB.
-templates/*.pdf
-templates/*.json
-templates/*.png
-templates/**/*.pdf
-templates/**/*.json
-templates/**/*.png
-!templates/.gitkeep
+# Generated capture sheets. The recommended "book" size is committed for both
+# papers, together with every layout JSON, so anyone can print and scan
+# without running Python. The bulky "normal" (portrait) PDFs are not - they
+# are one command away:  python3 make_template.py --size normal
+templates/handwriting-*-normal.pdf

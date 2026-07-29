@@ -17,7 +17,7 @@ Print a sheet, write on it, scan it, run one command.
 ```bash
 pip install -r requirements.txt        # plus: apt install potrace
 
-# 1. make your sheets (pick the modules you want)
+# 1. grab your sheets from templates/ (already generated), or make your own:
 python3 make_template.py --modules english,czech --paper a4 --size book
 
 # 2. print at 100%, write, scan flat at 600 DPI
@@ -128,7 +128,10 @@ python3 build_font.py --cells work/cells --out my.ttf --adjust-file tweaks.json
   --modules english --outdir templates/v5`
 - Use **one pen** for everything (≥0.5 mm, black). Light and Bold are
   computed, so you never write thick and thin versions.
-- Generated PDFs aren't committed — run `make_template.py` to get them.
+- **Sheets are in `templates/`** — the recommended `book` size is committed
+  for A4 and Letter, plus every layout JSON, so you can print and scan
+  without running Python. The portrait `normal` size is one command away:
+  `python3 make_template.py --size normal`.
 - A font can't reproduce ink exactly; it reuses shapes. Alternates and
   ligatures are what buy back the hand-drawn feel — use them.
 

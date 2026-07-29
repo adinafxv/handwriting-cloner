@@ -1,0 +1,1871 @@
+{
+ "version": 6,
+ "dpi": 300,
+ "paper": "letter",
+ "size_mode": "book",
+ "module": "french",
+ "guide_gray": 185,
+ "baseline_frac": 0.75,
+ "xheight_frac": 0.4,
+ "pages": [
+  {
+   "page": 1,
+   "size": [
+    3300,
+    2550
+   ],
+   "reg_marks": [
+    [
+     165,
+     165
+    ],
+    [
+     3135,
+     165
+    ],
+    [
+     165,
+     2385
+    ],
+    [
+     3135,
+     2385
+    ]
+   ],
+   "mark_px": 54,
+   "id_dot_slots": [
+    [
+     255,
+     165
+    ]
+   ],
+   "id_dot_px": 21,
+   "cells": [
+    {
+     "text": "\u00e0",
+     "glyph": "agrave.cand1",
+     "base": "agrave",
+     "cand": 1,
+     "box": [
+      138,
+      411,
+      248,
+      561
+     ],
+     "check": [
+      227,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e0",
+     "glyph": "agrave.cand2",
+     "base": "agrave",
+     "cand": 2,
+     "box": [
+      257,
+      411,
+      367,
+      561
+     ],
+     "check": [
+      346,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e0",
+     "glyph": "agrave.cand3",
+     "base": "agrave",
+     "cand": 3,
+     "box": [
+      376,
+      411,
+      486,
+      561
+     ],
+     "check": [
+      465,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e2",
+     "glyph": "acircumflex.cand1",
+     "base": "acircumflex",
+     "cand": 1,
+     "box": [
+      495,
+      411,
+      605,
+      561
+     ],
+     "check": [
+      584,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e2",
+     "glyph": "acircumflex.cand2",
+     "base": "acircumflex",
+     "cand": 2,
+     "box": [
+      614,
+      411,
+      724,
+      561
+     ],
+     "check": [
+      703,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e2",
+     "glyph": "acircumflex.cand3",
+     "base": "acircumflex",
+     "cand": 3,
+     "box": [
+      733,
+      411,
+      843,
+      561
+     ],
+     "check": [
+      822,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e7",
+     "glyph": "ccedilla.cand1",
+     "base": "ccedilla",
+     "cand": 1,
+     "box": [
+      852,
+      411,
+      962,
+      561
+     ],
+     "check": [
+      941,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e7",
+     "glyph": "ccedilla.cand2",
+     "base": "ccedilla",
+     "cand": 2,
+     "box": [
+      971,
+      411,
+      1081,
+      561
+     ],
+     "check": [
+      1060,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e7",
+     "glyph": "ccedilla.cand3",
+     "base": "ccedilla",
+     "cand": 3,
+     "box": [
+      1090,
+      411,
+      1200,
+      561
+     ],
+     "check": [
+      1179,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e9",
+     "glyph": "eacute.cand1",
+     "base": "eacute",
+     "cand": 1,
+     "box": [
+      1209,
+      411,
+      1319,
+      561
+     ],
+     "check": [
+      1298,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e9",
+     "glyph": "eacute.cand2",
+     "base": "eacute",
+     "cand": 2,
+     "box": [
+      1328,
+      411,
+      1438,
+      561
+     ],
+     "check": [
+      1417,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e9",
+     "glyph": "eacute.cand3",
+     "base": "eacute",
+     "cand": 3,
+     "box": [
+      1447,
+      411,
+      1557,
+      561
+     ],
+     "check": [
+      1536,
+      372,
+      15
+     ],
+     "baseline_y": 523,
+     "xheight_y": 471
+    },
+    {
+     "text": "\u00e8",
+     "glyph": "egrave.cand1",
+     "base": "egrave",
+     "cand": 1,
+     "box": [
+      138,
+      645,
+      248,
+      795
+     ],
+     "check": [
+      227,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00e8",
+     "glyph": "egrave.cand2",
+     "base": "egrave",
+     "cand": 2,
+     "box": [
+      257,
+      645,
+      367,
+      795
+     ],
+     "check": [
+      346,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00e8",
+     "glyph": "egrave.cand3",
+     "base": "egrave",
+     "cand": 3,
+     "box": [
+      376,
+      645,
+      486,
+      795
+     ],
+     "check": [
+      465,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00ea",
+     "glyph": "ecircumflex.cand1",
+     "base": "ecircumflex",
+     "cand": 1,
+     "box": [
+      495,
+      645,
+      605,
+      795
+     ],
+     "check": [
+      584,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00ea",
+     "glyph": "ecircumflex.cand2",
+     "base": "ecircumflex",
+     "cand": 2,
+     "box": [
+      614,
+      645,
+      724,
+      795
+     ],
+     "check": [
+      703,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00ea",
+     "glyph": "ecircumflex.cand3",
+     "base": "ecircumflex",
+     "cand": 3,
+     "box": [
+      733,
+      645,
+      843,
+      795
+     ],
+     "check": [
+      822,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00eb",
+     "glyph": "edieresis.cand1",
+     "base": "edieresis",
+     "cand": 1,
+     "box": [
+      852,
+      645,
+      962,
+      795
+     ],
+     "check": [
+      941,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00eb",
+     "glyph": "edieresis.cand2",
+     "base": "edieresis",
+     "cand": 2,
+     "box": [
+      971,
+      645,
+      1081,
+      795
+     ],
+     "check": [
+      1060,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00eb",
+     "glyph": "edieresis.cand3",
+     "base": "edieresis",
+     "cand": 3,
+     "box": [
+      1090,
+      645,
+      1200,
+      795
+     ],
+     "check": [
+      1179,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00ee",
+     "glyph": "icircumflex.cand1",
+     "base": "icircumflex",
+     "cand": 1,
+     "box": [
+      1209,
+      645,
+      1319,
+      795
+     ],
+     "check": [
+      1298,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00ee",
+     "glyph": "icircumflex.cand2",
+     "base": "icircumflex",
+     "cand": 2,
+     "box": [
+      1328,
+      645,
+      1438,
+      795
+     ],
+     "check": [
+      1417,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00ee",
+     "glyph": "icircumflex.cand3",
+     "base": "icircumflex",
+     "cand": 3,
+     "box": [
+      1447,
+      645,
+      1557,
+      795
+     ],
+     "check": [
+      1536,
+      606,
+      15
+     ],
+     "baseline_y": 757,
+     "xheight_y": 705
+    },
+    {
+     "text": "\u00ef",
+     "glyph": "idieresis.cand1",
+     "base": "idieresis",
+     "cand": 1,
+     "box": [
+      138,
+      879,
+      248,
+      1029
+     ],
+     "check": [
+      227,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00ef",
+     "glyph": "idieresis.cand2",
+     "base": "idieresis",
+     "cand": 2,
+     "box": [
+      257,
+      879,
+      367,
+      1029
+     ],
+     "check": [
+      346,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00ef",
+     "glyph": "idieresis.cand3",
+     "base": "idieresis",
+     "cand": 3,
+     "box": [
+      376,
+      879,
+      486,
+      1029
+     ],
+     "check": [
+      465,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00f4",
+     "glyph": "ocircumflex.cand1",
+     "base": "ocircumflex",
+     "cand": 1,
+     "box": [
+      495,
+      879,
+      605,
+      1029
+     ],
+     "check": [
+      584,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00f4",
+     "glyph": "ocircumflex.cand2",
+     "base": "ocircumflex",
+     "cand": 2,
+     "box": [
+      614,
+      879,
+      724,
+      1029
+     ],
+     "check": [
+      703,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00f4",
+     "glyph": "ocircumflex.cand3",
+     "base": "ocircumflex",
+     "cand": 3,
+     "box": [
+      733,
+      879,
+      843,
+      1029
+     ],
+     "check": [
+      822,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00f9",
+     "glyph": "ugrave.cand1",
+     "base": "ugrave",
+     "cand": 1,
+     "box": [
+      852,
+      879,
+      962,
+      1029
+     ],
+     "check": [
+      941,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00f9",
+     "glyph": "ugrave.cand2",
+     "base": "ugrave",
+     "cand": 2,
+     "box": [
+      971,
+      879,
+      1081,
+      1029
+     ],
+     "check": [
+      1060,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00f9",
+     "glyph": "ugrave.cand3",
+     "base": "ugrave",
+     "cand": 3,
+     "box": [
+      1090,
+      879,
+      1200,
+      1029
+     ],
+     "check": [
+      1179,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00fb",
+     "glyph": "ucircumflex.cand1",
+     "base": "ucircumflex",
+     "cand": 1,
+     "box": [
+      1209,
+      879,
+      1319,
+      1029
+     ],
+     "check": [
+      1298,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00fb",
+     "glyph": "ucircumflex.cand2",
+     "base": "ucircumflex",
+     "cand": 2,
+     "box": [
+      1328,
+      879,
+      1438,
+      1029
+     ],
+     "check": [
+      1417,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00fb",
+     "glyph": "ucircumflex.cand3",
+     "base": "ucircumflex",
+     "cand": 3,
+     "box": [
+      1447,
+      879,
+      1557,
+      1029
+     ],
+     "check": [
+      1536,
+      840,
+      15
+     ],
+     "baseline_y": 991,
+     "xheight_y": 939
+    },
+    {
+     "text": "\u00fc",
+     "glyph": "udieresis.cand1",
+     "base": "udieresis",
+     "cand": 1,
+     "box": [
+      138,
+      1113,
+      248,
+      1263
+     ],
+     "check": [
+      227,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00fc",
+     "glyph": "udieresis.cand2",
+     "base": "udieresis",
+     "cand": 2,
+     "box": [
+      257,
+      1113,
+      367,
+      1263
+     ],
+     "check": [
+      346,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00fc",
+     "glyph": "udieresis.cand3",
+     "base": "udieresis",
+     "cand": 3,
+     "box": [
+      376,
+      1113,
+      486,
+      1263
+     ],
+     "check": [
+      465,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00ff",
+     "glyph": "ydieresis.cand1",
+     "base": "ydieresis",
+     "cand": 1,
+     "box": [
+      495,
+      1113,
+      605,
+      1263
+     ],
+     "check": [
+      584,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00ff",
+     "glyph": "ydieresis.cand2",
+     "base": "ydieresis",
+     "cand": 2,
+     "box": [
+      614,
+      1113,
+      724,
+      1263
+     ],
+     "check": [
+      703,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00ff",
+     "glyph": "ydieresis.cand3",
+     "base": "ydieresis",
+     "cand": 3,
+     "box": [
+      733,
+      1113,
+      843,
+      1263
+     ],
+     "check": [
+      822,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u0153",
+     "glyph": "oe.cand1",
+     "base": "oe",
+     "cand": 1,
+     "box": [
+      852,
+      1113,
+      962,
+      1263
+     ],
+     "check": [
+      941,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u0153",
+     "glyph": "oe.cand2",
+     "base": "oe",
+     "cand": 2,
+     "box": [
+      971,
+      1113,
+      1081,
+      1263
+     ],
+     "check": [
+      1060,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u0153",
+     "glyph": "oe.cand3",
+     "base": "oe",
+     "cand": 3,
+     "box": [
+      1090,
+      1113,
+      1200,
+      1263
+     ],
+     "check": [
+      1179,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00e6",
+     "glyph": "ae.cand1",
+     "base": "ae",
+     "cand": 1,
+     "box": [
+      1209,
+      1113,
+      1319,
+      1263
+     ],
+     "check": [
+      1298,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00e6",
+     "glyph": "ae.cand2",
+     "base": "ae",
+     "cand": 2,
+     "box": [
+      1328,
+      1113,
+      1438,
+      1263
+     ],
+     "check": [
+      1417,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00e6",
+     "glyph": "ae.cand3",
+     "base": "ae",
+     "cand": 3,
+     "box": [
+      1447,
+      1113,
+      1557,
+      1263
+     ],
+     "check": [
+      1536,
+      1074,
+      15
+     ],
+     "baseline_y": 1225,
+     "xheight_y": 1173
+    },
+    {
+     "text": "\u00c0",
+     "glyph": "Agrave.cand1",
+     "base": "Agrave",
+     "cand": 1,
+     "box": [
+      138,
+      1347,
+      248,
+      1497
+     ],
+     "check": [
+      227,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c0",
+     "glyph": "Agrave.cand2",
+     "base": "Agrave",
+     "cand": 2,
+     "box": [
+      257,
+      1347,
+      367,
+      1497
+     ],
+     "check": [
+      346,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c0",
+     "glyph": "Agrave.cand3",
+     "base": "Agrave",
+     "cand": 3,
+     "box": [
+      376,
+      1347,
+      486,
+      1497
+     ],
+     "check": [
+      465,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c2",
+     "glyph": "Acircumflex.cand1",
+     "base": "Acircumflex",
+     "cand": 1,
+     "box": [
+      495,
+      1347,
+      605,
+      1497
+     ],
+     "check": [
+      584,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c2",
+     "glyph": "Acircumflex.cand2",
+     "base": "Acircumflex",
+     "cand": 2,
+     "box": [
+      614,
+      1347,
+      724,
+      1497
+     ],
+     "check": [
+      703,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c2",
+     "glyph": "Acircumflex.cand3",
+     "base": "Acircumflex",
+     "cand": 3,
+     "box": [
+      733,
+      1347,
+      843,
+      1497
+     ],
+     "check": [
+      822,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c7",
+     "glyph": "Ccedilla.cand1",
+     "base": "Ccedilla",
+     "cand": 1,
+     "box": [
+      852,
+      1347,
+      962,
+      1497
+     ],
+     "check": [
+      941,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c7",
+     "glyph": "Ccedilla.cand2",
+     "base": "Ccedilla",
+     "cand": 2,
+     "box": [
+      971,
+      1347,
+      1081,
+      1497
+     ],
+     "check": [
+      1060,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c7",
+     "glyph": "Ccedilla.cand3",
+     "base": "Ccedilla",
+     "cand": 3,
+     "box": [
+      1090,
+      1347,
+      1200,
+      1497
+     ],
+     "check": [
+      1179,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c9",
+     "glyph": "Eacute.cand1",
+     "base": "Eacute",
+     "cand": 1,
+     "box": [
+      1209,
+      1347,
+      1319,
+      1497
+     ],
+     "check": [
+      1298,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c9",
+     "glyph": "Eacute.cand2",
+     "base": "Eacute",
+     "cand": 2,
+     "box": [
+      1328,
+      1347,
+      1438,
+      1497
+     ],
+     "check": [
+      1417,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c9",
+     "glyph": "Eacute.cand3",
+     "base": "Eacute",
+     "cand": 3,
+     "box": [
+      1447,
+      1347,
+      1557,
+      1497
+     ],
+     "check": [
+      1536,
+      1308,
+      15
+     ],
+     "baseline_y": 1459,
+     "xheight_y": 1407
+    },
+    {
+     "text": "\u00c8",
+     "glyph": "Egrave.cand1",
+     "base": "Egrave",
+     "cand": 1,
+     "box": [
+      138,
+      1581,
+      248,
+      1731
+     ],
+     "check": [
+      227,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00c8",
+     "glyph": "Egrave.cand2",
+     "base": "Egrave",
+     "cand": 2,
+     "box": [
+      257,
+      1581,
+      367,
+      1731
+     ],
+     "check": [
+      346,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00c8",
+     "glyph": "Egrave.cand3",
+     "base": "Egrave",
+     "cand": 3,
+     "box": [
+      376,
+      1581,
+      486,
+      1731
+     ],
+     "check": [
+      465,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00ca",
+     "glyph": "Ecircumflex.cand1",
+     "base": "Ecircumflex",
+     "cand": 1,
+     "box": [
+      495,
+      1581,
+      605,
+      1731
+     ],
+     "check": [
+      584,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00ca",
+     "glyph": "Ecircumflex.cand2",
+     "base": "Ecircumflex",
+     "cand": 2,
+     "box": [
+      614,
+      1581,
+      724,
+      1731
+     ],
+     "check": [
+      703,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00ca",
+     "glyph": "Ecircumflex.cand3",
+     "base": "Ecircumflex",
+     "cand": 3,
+     "box": [
+      733,
+      1581,
+      843,
+      1731
+     ],
+     "check": [
+      822,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00cb",
+     "glyph": "Edieresis.cand1",
+     "base": "Edieresis",
+     "cand": 1,
+     "box": [
+      852,
+      1581,
+      962,
+      1731
+     ],
+     "check": [
+      941,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00cb",
+     "glyph": "Edieresis.cand2",
+     "base": "Edieresis",
+     "cand": 2,
+     "box": [
+      971,
+      1581,
+      1081,
+      1731
+     ],
+     "check": [
+      1060,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00cb",
+     "glyph": "Edieresis.cand3",
+     "base": "Edieresis",
+     "cand": 3,
+     "box": [
+      1090,
+      1581,
+      1200,
+      1731
+     ],
+     "check": [
+      1179,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00ce",
+     "glyph": "Icircumflex.cand1",
+     "base": "Icircumflex",
+     "cand": 1,
+     "box": [
+      1209,
+      1581,
+      1319,
+      1731
+     ],
+     "check": [
+      1298,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00ce",
+     "glyph": "Icircumflex.cand2",
+     "base": "Icircumflex",
+     "cand": 2,
+     "box": [
+      1328,
+      1581,
+      1438,
+      1731
+     ],
+     "check": [
+      1417,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00ce",
+     "glyph": "Icircumflex.cand3",
+     "base": "Icircumflex",
+     "cand": 3,
+     "box": [
+      1447,
+      1581,
+      1557,
+      1731
+     ],
+     "check": [
+      1536,
+      1542,
+      15
+     ],
+     "baseline_y": 1693,
+     "xheight_y": 1641
+    },
+    {
+     "text": "\u00cf",
+     "glyph": "Idieresis.cand1",
+     "base": "Idieresis",
+     "cand": 1,
+     "box": [
+      138,
+      1815,
+      248,
+      1965
+     ],
+     "check": [
+      227,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00cf",
+     "glyph": "Idieresis.cand2",
+     "base": "Idieresis",
+     "cand": 2,
+     "box": [
+      257,
+      1815,
+      367,
+      1965
+     ],
+     "check": [
+      346,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00cf",
+     "glyph": "Idieresis.cand3",
+     "base": "Idieresis",
+     "cand": 3,
+     "box": [
+      376,
+      1815,
+      486,
+      1965
+     ],
+     "check": [
+      465,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00d4",
+     "glyph": "Ocircumflex.cand1",
+     "base": "Ocircumflex",
+     "cand": 1,
+     "box": [
+      495,
+      1815,
+      605,
+      1965
+     ],
+     "check": [
+      584,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00d4",
+     "glyph": "Ocircumflex.cand2",
+     "base": "Ocircumflex",
+     "cand": 2,
+     "box": [
+      614,
+      1815,
+      724,
+      1965
+     ],
+     "check": [
+      703,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00d4",
+     "glyph": "Ocircumflex.cand3",
+     "base": "Ocircumflex",
+     "cand": 3,
+     "box": [
+      733,
+      1815,
+      843,
+      1965
+     ],
+     "check": [
+      822,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00d9",
+     "glyph": "Ugrave.cand1",
+     "base": "Ugrave",
+     "cand": 1,
+     "box": [
+      852,
+      1815,
+      962,
+      1965
+     ],
+     "check": [
+      941,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00d9",
+     "glyph": "Ugrave.cand2",
+     "base": "Ugrave",
+     "cand": 2,
+     "box": [
+      971,
+      1815,
+      1081,
+      1965
+     ],
+     "check": [
+      1060,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00d9",
+     "glyph": "Ugrave.cand3",
+     "base": "Ugrave",
+     "cand": 3,
+     "box": [
+      1090,
+      1815,
+      1200,
+      1965
+     ],
+     "check": [
+      1179,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00db",
+     "glyph": "Ucircumflex.cand1",
+     "base": "Ucircumflex",
+     "cand": 1,
+     "box": [
+      1209,
+      1815,
+      1319,
+      1965
+     ],
+     "check": [
+      1298,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00db",
+     "glyph": "Ucircumflex.cand2",
+     "base": "Ucircumflex",
+     "cand": 2,
+     "box": [
+      1328,
+      1815,
+      1438,
+      1965
+     ],
+     "check": [
+      1417,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00db",
+     "glyph": "Ucircumflex.cand3",
+     "base": "Ucircumflex",
+     "cand": 3,
+     "box": [
+      1447,
+      1815,
+      1557,
+      1965
+     ],
+     "check": [
+      1536,
+      1776,
+      15
+     ],
+     "baseline_y": 1927,
+     "xheight_y": 1875
+    },
+    {
+     "text": "\u00dc",
+     "glyph": "Udieresis.cand1",
+     "base": "Udieresis",
+     "cand": 1,
+     "box": [
+      138,
+      2049,
+      248,
+      2199
+     ],
+     "check": [
+      227,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u00dc",
+     "glyph": "Udieresis.cand2",
+     "base": "Udieresis",
+     "cand": 2,
+     "box": [
+      257,
+      2049,
+      367,
+      2199
+     ],
+     "check": [
+      346,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u00dc",
+     "glyph": "Udieresis.cand3",
+     "base": "Udieresis",
+     "cand": 3,
+     "box": [
+      376,
+      2049,
+      486,
+      2199
+     ],
+     "check": [
+      465,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u0178",
+     "glyph": "Ydieresis.cand1",
+     "base": "Ydieresis",
+     "cand": 1,
+     "box": [
+      495,
+      2049,
+      605,
+      2199
+     ],
+     "check": [
+      584,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u0178",
+     "glyph": "Ydieresis.cand2",
+     "base": "Ydieresis",
+     "cand": 2,
+     "box": [
+      614,
+      2049,
+      724,
+      2199
+     ],
+     "check": [
+      703,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u0178",
+     "glyph": "Ydieresis.cand3",
+     "base": "Ydieresis",
+     "cand": 3,
+     "box": [
+      733,
+      2049,
+      843,
+      2199
+     ],
+     "check": [
+      822,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u0152",
+     "glyph": "OE.cand1",
+     "base": "OE",
+     "cand": 1,
+     "box": [
+      852,
+      2049,
+      962,
+      2199
+     ],
+     "check": [
+      941,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u0152",
+     "glyph": "OE.cand2",
+     "base": "OE",
+     "cand": 2,
+     "box": [
+      971,
+      2049,
+      1081,
+      2199
+     ],
+     "check": [
+      1060,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u0152",
+     "glyph": "OE.cand3",
+     "base": "OE",
+     "cand": 3,
+     "box": [
+      1090,
+      2049,
+      1200,
+      2199
+     ],
+     "check": [
+      1179,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u00c6",
+     "glyph": "AE.cand1",
+     "base": "AE",
+     "cand": 1,
+     "box": [
+      1209,
+      2049,
+      1319,
+      2199
+     ],
+     "check": [
+      1298,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u00c6",
+     "glyph": "AE.cand2",
+     "base": "AE",
+     "cand": 2,
+     "box": [
+      1328,
+      2049,
+      1438,
+      2199
+     ],
+     "check": [
+      1417,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    },
+    {
+     "text": "\u00c6",
+     "glyph": "AE.cand3",
+     "base": "AE",
+     "cand": 3,
+     "box": [
+      1447,
+      2049,
+      1557,
+      2199
+     ],
+     "check": [
+      1536,
+      2010,
+      15
+     ],
+     "baseline_y": 2161,
+     "xheight_y": 2109
+    }
+   ]
+  }
+ ]
+}
