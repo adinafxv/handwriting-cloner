@@ -98,6 +98,8 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 | repeated letters look doubled/ghosted | alternates are height-matched by default (`--no-even-alternates` to disable) |
 | an alternate looks like a different letter | lower `--alt-tolerance` (0.18 default) |
 | arrows, dashes, @ & ( ) sit wrong | `--center-symbols` places them from their own ink |
+| quotes float above the words | hung from the ascender line by default |
+| no € on the base sheet | one is synthesised from your C + hyphen until you scan `symbols` |
 | a descender comes back cut off | write the tail inside the box; clipped versions are auto-demoted |
 | two letters merge | lower `--max-tuck` |
 | gap after ď, ť, Ó | accents overhang by default (`--no-accent-overhang` to disable) |

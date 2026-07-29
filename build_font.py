@@ -102,6 +102,7 @@ CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—")
 # straddle it. Written freehand these drift wherever the pen started, so they
 # float in running text; place them from their own ink instead.
 BASELINE_PUNCT = set("&@$%#?!")
+HANG_PUNCT = set("'\"`")   # hang from the ascender line, not float above it
 BRACKETS = set("()[]{}")
 BRACKET_DROP = 0.09   # share of the bracket's height that sits below baseline
 AT_DROP = 0.09        # @ dips slightly below the line
@@ -250,7 +251,7 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
                 snap_baseline=False, glyph_scale=1.0,
                 center_symbols=False, extra_scale=1.0, dy=0.0,
                 math_axis=None, accent_overhang=True,
-                target_stroke=None):
+                target_stroke=None, quote_top=None):
     """Return (TTGlyph, advance_width, lsb, profiles) or None if cell empty."""
     gray = np.asarray(Image.open(cell_png).convert("L"))
     ink = gray < threshold
@@ -328,6 +329,11 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
                  and not is_descender(text))
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
+    elif center_symbols and text in HANG_PUNCT and quote_top:
+        # top of the ink sits AT the ascender line; freehand quotes drift far
+        # above it (measured: apostrophe topping out 160 units over the
+        # tallest ascender, reading as detached from the word)
+        baseline_in_crop = quote_top / scale + pad
     elif center_symbols and text in BASELINE_PUNCT:
         drop = AT_DROP if text == "@" else 0.0
         baseline_in_crop = (y1 - 1 - y0) + pad - drop * (y1 - 1 - y0)
@@ -392,6 +398,9 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                      if letter_strokes and even_weight else None)
     norm, target_x = normalization(heights, normalize) if normalize else ({}, None)
     math_axis = target_x / 2.0 if target_x else None
+    asc_heights = [heights[c] for c in ASCENDER_LETTERS if c in heights]
+    quote_top = (sorted(asc_heights)[len(asc_heights) // 2]
+                 if asc_heights else None)
     if norm:
         worst = sorted(norm.items(), key=lambda kv: -abs(kv[1] - 1))[:4]
         print("  evened out letter sizes: " +
@@ -507,7 +516,8 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                             dy=tweak.get("dy", 0.0),
                             math_axis=math_axis,
                             accent_overhang=accent_overhang,
-                            target_stroke=target_stroke)
+                            target_stroke=target_stroke,
+                            quote_top=quote_top)
             if r is not None:
                 results.append(r)
         if not results:
@@ -549,6 +559,22 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                        (0x00A0, "space"), (0x2212, "hyphen")):
         if cp not in cmap and target in glyphs:
             cmap[cp] = target
+
+    # No euro on the base keyboard sheet (it lives in the "symbols" module).
+    # Until that sheet is scanned, synthesise one from this hand's own parts:
+    # the C, crossed by two bars made from the hyphen. Replaced automatically
+    # by the real drawing the moment a symbols scan provides one.
+    if 0x20AC not in cmap and "C" in glyphs and "hyphen" in glyphs:
+        pen = TTGlyphPen(glyphs)
+        pen.addComponent("C", (1, 0, 0, 1, 60, 0))
+        hb = 0.55
+        for dy in (120, 255):
+            pen.addComponent("hyphen", (hb, 0, 0, 0.75, 0, dy))
+        glyphs["Euro"] = pen.glyph()
+        metrics["Euro"] = (metrics["C"][0] + 60, metrics["C"][1])
+        cmap[0x20AC] = "Euro"
+        print("  synthesised a Euro from C + hyphen (scan the symbols "
+              "sheet to replace it with your real one)")
 
     order = [".notdef", "space"] + sorted(n for n in glyphs if n not in (".notdef", "space"))
     fb = FontBuilder(UPM, isTTF=True)
