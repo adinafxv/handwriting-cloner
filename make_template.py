@@ -72,8 +72,9 @@ PAPER_SIZES_IN = {"a4": (8.27, 11.69), "letter": (8.5, 11.0)}
 #  back down snug against the box.
 #  v6 restored real clearance between the fill circle and the box - a filled
 #  circle was bleeding into the cropped cell and showing up as a speck over
-#  the letter.)
-LAYOUT_VERSION = 6
+#  the letter.
+#  v7 narrowed ligature boxes to ~2x a letter box.)
+LAYOUT_VERSION = 7
 
 # Grayscale values (0 = black). Guides must survive printing but die at the
 # binarization threshold used by build_font.py (default 110).
@@ -102,7 +103,7 @@ CANDIDATES = 3
 SIZE_PARAMS = {
     "normal": {"box_h": 1.05, "label_h": 0.28, "row_gap": 0.10, "col_gap": 0.10,
                "label_font": 0.11, "char_font": 0.17, "check_r": 0.06,
-               "cols": {"letters": 9, "symbols": 6, "ligatures": 3}},
+               "cols": {"letters": 9, "symbols": 6, "ligatures": 6}},
     # "book": A4/letter turned landscape, split into a left and a right half
     # that fill like the two pages of an open notebook (left page top-to-
     # bottom first, then the right page). cols are PER HALF. Letters use
@@ -110,7 +111,7 @@ SIZE_PARAMS = {
     # stay at 9/half so the wide typographic glyphs still fit.
     "book": {"box_h": 0.50, "label_h": 0.22, "row_gap": 0.06, "col_gap": 0.03,
              "label_font": 0.085, "char_font": 0.13, "check_r": 0.05,
-             "cols": {"letters": 12, "symbols": 9, "ligatures": 3},
+             "cols": {"letters": 12, "symbols": 9, "ligatures": 6},
              "gutter": 0.55},
 }
 
