@@ -73,8 +73,9 @@ PAPER_SIZES_IN = {"a4": (8.27, 11.69), "letter": (8.5, 11.0)}
 #  v6 restored real clearance between the fill circle and the box - a filled
 #  circle was bleeding into the cropped cell and showing up as a speck over
 #  the letter.
-#  v7 narrowed ligature boxes to ~2x a letter box.)
-LAYOUT_VERSION = 7
+#  v7 narrowed ligature boxes to ~2x a letter box.
+#  v8 added Celsius/Fahrenheit signs to the symbols module.)
+LAYOUT_VERSION = 8
 
 # Grayscale values (0 = black). Guides must survive printing but die at the
 # binarization threshold used by build_font.py (default 110).
@@ -230,7 +231,7 @@ LANGUAGE_SETS = {
 # precomposed base+tone-mark characters, which doesn't fit this module's
 # one-page-ish add-on shape - it would need a bespoke multi-page treatment.
 
-SYMBOLS_TYPO = "„“”‘’‚«»‹›–—…•°§¡¿€£¥¢©®™"
+SYMBOLS_TYPO = "„“”‘’‚«»‹›–—…•°℃℉§¡¿€£¥¢©®™"
 MATH = "×÷−±≈≠≤≥"
 FUN = "←→↑↓↔☞☜☝☟☺☹♥♡♠♤♦♢♣♧★☆✓✗♪☀☾✿❦❧⁂⁓✎✂"
 LIGATURES = ["ff", "fi", "fl", "ffi", "ffl", "th", "ch", "sh", "st", "ct",
