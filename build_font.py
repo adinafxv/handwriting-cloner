@@ -330,10 +330,13 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
     elif center_symbols and text in HANG_PUNCT and quote_top:
-        # top of the ink sits AT the ascender line; freehand quotes drift far
-        # above it (measured: apostrophe topping out 160 units over the
-        # tallest ascender, reading as detached from the word)
-        baseline_in_crop = quote_top / scale + pad
+        # Hang the quote so its BOTTOM ends just above the small letters.
+        # Anchoring the top to the ascender line still reads detached in this
+        # hand, whose ascenders run 2.2x the x-height - the gap between an
+        # apostrophe and the word below it is what the eye measures, so that
+        # gap is what gets pinned (bottom at ~1.05x the x-height).
+        ink_h = (y1 - 1 - y0)
+        baseline_in_crop = ink_h + pad + quote_top / scale
     elif center_symbols and text in BASELINE_PUNCT:
         drop = AT_DROP if text == "@" else 0.0
         baseline_in_crop = (y1 - 1 - y0) + pad - drop * (y1 - 1 - y0)
@@ -398,9 +401,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                      if letter_strokes and even_weight else None)
     norm, target_x = normalization(heights, normalize) if normalize else ({}, None)
     math_axis = target_x / 2.0 if target_x else None
-    asc_heights = [heights[c] for c in ASCENDER_LETTERS if c in heights]
-    quote_top = (sorted(asc_heights)[len(asc_heights) // 2]
-                 if asc_heights else None)
+    quote_top = target_x * 1.05 if target_x else None   # quote-bottom anchor
     if norm:
         worst = sorted(norm.items(), key=lambda kv: -abs(kv[1] - 1))[:4]
         print("  evened out letter sizes: " +
