@@ -96,12 +96,12 @@ def is_descender(ch):
 # Written freehand, arrows and operators drift high or low and then look
 # misaligned in running text; centring them is what a type designer does.
 MATH_AXIS = 175  # font units above the baseline
-CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—")
+CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—∞")
 
 # Punctuation that stands on the baseline like a letter, and brackets that
 # straddle it. Written freehand these drift wherever the pen started, so they
 # float in running text; place them from their own ink instead.
-BASELINE_PUNCT = set("&@$%#?!")
+BASELINE_PUNCT = set("&@$%#?!√∅∑")
 HANG_PUNCT = set("'\"`")   # hang from the ascender line, not float above it
 BRACKETS = set("()[]{}")
 BRACKET_DROP = 0.09   # share of the bracket's height that sits below baseline
@@ -142,7 +142,7 @@ def measure_cells(cells_dir, threshold, glyph_scale, snap_baseline=False):
         if len(xs) == 0:
             continue
         scale = UPM / meta["box_h"] * glyph_scale
-        snapped = (snap_baseline and (text.isalpha() or text.isdigit())
+        snapped = (snap_baseline and (text.isalpha() or text in "0123456789")
                    and not is_descender(text))
         if snapped:
             height = (ys.max() - ys.min()) * scale        # sits on its own ink
@@ -196,7 +196,7 @@ def cell_height(png, threshold, glyph_scale, snap_baseline):
     scale = UPM / meta["box_h"] * glyph_scale
     text = meta.get("text", "")
     snapped = (snap_baseline and len(text) == 1
-               and (text.isalpha() or text.isdigit())
+               and (text.isalpha() or text in "0123456789")
                and not is_descender(text))
     if snapped:
         return (ys.max() - ys.min()) * scale
@@ -325,7 +325,9 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     # for descenders (they belong below the line) and for anything that isn't a
     # single letter/digit (punctuation, symbols, ligatures sit by design).
     text = meta.get("text", "")
-    snappable = (len(text) == 1 and (text.isalpha() or text.isdigit())
+    # NOTE: '²'.isdigit() is True in Python - superscripts must keep their
+    # written height, so only ASCII digits count as snappable digits here.
+    snappable = (len(text) == 1 and (text.isalpha() or text in "0123456789")
                  and not is_descender(text))
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
