@@ -15,8 +15,8 @@ only print what you want:
                slovak but not polish" just works; uppercase is derived
                automatically via with_upper() (handles ß, dotless i,
                final sigma, etc. - see its docstring)
-    extras     symbols (typographic extras), math, fun (optional extras),
-               ligatures (joined letter pairs), small-caps
+    extras     symbols (typographic extras + math signs), fun (optional
+               extras), ligatures (joined letter pairs), small-caps
 
 Every character appears in THREE boxes in a row, each with a small circle
 above it. Write the character three times, then FILL IN the circle above
@@ -74,8 +74,10 @@ PAPER_SIZES_IN = {"a4": (8.27, 11.69), "letter": (8.5, 11.0)}
 #  circle was bleeding into the cropped cell and showing up as a speck over
 #  the letter.
 #  v7 narrowed ligature boxes to ~2x a letter box.
-#  v8 added Celsius/Fahrenheit signs to the symbols module.)
-LAYOUT_VERSION = 8
+#  v8 added Celsius/Fahrenheit signs to the symbols module.
+#  v9 merged the math signs (plus superscripts/root/infinity/empty-set/pi/
+#  sum) into the symbols sheet.)
+LAYOUT_VERSION = 9
 
 # Grayscale values (0 = black). Guides must survive printing but die at the
 # binarization threshold used by build_font.py (default 110).
@@ -232,7 +234,7 @@ LANGUAGE_SETS = {
 # one-page-ish add-on shape - it would need a bespoke multi-page treatment.
 
 SYMBOLS_TYPO = "„“”‘’‚«»‹›–—…•°℃℉§¡¿€£¥¢©®™"
-MATH = "×÷−±≈≠≤≥"
+MATH = "×÷−±≈≠≤≥²³√∞∅π∑"
 FUN = "←→↑↓↔☞☜☝☟☺☹♥♡♠♤♦♢♣♧★☆✓✗♪☀☾✿❦❧⁂⁓✎✂"
 LIGATURES = ["ff", "fi", "fl", "ffi", "ffl", "th", "ch", "sh", "st", "ct",
              "ck", "qu", "tt", "ll", "ss", "ee", "oo", "ft"]
@@ -274,7 +276,7 @@ def smallcap_cells():
 # unchanged, languages are just inserted between base and extras.
 MODULES_BASE = ["english"]
 MODULES_LANGUAGES = list(LANGUAGE_SETS.keys())
-MODULES_EXTRAS = ["symbols", "math", "fun", "ligatures", "small-caps"]
+MODULES_EXTRAS = ["symbols", "fun", "ligatures", "small-caps"]
 MODULES = MODULES_BASE + MODULES_LANGUAGES + MODULES_EXTRAS
 
 # The writing-sample page: copy each gray model line onto the guides below
@@ -313,9 +315,8 @@ def get_sets(module):
                  candidate_cells(with_upper(chars)))]
     if module == "symbols":
         return [("symbols", "typographic symbols", PICK_NOTE,
-                 candidate_cells(SYMBOLS_TYPO))]
-    if module == "math":
-        return [("symbols", "math symbols", PICK_NOTE, candidate_cells(MATH))]
+                 candidate_cells(SYMBOLS_TYPO)),
+                ("symbols", "math symbols", PICK_NOTE, candidate_cells(MATH))]
     if module == "fun":
         return [("symbols", "arrows & fun extras",
                  PICK_NOTE + " - all of these are optional",

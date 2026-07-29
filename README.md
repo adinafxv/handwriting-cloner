@@ -61,7 +61,7 @@ Print only what you need — every module is a self-contained sheet.
 | **base** | `english` — a–z, A–Z, 0–9 and every key on a US/Mac keyboard |
 | **Latin** | `czech` `slovak` `polish` `german` `french` `spanish` `portuguese` `italian` `hungarian` `romanian` `turkish` `dutch` `croatian` `slovenian` `lithuanian` `latvian` `estonian` `danish-norwegian` `swedish` `finnish` `icelandic` `welsh` `esperanto` |
 | **Greek / Cyrillic** | `greek` `ukrainian` `russian` `bulgarian` `serbian` |
-| **extras** | `symbols` (typographic) · `math` · `fun` (arrows, hearts, stars) · `ligatures` (joined pairs) · `small-caps` |
+| **extras** | `symbols` (typographic + math signs) · `fun` (arrows, hearts, stars) · `ligatures` (joined pairs) · `small-caps` |
 
 Each language module stands alone, so *english + slovak but not polish* just
 works. Add a module later, rescan, rebuild — the font grows.
