@@ -85,6 +85,15 @@ def ink_profiles(crop, scale, x_off, baseline_in_crop, dy=0.0):
 DESCENDERS = set("gjpqy")
 
 
+def snaps_to_baseline(text):
+    """Single letters/digits snap onto their ink bottom; so do LIGATURES made
+    only of non-descender letters (t_o, l_l, c_k...). A pair containing g j p
+    q y keeps its written position - its tail belongs below the line."""
+    if len(text) == 1:
+        return (text.isalpha() or text in "0123456789") and not is_descender(text)
+    return text.isalpha() and not any(c in DESCENDERS for c in text)
+
+
 def is_descender(ch):
     """True for g j p q y AND their accented forms - 'ý' is a descender just
     like 'y'. Testing the raw character would snap 'ý' onto its own tail and
@@ -96,12 +105,12 @@ def is_descender(ch):
 # Written freehand, arrows and operators drift high or low and then look
 # misaligned in running text; centring them is what a type designer does.
 MATH_AXIS = 175  # font units above the baseline
-CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—∞")
+CENTERED = set("←→↑↓↔×÷−±≈≠≤≥=+<>~-–—∞«»‹›")
 
 # Punctuation that stands on the baseline like a letter, and brackets that
 # straddle it. Written freehand these drift wherever the pen started, so they
 # float in running text; place them from their own ink instead.
-BASELINE_PUNCT = set("&@$%#?!√∅∑")
+BASELINE_PUNCT = set("&@$%#?!√∅∑€£¥¢℃℉")
 HANG_PUNCT = set("'\"`")   # hang from the ascender line, not float above it
 BRACKETS = set("()[]{}")
 BRACKET_DROP = 0.09   # share of the bracket's height that sits below baseline
@@ -195,9 +204,7 @@ def cell_height(png, threshold, glyph_scale, snap_baseline):
         return None
     scale = UPM / meta["box_h"] * glyph_scale
     text = meta.get("text", "")
-    snapped = (snap_baseline and len(text) == 1
-               and (text.isalpha() or text in "0123456789")
-               and not is_descender(text))
+    snapped = snap_baseline and snaps_to_baseline(text)
     if snapped:
         return (ys.max() - ys.min()) * scale
     return (meta["baseline_y"] - ys.min()) * scale
@@ -244,7 +251,7 @@ def normalization(heights, strength):
         base = ascii_base(ch)
         if ch not in factors and base in factors:
             factors[ch] = factors[base]
-    return factors, target_x
+    return factors, target_x, target_asc
 
 
 def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
@@ -327,8 +334,7 @@ def build_glyph(cell_png, meta, threshold, turdsize, lsb, rsb,
     text = meta.get("text", "")
     # NOTE: '²'.isdigit() is True in Python - superscripts must keep their
     # written height, so only ASCII digits count as snappable digits here.
-    snappable = (len(text) == 1 and (text.isalpha() or text in "0123456789")
-                 and not is_descender(text))
+    snappable = snaps_to_baseline(text)
     if snap_baseline and snappable:
         baseline_in_crop = (y1 - 1 - y0) + pad  # bottom-most ink row
     elif center_symbols and text in HANG_PUNCT and quote_top:
@@ -386,7 +392,7 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                glyph_scale=1.0, center_symbols=False, max_tuck=0.15,
                primary=None, normalize=0.0, adjust=None,
                accent_overhang=True, even_alternates=True,
-               even_weight=True, alt_tolerance=0.18):
+               even_weight=True, alt_tolerance=0.18, exclude=()):
     glyphs, metrics, cmap = {}, {}, {}
     primary = primary or {}
     adjust = adjust or {}
@@ -401,7 +407,10 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
                       if len(c) == 1 and c.isalpha() and ascii_base(c) == c]
     target_stroke = (sorted(letter_strokes)[len(letter_strokes) // 2]
                      if letter_strokes and even_weight else None)
-    norm, target_x = normalization(heights, normalize) if normalize else ({}, None)
+    if normalize:
+        norm, target_x, target_asc = normalization(heights, normalize)
+    else:
+        norm, target_x, target_asc = {}, None, None
     math_axis = target_x / 2.0 if target_x else None
     quote_top = target_x * 1.05 if target_x else None   # quote-bottom anchor
     if norm:
@@ -495,9 +504,21 @@ def build_font(cells_dir, out_path, family, style="Regular", threshold=110,
             chosen = keep
         chosen = chosen[:3]
         text = chosen[0]["meta"]["text"]
+        if text in exclude:
+            continue
 
         tweak = adjust.get(text, {})
         base_scale = norm.get(text, 1.0) * tweak.get("scale", 1.0)
+        # A joined pair is written bigger than the writer's single letters
+        # (measured: l_l topping out 30% above the ascender line), which makes
+        # the normal letter after it look shrunken. Scale ligatures toward the
+        # ascender line (pairs with tall letters) or the x-height (all-short
+        # pairs like am / ca / oo), same strength as the letters.
+        if (len(text) > 1 and text.isalpha() and normalize and target_x
+                and chosen[0]["h"] > 0):
+            tall = any(c in ASCENDER_LETTERS or c.isupper() for c in text)
+            lig_target = (target_asc or 2.2 * target_x) if tall else target_x
+            base_scale *= 1.0 + normalize * (lig_target / chosen[0]["h"] - 1.0)
         g_lsb = lsb + int(tweak.get("lsb", 0))
         g_rsb = rsb + int(tweak.get("rsb", 0))
         h0 = chosen[0]["h"]
@@ -777,6 +798,9 @@ def main():
     ap.add_argument("--glyph-scale", type=float, default=1.0,
                     help="shrink the drawn letters within the em (0.92 sets a "
                          "bit smaller next to other fonts at the same pt size)")
+    ap.add_argument("--exclude", default="",
+                    help="comma-separated characters/pairs to leave out "
+                         "entirely, e.g. 'ol' to drop a ligature you dislike")
     ap.add_argument("--alt-tolerance", type=float, default=0.18,
                     help="how far an alternate's proportions may stray from "
                          "the primary before it is dropped")
@@ -820,7 +844,8 @@ def main():
                json.load(open(args.adjust_file)) if args.adjust_file else None,
                not args.no_accent_overhang,
                not args.no_even_alternates,
-               not args.no_even_weight, args.alt_tolerance)
+               not args.no_even_weight, args.alt_tolerance,
+               {t for t in args.exclude.split(",") if t})
 
 
 if __name__ == "__main__":

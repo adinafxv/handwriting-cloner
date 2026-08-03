@@ -103,6 +103,7 @@ natural writing size, recommended) or `--size normal` (big boxes, portrait).
 | a descender comes back cut off | write the tail inside the box; clipped versions are auto-demoted |
 | two letters merge | lower `--max-tuck` |
 | gap after ď, ť, Ó | accents overhang by default (`--no-accent-overhang` to disable) |
+| a ligature looks wrong / reads as another letter | `--exclude ol` drops that pair |
 | gray guides show up in glyphs | lower `--threshold` |
 | thin strokes break apart | raise `--threshold`, or rescan darker |
 | words too loose | lower `--target-gap` |
