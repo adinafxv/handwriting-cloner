@@ -653,7 +653,16 @@ def compute_kerning(glyphs, cmap, profiles, advances, alternates,
         if ascii_base(cp) == chr(cp) and chr(cp).isalnum() and profiles.get(n):
             ident.append(n)
             cls[n] = [n]
-    ascii_name = {chr(name2cp[n]): n for n in ident}
+    # Ligature glyphs must kern too: without them, "call" sets c_a hard
+    # against l_l with nothing but the raw side bearings between them, and
+    # the letter after a_m starts a bare 36 units from the m. They carry the
+    # same ink profiles as letters, so they join the identity list on both
+    # sides of every pair.
+    for n in sorted(profiles):
+        if "_" in n and n in glyphs and ".alt" not in n and n not in cls:
+            ident.append(n)
+            cls[n] = [n]
+    ascii_name = {chr(name2cp[n]): n for n in ident if n in name2cp}
     # pass 1: fold accented letters onto their ASCII base class (e -> e)
     for cp, n in cmap.items():
         b = ascii_base(cp)
@@ -677,10 +686,16 @@ def compute_kerning(glyphs, cmap, profiles, advances, alternates,
         shared = set(pl) & set(pr)
         if not shared:
             return 0
+        # A ligature's letters touch by design, so a neighbour at the normal
+        # gap reads as if it were meant to join too and failed ("call" looked
+        # crammed). Boundaries next to a ligature get half again the air.
+        gap = target_gap
+        if "_" in nl or "_" in nr:
+            gap = int(round(target_gap * 1.6))
         # closest approach if right origin sits at advances[nl]:
         # gap(band) = advances[nl] + pr_left[band] - pl_right[band]
         slack = min(pr[b][0] - pl[b][1] for b in shared)
-        kern = int(round(target_gap - advances[nl] - slack))
+        kern = int(round(gap - advances[nl] - slack))
         # Clamp how far a pair may tuck. A letter with a big overhang (y, j,
         # f, T, V) otherwise drags its neighbour a quarter of a glyph width
         # underneath itself - the closest approach is still "correct", but it
